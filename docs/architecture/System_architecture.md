@@ -35,7 +35,6 @@ The WASDPad Rev1.5 consists of the following functional blocks:
 ---
 # Functional Block Diagram
 
-```text
                     DB9 Connector
                          │
           +5V            │           GND
