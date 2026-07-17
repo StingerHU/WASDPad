@@ -33,28 +33,34 @@ The WASDPad Rev1.5 consists of the following functional blocks:
 ```
 
 ---
-
 # Functional Block Diagram
 
-```
+```text
                     DB9 Connector
                          │
-          +5V ---------- GND
-                         │
-                  PTC Protection
-                         │
-                    Power Distribution
-                         │
-     ┌───────────────────┼────────────────────┐
-     │                   │                    │
-     ▼                   ▼                    ▼
-Input Switches     Autofire Logic       Status LEDs
-     │                   │                    │
-     └─────────────┬─────┴────────────────────┘
-                   │
-             Output Drivers
-                   │
-             DB9 Signal Lines
+          +5V            │           GND
+           │             │            │
+           └──────┬──────┘            │
+                  │                   │
+           PTC Protection             │
+                  │                   │
+           Power Distribution         │
+                  │                   │
+      ┌───────────┼───────────┐       │
+      │           │           │       │
+      ▼           ▼           ▼       │
+Input Switches  Autofire   Status LEDs│
+      │         Logic         │       │
+      └───────────┬───────────┘       │
+                  │                   │
+                  ▼                   │
+            Output Drivers            │
+                  │                   │
+                  ▼                   │
+           DB9 Signal Lines───────────┘
+```
+
+## Functional Blocks
 
 # Functional Blocks
 
@@ -74,7 +80,7 @@ Responsibilities:
 
 Protects the controller against accidental overcurrent.
 
-Components:
+Components
 
 - Resettable PTC fuse
 
