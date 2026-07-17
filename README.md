@@ -40,12 +40,13 @@ Revision 1.5 is a fully hardware-based joystick controller featuring:
 
 Planned improvements over Revision 1.2 include:
 
-- Cherry MX hot-swap sockets
+- Cherry MX compatible hot-swap sockets
 - Resettable PTC protection
-- ESD protection
+- ESD protection on external signal lines
 - Improved status indication
 - PCB routing improvements
 - Improved serviceability
+- Updated manufacturing documentation
 
 ---
 
@@ -66,6 +67,8 @@ Supported through adapters:
 - Commodore C116
 - Videoton TVC
 
+Compatibility with additional digital joystick systems may be added in future revisions.
+
 ---
 
 # Repository Structure
@@ -75,21 +78,32 @@ WASDPad/
 │
 ├── docs/
 │   ├── architecture/
+│   │   └── System_Architecture.md
+│   │
 │   ├── specification/
+│   │   ├── Project_Specification.md
+│   │   └── Feature_Specification.md
+│   │
 │   ├── roadmap/
+│   │   └── ROADMAP.md
+│   │
 │   └── legal/
+│       ├── LICENSES.md
+│       └── TRADEMARKS.md
 │
 ├── hardware/
 │   └── rev1.5/
+│       ├── README.md
 │       └── bom/
+│           ├── BOM.csv
+│           ├── BOM.md
+│           ├── ALTERNATE_PARTS.md
+│           └── PROCUREMENT_NOTES.md
 │
 ├── firmware/
 ├── enclosure/
 ├── images/
 │
-├── ROADMAP.md
-├── LICENSES.md
-├── TRADEMARKS.md
 └── README.md
 ```
 
@@ -101,23 +115,35 @@ WASDPad/
 
 - `docs/architecture/System_Architecture.md`
 
-Functional architecture of the Revision 1.5 hardware.
+Defines the functional architecture of the Revision 1.5 hardware platform.
+
+---
 
 ## Specifications
 
 - `docs/specification/Project_Specification.md`
 
-Project goals, engineering principles and long-term vision.
+Defines the long-term technical vision, engineering principles and design goals of the WASDPad project.
 
 - `docs/specification/Feature_Specification.md`
 
-Functional behaviour of Revision 1.5.
+Defines the user-visible behaviour and functionality of the Revision 1.5 hardware.
+
+---
+
+## Roadmap
+
+- `docs/roadmap/ROADMAP.md`
+
+Describes the project's development history, current milestone and future hardware revisions.
+
+---
 
 ## Hardware
 
 - `hardware/rev1.5/README.md`
 
-Revision 1.5 hardware overview.
+Overview of the Revision 1.5 hardware platform.
 
 - `hardware/rev1.5/bom/BOM.md`
 
@@ -125,25 +151,27 @@ Human-readable Bill of Materials.
 
 - `hardware/rev1.5/bom/BOM.csv`
 
-Machine-readable BOM.
+Machine-readable Bill of Materials.
 
 - `hardware/rev1.5/bom/ALTERNATE_PARTS.md`
 
-Approved replacement parts.
+Approved and candidate replacement components.
 
 - `hardware/rev1.5/bom/PROCUREMENT_NOTES.md`
 
-Component sourcing and lifecycle notes.
+Component sourcing, availability and lifecycle notes.
+
+---
 
 ## Legal
 
-- `LICENSES.md`
+- `docs/legal/LICENSES.md`
 
-Planned licensing model.
+Planned licensing model for hardware, firmware, enclosure and documentation.
 
-- `TRADEMARKS.md`
+- `docs/legal/TRADEMARKS.md`
 
-Trademark information.
+Trademark ownership and permitted trademark usage.
 
 ---
 
@@ -155,10 +183,11 @@ The WASDPad project follows several core engineering principles:
 - Compatibility before innovation
 - Low latency by design
 - Serviceable hardware
+- Long-term maintainability
 - Complete documentation
 - Evolution through validated hardware revisions
 
-Every released revision shall represent a complete, stable and manufacturable product.
+Every released hardware revision shall represent a complete, stable and manufacturable product.
 
 ---
 
@@ -169,39 +198,43 @@ Every released revision shall represent a complete, stable and manufacturable pr
 | Prototype | Initial proof of concept | ✔ Completed |
 | Revision 1.0 | First functional PCB | ✔ Completed |
 | Revision 1.1 | Electrical refinement | ✔ Completed |
-| Revision 1.2 | Production-ready hardware | ✔ Released |
+| Revision 1.2 | Production-ready hardware platform | ✔ Released |
 | Revision 1.5 | Enhanced hardware platform | 🚧 In Development |
-| Revision 2.0 | RP2040-based platform | Planned |
+| Revision 2.0 | RP2040 programmable platform | Planned |
 
 ---
 
 # Current Development Focus
 
-The current development cycle consists of:
+The current Revision 1.5 development cycle consists of:
 
 1. Complete the Revision 1.5 Bill of Materials.
 2. Select all new protection components.
 3. Update the schematic.
-4. Redesign the PCB.
+4. Update the PCB layout.
 5. Manufacture the first Revision 1.5 prototype.
-6. Validate hardware and mechanics.
-7. Prepare production documentation.
+6. Validate electrical, mechanical and functional performance.
+7. Prepare manufacturing and assembly documentation.
+8. Release Revision 1.5.
 
 ---
 
 # Future Development
 
-Revision 2.0 will introduce a programmable RP2040-based architecture while preserving compatibility with existing joystick interfaces.
+Revision 2.0 is planned as the first programmable WASDPad platform while maintaining compatibility with existing joystick interfaces.
 
 Planned capabilities include:
 
+- RP2040-based architecture
 - Firmware-controlled autofire
 - Adjustable timing
 - Burst mode
 - Game profiles
-- USB firmware updates
 - Persistent configuration
+- USB firmware updates
 - Optional USB HID support
+
+Development of Revision 2.0 will begin after Revision 1.5 has been completed and validated.
 
 ---
 
@@ -209,19 +242,19 @@ Planned capabilities include:
 
 The project is currently under private development.
 
-Hardware, firmware, enclosure and documentation may be released under different open-source licenses in the future.
+Hardware, firmware, enclosure and documentation may be released under different open-source licenses in future revisions.
 
-See `LICENSES.md` for details.
+See `docs/legal/LICENSES.md` for details.
 
 ---
 
 # Trademark Notice
 
-All trademarks remain the property of their respective owners.
+All product names and trademarks remain the property of their respective owners.
 
 The Commodore **C=** logo is used only where explicit permission has been granted.
 
-See `TRADEMARKS.md` for additional information.
+See `docs/legal/TRADEMARKS.md` for additional information.
 
 ---
 
