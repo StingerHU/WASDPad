@@ -1,21 +1,33 @@
 # WASDPad Roadmap
 
-This document tracks the evolution and future development of the WASDPad project.
+This document describes the evolution and long-term development plan of the WASDPad project.
 
 ---
 
 # Project Vision
 
-Create a premium open hardware joystick controller for Commodore 64, Amiga and compatible retro systems.
-The project aims to combine modern engineering practices with the simplicity and reliability required by classic computers.
+WASDPad aims to become a premium open hardware joystick controller for Commodore 64, Amiga and other compatible retro computer systems.
 
-Core principles:
+The project combines modern engineering practices with the simplicity, reliability and responsiveness required by classic gaming hardware.
+
+## Core Principles
 
 - Excellent gaming experience
 - High reliability
 - Serviceability
-- Open hardware philosophy
 - Long-term maintainability
+- Open hardware philosophy
+- Community-driven development
+
+---
+
+# Development Philosophy
+
+WASDPad follows an evolutionary development model.
+
+Every hardware revision must represent a complete, stable and manufacturable product. New features are introduced only after the previous revision has been fully validated.
+
+This approach ensures that every released revision can be manufactured, assembled and used without depending on future development.
 
 ---
 
@@ -23,147 +35,188 @@ Core principles:
 
 ## Prototype
 
-The first prototype proved the overall concept.
+The initial prototype validated the overall concept of a keyboard-style joystick controller.
 
-Main objectives:
+Objectives:
 
-- Validate the keyboard-style layout
+- Validate the WASD layout
 - Test Cherry MX switches
-- Verify joystick compatibility
+- Verify Commodore-compatible joystick signalling
 - Evaluate ergonomics
+- Test the autofire concept
 
-Status: ✔ Completed
+**Status:** ✔ Completed
 
 ---
 
 ## Revision 1.0
 
-First fully functional hardware revision.
+First functional PCB.
 
-Features:
+Main achievements:
 
-- Cherry MX mechanical switches
+- Complete joystick interface
+- Autofire implementation
 - Dual FIRE buttons
-- ICM7555 based autofire
-- OFF / SLOW / FAST autofire
-- Status LEDs
-- MOSFET output drivers
-- Commodore / Amiga compatible DB9 interface
+- Initial PCB validation
 
-Status: ✔ Completed
+**Status:** ✔ Completed
 
 ---
 
 ## Revision 1.1
 
-Electrical improvements.
+Electrical refinement.
 
-Planned improvements:
+Main improvements:
 
-- Minor PCB fixes
-- Routing improvements
-- Silkscreen cleanup
-- Documentation updates
+- PCB corrections
+- Routing optimisation
+- Improved signal integrity
+- Component placement optimisation
 
-Status: Planning
+**Status:** ✔ Completed
 
 ---
 
 ## Revision 1.2
 
-Manufacturing validation.
+First production-ready hardware platform.
 
-Objectives:
+Revision 1.2 represents the first fully validated version of the WASDPad hardware.
 
-- Long-term testing
-- Component validation
-- Mechanical improvements
-- Assembly verification
+It provides the complete intended functionality of the original design and serves as the baseline for all future development.
 
-Status: Planning
+### Features
+
+- Cherry MX mechanical switches
+- Dual FIRE buttons
+- ICM7555-based autofire
+- OFF / SLOW / FAST autofire modes
+- Status LEDs
+- MOSFET output drivers
+- Commodore / Amiga compatible DB9 interface
+- Fully tested PCB
+- Production-ready design
+
+**Status:** ✔ Production Ready
 
 ---
 
-## Revision 1.5
+# Revision 1.5
 
-Enhanced classic hardware platform.
+Enhanced hardware platform.
 
-Objectives:
+Revision 1.5 builds upon the proven Revision 1.2 hardware without changing its core architecture.
 
-### Hardware
+The objective is to improve reliability, serviceability and manufacturability while maintaining full compatibility.
 
-- Cherry MX hot-swap sockets
-- ESD protection
-- Resettable PTC fuse
-- RGB / bi-color status LED
-- PCB optimization
-- Manufacturing improvements
+## Hardware
 
-### Documentation
+- [ ] Cherry MX hot-swap sockets
+- [ ] ESD protection
+- [ ] Resettable PTC fuse
+- [ ] RGB / bi-colour status LED
+- [ ] PCB optimisation
+- [ ] Silkscreen improvements
 
-- Updated schematic
-- Updated BOM
-- Assembly guide
-- Test procedure
+## Documentation
 
-Status: Planned
+- [ ] Updated schematic
+- [ ] Updated BOM
+- [ ] Assembly guide
+- [ ] Manufacturing notes
+- [ ] Test procedure
+
+**Status:** Planned
 
 ---
 
 # Revision 2.0
 
-Complete redesign around RP2040-Zero.
+Next-generation architecture.
+
+Revision 2.0 is the first major redesign of the WASDPad platform.
+
+The existing discrete logic will be replaced by an RP2040-Zero microcontroller while preserving compatibility with classic joystick interfaces.
 
 ## Hardware
 
-- RP2040-Zero
-- USB-C firmware updates
-- RGB status LED
-- Analog trimmer input
-- Modular architecture
+- [ ] RP2040-Zero
+- [ ] USB-C firmware updates
+- [ ] RGB status LED
+- [ ] Analog trimmer input
+- [ ] Modular firmware architecture
 
 ## Firmware
 
-- Adjustable autofire
-- Burst mode
-- Game profiles
-- Configurable debounce
-- Persistent settings
-- Startup profile selection
+- [ ] Adjustable autofire
+- [ ] Burst mode
+- [ ] Multiple game profiles
+- [ ] Configurable debounce profiles
+- [ ] Persistent settings stored in flash
+- [ ] Startup profile selection
+- [ ] Firmware update over USB
 
-Status: Concept
+## Planned Game Profile Support
+
+Examples include configurable profiles for games with different timing characteristics.
+
+Examples:
+
+- Wizard of Wor
+- Summer Games
+- Track & Field
+- Decathlon
+- Daley Thompson's Super-Test
+
+Each profile may define:
+
+- Autofire timing
+- Pulse width
+- Burst behaviour
+- Debounce parameters
+- LED indication
+
+**Status:** Concept
 
 ---
 
-# Future
+# Future Development
 
-Possible future developments.
+Possible future extensions.
 
 ## Hardware
 
-- OLED display
-- Expansion connector
-- Additional buttons
+- [ ] OLED status display
+- [ ] Expansion connector
+- [ ] Additional configurable buttons
 
 ## Software
 
-- PC configuration utility
-- Profile editor
-- Firmware updater
-- USB HID mode
-- Community profile library
-
-Status: Ideas
+- [ ] PC configuration utility
+- [ ] Profile editor
+- [ ] Firmware updater
+- [ ] Community profile library
+- [ ] USB HID mode (optional)
 
 ---
 
-# Current Status
+# Current Project Status
 
-Current hardware:
-Revision 1.0
+| Hardware | Status |
+|----------|--------|
+| Prototype | Completed |
+| Revision 1.0 | Completed |
+| Revision 1.1 | Completed |
+| Revision 1.2 | Production Ready |
+| Revision 1.5 | Planned |
+| Revision 2.0 | Concept |
 
 Current development target:
-Revision 1.5
 
-Long-term goal:
-Revision 2.0
+**Revision 1.5**
+
+Long-term development target:
+
+**Revision 2.0**
