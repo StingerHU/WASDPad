@@ -1,0 +1,1 @@
+Wasdpad enclosure detail
