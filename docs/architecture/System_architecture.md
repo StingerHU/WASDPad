@@ -55,9 +55,6 @@ Input Switches     Autofire Logic       Status LEDs
              Output Drivers
                    │
              DB9 Signal Lines
-```
-
----
 
 # Functional Blocks
 
