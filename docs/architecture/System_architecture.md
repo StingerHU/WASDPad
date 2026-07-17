@@ -60,7 +60,6 @@ Input Switches  Autofire   Status LEDs│
            DB9 Signal Lines───────────┘
 ```
 
-## Functional Blocks
 
 # Functional Blocks
 
