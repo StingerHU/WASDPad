@@ -1,3 +1,7 @@
+Document Version: 1.0
+Last Updated: 2026-07-17
+Status: Draft
+
 # WASDPad Project Specification
 
 This document defines the technical vision, engineering requirements and long-term direction of the WASDPad project.
