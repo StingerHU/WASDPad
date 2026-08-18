@@ -1,6 +1,6 @@
 # WASDPad+ Documentation
 
-**Document Version:** 0.9
+**Document Version:** 0.9.1
 **Current Hardware Revision:** Rev 1.5
 **Status:** Engineering Validation
 **Last Updated:** 2026-08-18
@@ -236,21 +236,20 @@ For assembly / manufacturing:
 
 # Documentation Status
 
-| Area                      | Status             |
-| ------------------------- | ------------------ |
-| Project overview          | Current            |
-| Rev 1.5 hardware overview | Current            |
-| Rev 1.5 BOM documentation | Current            |
-| Alternate-parts strategy  | Current            |
-| Procurement guidance      | Current            |
-| Cable assembly procedure  | Current            |
-| System architecture       | Review recommended |
-| Project specification     | Review recommended |
-| Feature specification     | Review recommended |
-| Production test procedure | Planned            |
-| PCB assembly procedure    | Planned            |
-| Enclosure documentation   | Planned            |
-
+| Area | Status |
+|---|---|
+| Project overview | Current |
+| Rev 1.5 hardware overview | Current |
+| Rev 1.5 BOM documentation | Current |
+| System architecture | Current |
+| Project specification | Current |
+| Feature specification | Current |
+| Alternate-parts strategy | Current |
+| Procurement guidance | Current |
+| Cable assembly procedure | Current |
+| Production test procedure | Planned |
+| PCB assembly procedure | Planned |
+| Enclosure documentation | In Development |
 ---
 
 # Planned Documentation
@@ -295,7 +294,7 @@ Documentation-only changes do not require a hardware revision increment.
 | ------- | -------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0.1     | Not recorded   | Initial                    | Initial documentation placeholder                                                                                                                                                  |
 | **0.9** | **2026-08-18** | **Engineering Validation** | Converted to documentation index; updated Rev 1.5 structure; added assembly documentation, BOM documentation index, recommended reading paths and planned production documentation |
-| **0.9.1** | **2026-08-18** | **Engineering Validation** | Documentation consistency update; corrected the authoritative Rev 1.5 BOM filename and aligned repository references with the current directory structure |
+| **0.9.1** | **2026-08-18** | **Engineering Validation** | Documentation consistency update; corrected Rev 1.5 BOM filename, marked architecture and specification documents as current, and updated enclosure documentation status |
 ---
 
 # Next Version
