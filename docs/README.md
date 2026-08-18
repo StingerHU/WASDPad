@@ -124,7 +124,7 @@ Contains the current Rev 1.5:
 
 Engineering description of the Rev 1.5 BOM and primary component selections.
 
-### `BOM.csv`
+### `wasdpad+v1.5.csv`
 
 Authoritative Rev 1.5 component list.
 
@@ -187,7 +187,7 @@ WASDPad/
         │
         ├── bom/
         │   ├── README.md
-        │   ├── BOM.csv
+        │   ├── wasdpad+v1.5.csv
         │   ├── ALTERNATE_PARTS.md
         │   └── PROCUREMENT_NOTES.md
         │
@@ -217,7 +217,7 @@ For PCB / electronics work:
 
 ```text
 1. hardware/rev1.5/README.md
-2. hardware/rev1.5/bom/BOM.csv
+2. hardware/rev1.5/bom/wasdpad+v1.5.csv
 3. hardware/rev1.5/bom/ALTERNATE_PARTS.md
 4. hardware/rev1.5/bom/PROCUREMENT_NOTES.md
 5. schematic and PCB source files
@@ -226,7 +226,7 @@ For PCB / electronics work:
 For assembly / manufacturing:
 
 ```text
-1. hardware/rev1.5/bom/BOM.csv
+1. hardware/rev1.5/bom/wasdpad+v1.5.csv
 2. hardware/rev1.5/bom/PROCUREMENT_NOTES.md
 3. docs/assembly/CABLE_ASSEMBLY.md
 4. hardware/rev1.5/README.md
