@@ -87,17 +87,32 @@ This review covers the complete Rev 1.5 schematic after the previous component, 
 
 ---
 
+## 7. KiCad ERC Validation
+
+Final KiCad Electrical Rules Checker (ERC) completed on the Rev 1.5 schematic.
+
+- [x] ERC completed
+- [x] Violations: **0**
+- [x] Errors: **0**
+
+**Result:** PASS
+
+---
+
 ## Final Result
 
 **Rev 1.5 schematic validation: PASS**
 
-No new electrical or schematic issue requiring a design change was identified during the final full-sheet review.
+- Complete schematic manually reviewed
+- Previous BOM / component / pinout / footprint validations retained
+- KiCad ERC: **0 violations / 0 errors**
+- No new electrical or schematic issues identified
+- No schematic design changes required
 
-Previously completed BOM, manufacturer pinout and footprint validations were **not unnecessarily repeated** during this review.
-
-The Rev 1.5 schematic can be treated as a **Release Candidate**, subject to normal final ERC, PCB/DRC and manufacturing-output checks.
+The WASDPad+ Rev 1.5 schematic is considered **validated and ready for PCB final review / manufacturing preparation**.
 
 ---
 
 **Reviewed schematic:** WASDPad+ Rev 1.5  
+**ERC:** 0 violations / 0 errors  
 **Validation status:** PASS / RELEASE CANDIDATE
