@@ -1,30 +1,33 @@
-"Reference","Qty","Value","DNP","Exclude from BOM","Exclude from Board","Footprint","Datasheet","Description"
-"C1,C2,C3,VCC-GND-Decoupling1","4","100nF","","","","Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder","~","Unpolarized capacitor"
-"D1","1","POWER","","","","LED_THT:LED_D3.0mm","~","Light emitting diode"
-"D2","1","1N4148","","","","Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal","https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf","100V 0.15A standard switching diode, DO-35"
-"D4,D5","2","PESD5V0S4UD","","","","Package_TO_SOT_SMD:SOT-23-6","http://www.st.com/content/ccc/resource/technical/document/datasheet/21/07/21/e3/a8/df/42/a2/CD00001906.pdf/files/CD00001906.pdf/jcr:content/translations/en.CD00001906.pdf","Quad bidirectional transil, Suppressor for ESD protection, 5V Standoff, 4 Channels, SOT-23-6"
-"D6","1","PESD6V0L2UU","","","","Package_TO_SOT_SMD:SOT-323_SC-70","~","Dual Zener diode, common anode on pin 3"
-"D7","1","LED_Dual_AKA","","","","LED_THT:LED_D3.0mm-3","~","Dual LED, common cathode on pin 2"
-"F2","1","1206L005/30","","","","Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder","~","Resettable fuse, polymeric positive temperature coefficient"
-"J1","1","DB9_JOYSTICK","","","","Connector_Wire:SolderWirePad_1x01_SMD_1.5x3mm","~","Generic connector, single row, 01x09, script generated (kicad-library-utils/schlib/autogen/connector/)"
-"Q1_Q_FIRE_INV1,Q2_Q_AF_INV1,Q3_Q_SHOT_BLOCK1,Q4_Q_FIRE1_SHOT1,Q5_Q_AF_NOBTN_CLAMP1,Q6_Q_AF_OFF_CLAMP1,Q7_Q_FIRE1_AF1","7","2N7002","","","","Package_TO_SOT_SMD:SOT-23","https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF","0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"
-"Q1_SLOW1,Q2_FAST1","2","MMBT3904","","","","Package_TO_SOT_SMD:SOT-23","https://www.onsemi.com/pdf/datasheet/pzt3904-d.pdf","0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"
-"R1,R2,R10,R11,R12,R15,R17,R20,R21","9","10k","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"R3,R4,R5,R6,R7,R9,R23","7","330","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"R8,R16,R18,R19","4","100k","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"R13","1","330K","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"R14","1","680K","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"R22","1","270","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"R_LED1","1","4k7","","","","Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder","~","Resistor"
-"SW1","1","W","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW2","1","S","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW3","1","A","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW4","1","D","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW5","1","FIRE1_L","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW6","1","FIRE1_R","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW7","1","FIRE2_L","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW8","1","FIRE2_R","","","","PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX","~","Push button switch, generic, two pins"
-"SW_AUTO1","1","SW_SPST","","","","ToggleSwitches:SW_100SP1T1B4M2QE","~","Single Pole Single Throw (SPST) switch"
-"SW_SPEED1","1","SW_SP3T","","","","ToggleSwitches:SW_100SP3T1B1M2QEH","~","Switch, three position, single pole triple throw, 3 position switch, SP3T"
-"U1","1","7555","","","","Package_SO:SOIC-8_3.9x4.9mm_P1.27mm","http://www.ti.com/lit/ds/symlink/tlc555.pdf","Single LinCMOS Timer, 555 compatible, SOIC-8"
-"U2","1","CD4066BM","","","","Package_SO:SO-14_3.9x8.65mm_P1.27mm","https://www.ti.com/lit/ds/symlink/cd4066b.pdf","Quad 20V analog SPST 1:1 switch, SO-14 (3.9x8.65mm)"
+Reference,Qty,Value,Footprint,Datasheet,Description
+C1,1,220nF,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,https://hu.mouser.com/en/ProductDetail/KEMET/C1206S224J3RACAUTO?qs=2FehpBK1j95YJ3%252BBWNAfkw%3D%3D&_gl=1*m0x82z*_ga*dW5kZWZpbmVk*_ga_15W4STQT4T*dW5kZWZpbmVk*_ga_1KQLCYKRX3*dW5kZWZpbmVk,Fire1 single-shot / gate timing capacitor X7R 220nF 25 VDC 5%
+"C2,C3,VCC-GND-Decoupling1",3,100nF,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,https://eu.mouser.com/datasheet/3/508/1/KEM_C1023_X7R_AUTO_SMD.pdf,"Autofire timing capacitor X7R 100nF 25 VDC 5%,ICM7555 Control pin filter stabilizator capacitor X7R 100nF 25 VDC 5%,VCC-GND Decoupling capacitor X7R 100nF 25 VDC 5%"
+D1,1,POWER_LED,LED_THT:LED_D3.0mm,https://hu.mouser.com/datasheet/3/112/1/3RDL_X.pdf,"3 mm THT Power LED, customer-selectable color: Red / Blue / White - - Default RED - See alternate_parts.md for MPN's"
+D2,1,1N4148,Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal,https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf,"100V 0.15A standard switching diode, DO-35"
+"D4,D5",2,PESD5V0S4UD,Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm,https://assets.nexperia.com/documents/data-sheet/PESD5V0S4UD.pdf,"Quadruple unidirectional ESD protection diode array, 5 V, SOT457 / SC-74"
+D6,1,PESD6V0L2UU,Package_TO_SOT_SMD:SOT-323_SC-70,https://assets.nexperia.com/documents/data-sheet/PESD6V0L2UU.pdf,"Dual low-capacitance ESD protection diode array, 6 V, SOT-323 / SC-70"
+D7,1,LED_Dual_AKA,LED_THT:LED_D3.0mm-3,https://www.bivar.com/parts_content/Datasheets/3BC-3-F.pdf,"Bivar - 3BC-3-F Dual LED (red/green), common cathode on pin 2"
+F2,1,1206L005/30WR,Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder,https://www.littelfuse.com/-/media/electronics/datasheets/resettable_ptcs/littelfuse_ptc_1206l_datasheet.pdf.pdf,"Resettable fuse, polymeric positive temperature coefficient"
+J1,1,DB9_JOYSTICK,Connector_Wire:SolderWirePad_1x01_SMD_1.5x3mm,-,"Generic connector, single row, 01x09, script generated (kicad-library-utils/schlib/autogen/connector/) - J1 – DB9 cable solder pads, PCB feature, DNP / no procurement item"
+"Q1_Q_FIRE_INV1,Q2_Q_AF_INV1,Q3_Q_SHOT_BLOCK1,Q4_Q_FIRE1_SHOT1,Q5_Q_AF_NOBTN_CLAMP1,Q6_Q_AF_OFF_CLAMP1,Q7_Q_FIRE1_AF1",7,2N7002,Package_TO_SOT_SMD:SOT-23,https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF,"0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"
+"Q1_SLOW1,Q2_FAST1",2,MMBT3904,Package_TO_SOT_SMD:SOT-23,https://www.onsemi.com/pdf/datasheet/mmbt3904lt1-d.pdf,"Bipolar Transistors - BJT 200mA 60V NPN, SOT-23"
+"R1,R2,R10,R11,R12,R15,R17,R20,R21",9,10k,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 10k bias/pull/gate/timing - RC1206FR-0710KL
+"R3,R4,R5,R6,R7,R9,R23",7,330,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 330Ohm signal/LED serial lines - RC1206FR-07330RL
+"R8,R16,R18,R19",4,100k,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 100k bias/pull/gate - RC1206FR-07100KL
+R13,1,330K,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 330k Autofire FAST - RC1206FR-07330KL
+R14,1,680K,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 680k Autofire SLOW - RC1206FR-07680KL
+R22,1,270,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 270Ohm standalone serial - RC1206FR-07270RL
+R_LED1,1,4k7,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,https://www.mouser.com/catalog/specsheets/YAGEO_PYu_RC_Group_51_RoHS_L_12.pdf,Yageo - Resistor 4.7KOhm LED - RC1206FR-074K7L
+SW1,1,W,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW2,1,S,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW3,1,A,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW4,1,D,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW5,1,FIRE1_L,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW6,1,FIRE1_R,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW7,1,FIRE2_L,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW8,1,FIRE2_R,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,https://www.kailhswitch.com/uploads/15927/files/CPG151101S11.pdf?rnd=550&utm_source=chatgpt.com,"Kailh MX hot-swap socket, MPN CPG151101S11, for SW1-SW8"
+SW_AUTO1,1,SW_SPST,ToggleSwitches:SW_100SP1T1B4M2QE,https://configured-product-images.s3.amazonaws.com/Datasheets/100.pdf,E-Switch 100SP1T1B4M2QE -   SWITCH TOGGLE SPDT 5A 120V
+SW_SPEED1,1,SW_SP3T,ToggleSwitches:SW_100SP3T1B1M2QEH,https://configured-product-images.s3.amazonaws.com/Datasheets/100.pdf,E-Switch 100SP1T1B4M2QE -   SWITCH TOGGLE SPDT 5A 120V - Intentional KiCad symbol/footprint mapping; validated with 100SP1T1B4M2QE
+U1,1,ICM7555CBAZ,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,https://www.renesas.com/en/document/dst/icm7555-icm7556-datasheet?r=528311,"Renesas - Single LinCMOS Timer, 555 compatible, SOIC-8"
+U2,1,CD4066BM96,Package_SO:SO-14_3.9x8.65mm_P1.27mm,https://www.ti.com/lit/ds/symlink/cd4066b.pdf,Texas Instruments - Quad bilateral CMOS switch
+SWITCHES,8,Gateron KS-8 Yellow switch,-,https://www.gateron.co/products/gateron-ks-8-mechanical-switch-set,Gateron KS-8 Yellow linear MX-compatible mechanical switches for SW1-SW8; installed into Kailh CPG151101S11 hot-swap sockets
+CABLE,1,DB9F molded cable,-,https://www.aliexpress.com/item/1005009578092300.html?spm=a2g0o.order_list.order_list_main.5.27511802sLUJaU,"Generic Sega Mega Drive/Genesis 2 style molded DB9F controller cable, 9-wire flying leads; AliExpress item 1005009578092300; pin 5 unused; see cable assembly documentation."
