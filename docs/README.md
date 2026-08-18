@@ -113,11 +113,11 @@ Contains the current Rev 1.5:
 # BOM Documentation
 
 ```text
-hardware/rev1.5/bom/
-├── README.md
-├── BOM.csv
-├── ALTERNATE_PARTS.md
-└── PROCUREMENT_NOTES.md
+├── bom/
+│   ├── README.md
+│   ├── wasdpad+v1.5.csv
+│   ├── ALTERNATE_PARTS.md
+│   └── PROCUREMENT_NOTES.md
 ```
 
 ### `README.md`
@@ -295,7 +295,7 @@ Documentation-only changes do not require a hardware revision increment.
 | ------- | -------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0.1     | Not recorded   | Initial                    | Initial documentation placeholder                                                                                                                                                  |
 | **0.9** | **2026-08-18** | **Engineering Validation** | Converted to documentation index; updated Rev 1.5 structure; added assembly documentation, BOM documentation index, recommended reading paths and planned production documentation |
-
+| **0.9.1** | **2026-08-18** | **Engineering Validation** | Documentation consistency update; corrected the authoritative Rev 1.5 BOM filename and aligned repository references with the current directory structure |
 ---
 
 # Next Version
