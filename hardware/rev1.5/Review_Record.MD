@@ -99,6 +99,19 @@ Final KiCad Electrical Rules Checker (ERC) completed on the Rev 1.5 schematic.
 
 ---
 
+## 8. KiCad DRC
+
+- DRC completed after schematic-to-PCB synchronization
+- Unconnected items: **0**
+- Clearance errors: **0**
+- Routing errors: **0**
+- Remaining violations: known solder-wire-pad library mismatch warnings only
+- J1 and auxiliary solder pads are intentionally customized / embedded PCB footprints
+
+**Result: PASS**
+
+---
+
 ## Final Result
 
 **Rev 1.5 schematic validation: PASS**
