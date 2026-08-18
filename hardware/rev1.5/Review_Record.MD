@@ -90,6 +90,14 @@ This review covers the complete Rev 1.5 schematic after the previous component, 
 ## Final Result
 
 **Rev 1.5 schematic validation: PASS**
+
 No new electrical or schematic issue requiring a design change was identified during the final full-sheet review.
+
 Previously completed BOM, manufacturer pinout and footprint validations were **not unnecessarily repeated** during this review.
+
 The Rev 1.5 schematic can be treated as a **Release Candidate**, subject to normal final ERC, PCB/DRC and manufacturing-output checks.
+
+---
+
+**Reviewed schematic:** WASDPad+ Rev 1.5  
+**Validation status:** PASS / RELEASE CANDIDATE
