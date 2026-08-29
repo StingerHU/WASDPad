@@ -1,323 +1,175 @@
 # WASDPad+ System Architecture
 
-**Document Version:** 0.9
-**Hardware Revision:** Rev 1.5
-**Status:** Engineering Validation / Pre-Prototype
-**Last Updated:** 2026-08-18
+## Hardware Revision 1.5.1
+
+**Document Version:** 2.0
+**Hardware Revision:** Rev1.5.1
+**Status:** Production Release Candidate
+**Last Updated:** 2026-08-29
 
 ---
 
 # 1. Purpose
 
-This document describes the system-level hardware architecture of **WASDPad+ Revision 1.5**.
+This document describes the functional and electrical architecture of **WASDPad+ Hardware Revision 1.5.1**.
 
-It defines:
+Revision 1.5.1 is the production-oriented evolution of the proven discrete-hardware WASDPad architecture.
 
-* major functional blocks
-* signal flow
-* power architecture
-* input architecture
-* FIRE1 and FIRE2 handling
-* autofire architecture
-* protection strategy
-* status indication
-* external controller interface
-* architectural boundaries between Rev 1.5 and future revisions
+The design retains the fundamental principles of the earlier platform:
 
-Exact manufacturer part numbers and procurement information are maintained separately in:
-
-```text
-hardware/rev1.5/bom/
-```
-
----
-
-# 2. Architectural Principles
-
-WASDPad+ Rev 1.5 follows five primary design principles.
-
-## 2.1 Hardware-Only Operation
-
-Normal controller operation requires:
-
+* direct digital joystick signalling
+* hardware-only input processing
 * no microcontroller
 * no firmware
-* no operating-system driver
-* no USB interface
-* no programmable logic
+* no software dependency
+* deterministic operation
+* minimal input latency
 
-Direction, FIRE and autofire functions are implemented entirely in hardware.
+Revision 1.5.1 extends the architecture primarily in the areas of:
 
-This provides deterministic behaviour and keeps the controller compatible with classic joystick interfaces without software dependencies.
+* electrical protection
+* serviceability
+* mechanical switch replacement
+* status indication
+* key illumination
+* PCB robustness
+* manufacturability
 
----
-
-## 2.2 Native Joystick-Port Interface
-
-The controller connects directly to a classic Atari-style DE-9 / DB9 joystick port.
-
-Primary target platforms are:
-
-* Commodore 64
-* Commodore 128
-* Commodore Amiga
-
-Compatibility with other DE-9 systems must be evaluated individually because electrical behaviour and use of auxiliary pins may differ.
+Future programmable WASDPad hardware generations are outside the scope of this document.
 
 ---
 
-## 2.3 Active-Low Signal Behaviour
+# 2. Architectural Goals
 
-The primary joystick inputs operate using the conventional active-low model.
+The Rev1.5.1 architecture is designed around the following priorities:
 
-Conceptually:
+1. **Low latency**
+   User inputs should reach the host through direct hardware paths without software scanning or protocol conversion.
 
-```text
-Released input -> signal inactive
-Pressed input  -> signal pulled active toward GND
-```
+2. **Deterministic behaviour**
+   Controller behaviour must not depend on firmware execution, polling intervals or operating-system timing.
 
-The controller therefore behaves electrically like a conventional joystick rather than generating a digital communication protocol.
+3. **Retro-hardware compatibility**
+   Electrical behaviour should remain appropriate for traditional digital joystick interfaces.
 
----
+4. **Low host-port loading**
+   The controller must operate within the practical limitations of vintage computer joystick-port power sources.
 
-## 2.4 Host Protection
+5. **Electrical robustness**
+   External signal and supply connections require appropriate ESD and overcurrent protection.
 
-Rev 1.5 includes dedicated protection against:
+6. **Serviceability**
+   Gameplay switches should be replaceable without PCB soldering.
 
-* excessive +5 V current
-* electrostatic discharge on external signal lines
-* electrostatic discharge on the +5 V supply
-* local supply transients
+7. **Manufacturability**
+   The architecture should support repeatable PCB production and mixed automated/manual assembly.
 
-Protection is considered part of the core architecture rather than an optional accessory.
-
----
-
-## 2.5 Serviceability
-
-Primary gameplay switches use MX-compatible hot-swap sockets.
-
-This allows mechanical switches to be replaced without soldering and separates the lifetime of the PCB from the lifetime or user preference of the individual switches.
+8. **Maintainability**
+   Functional blocks should remain understandable and repairable using conventional electronic components.
 
 ---
 
-# 3. System Block Diagram
+# 3. System Overview
+
+WASDPad+ Rev1.5.1 consists of the following principal functional blocks:
+
+* Host / DB9 Interface
+* +5 V Power Input
+* Power Protection
+* Power Distribution and Decoupling
+* ESD Protection
+* Mechanical User Inputs
+* FIRE1 / FIRE2 Signal Logic
+* Autofire Timing Generator
+* Autofire Mode Selection
+* Output Switching
+* Autofire Status Indication
+* Key Backlighting
+* Backlight Control
+
+The system is entirely hardware-driven.
+
+---
+
+# 4. High-Level Functional Architecture
 
 ```text
                          HOST COMPUTER
-                              |
-                       DE-9 / DB9 PORT
-                              |
-             +----------------+----------------+
-             |                                 |
-             |                              +5 V
-             |                                 |
-             |                          PPTC Protection
-             |                                 |
-             |                         +5 V ESD Protection
-             |                                 |
-             |                           Protected +5 V
-             |                                 |
-             |                 +---------------+---------------+
-             |                 |               |               |
-             |                 v               v               v
-             |           Autofire Logic    LED Drivers     Supply Rails
-             |           ICM7555 + CD4066      |               |
-             |                 |               |               |
-             |                 |               v               |
-             |                 |          Status LEDs           |
-             |                 |                               |
-             v                 v                               |
-      Signal ESD Protection    |                               |
-             |                 |                               |
-             v                 |                               |
-       Direction / FIRE <------+                               |
-             ^                                                 |
-             |                                                 |
-       MX Hot-Swap Inputs                                      |
-                                                               |
-                              GND ------------------------------+
+                     DIGITAL JOYSTICK PORT
+                              │
+          ┌───────────────────┴───────────────────┐
+          │                                       │
+         +5 V                                    GND
+          │                                       │
+          ▼                                       │
+    ┌─────────────┐                               │
+    │ PTC Current │                               │
+    │ Protection  │                               │
+    └──────┬──────┘                               │
+           │                                      │
+           ▼                                      │
+    ┌─────────────┐                               │
+    │ +5 V ESD /  │                               │
+    │ TVS Protect │                               │
+    └──────┬──────┘                               │
+           │                                      │
+           ▼                                      │
+    ┌──────────────────┐                          │
+    │ Power Distribution│                         │
+    │   + Decoupling    │                         │
+    └──────┬───────────┘                          │
+           │                                      │
+      ┌────┼───────────────┬──────────────┐       │
+      │    │               │              │       │
+      ▼    ▼               ▼              ▼       │
+   Inputs Autofire      Status LED      Backlight │
+          Logic          Drivers          System  │
+      │    │               │              │       │
+      └────┴───────┬───────┘              │       │
+                   │                      │       │
+                   ▼                      │       │
+             Output Switching             │       │
+                   │                      │       │
+                   ▼                      │       │
+             Protected Signal Lines       │       │
+                   │                      │       │
+                   └──────────┬───────────┘       │
+                              ▼                   │
+                         DB9 INTERFACE─────────────┘
 ```
-
-The diagram represents functional relationships rather than physical PCB placement.
 
 ---
 
-# 4. External Interface
+# 5. Signal Architecture
 
-The controller uses a 9-pin female DE-9 / DB9 cable connection.
+The controller uses traditional digital joystick signal lines.
 
-The relevant controller interface includes:
-
-| DB9 Pin | Function                                           |
-| ------: | -------------------------------------------------- |
-|       1 | UP                                                 |
-|       2 | DOWN                                               |
-|       3 | LEFT                                               |
-|       4 | RIGHT                                              |
-|       5 | Auxiliary / not used by the current cable assembly |
-|       6 | FIRE1                                              |
-|       7 | +5 V                                               |
-|       8 | GND                                                |
-|       9 | FIRE2 / POTX                                       |
-
-The cable is soldered directly to PCB pads.
-
-Detailed production wiring is maintained in:
+Primary logical signals are:
 
 ```text
-docs/assembly/CABLE_ASSEMBLY.md
+UP
+DOWN
+LEFT
+RIGHT
+FIRE1
+FIRE2
 ```
 
-Cable wire colours are **not** part of the electrical specification.
+These signals are fundamentally independent.
 
-The first cable from every new supplier batch must be continuity-tested before production use.
+No matrix scanning is used.
 
----
+No multiplexed digital communication protocol is used.
 
-# 5. Power Architecture
+No firmware polling is used.
 
-The controller receives its operating power from DB9 pin 7.
-
-Conceptual power path:
-
-```text
-DB9 Pin 7
-   |
-   v
-PPTC
-   |
-   v
-Protected +5 V Rail
-   |
-   +----> +5 V ESD protection
-   |
-   +----> ICM7555
-   |
-   +----> CD4066
-   |
-   +----> LED circuitry
-   |
-   +----> supporting transistor / MOSFET logic
-```
-
-DB9 pin 8 provides the common ground reference.
+This preserves the electrical behaviour expected from conventional retro-computer joystick hardware.
 
 ---
 
-# 6. Overcurrent Protection
+# 6. Direction Input Architecture
 
-Rev 1.5 introduces a resettable PPTC device in the incoming +5 V path.
-
-Primary component:
-
-**Littelfuse 1206L005/30WR**
-
-Nominal characteristics:
-
-```text
-Hold current: 50 mA
-Trip current: 150 mA
-Maximum voltage: 30 V
-Package: 1206
-```
-
-The relatively low hold-current class was intentionally selected because classic joystick ports have limited +5 V current capability.
-
-The PPTC is intended to reduce the risk to the host computer in the event of a controller-side fault.
-
-It does not replace correct assembly verification.
-
----
-
-# 7. ESD Protection Architecture
-
-Rev 1.5 provides separate ESD protection for signal lines and the power rail.
-
-## 7.1 Signal-Line Protection
-
-External joystick signals are protected using:
-
-**Nexperia PESD5V0S4UD**
-
-The devices provide multi-line ESD protection for externally accessible controller signals.
-
-The protection components are positioned conceptually between:
-
-```text
-DB9 interface
-      |
-      v
-ESD protection
-      |
-      v
-internal controller circuitry
-```
-
----
-
-## 7.2 +5 V Protection
-
-The +5 V rail uses:
-
-**Nexperia PESD6V0L2UU**
-
-Current validated schematic mapping:
-
-```text
-Pin 1 -> protected +5 V rail
-Pin 2 -> NC
-Pin 3 -> GND
-```
-
-Only one internal protection channel is required by the current implementation.
-
-The topology and pin mapping have been verified against the manufacturer datasheet.
-
----
-
-# 8. Supply Decoupling
-
-Local supply decoupling is provided to reduce switching noise and stabilize the active circuitry.
-
-A dedicated:
-
-```text
-100 nF X7R
-```
-
-decoupling capacitor is used across the +5 V and GND rails.
-
-The decoupling capacitor associated with the active logic should be placed physically close to the relevant supply pins.
-
-Additional capacitors are used in the timer and control networks.
-
----
-
-# 9. User Input Architecture
-
-Rev 1.5 contains eight primary gameplay switches.
-
-These are installed using:
-
-**Kailh / Kaihua CPG151101S11 MX hot-swap sockets**
-
-Default mechanical switch:
-
-**Gateron KS-8 Yellow**
-
-The hot-swap architecture allows compatible MX-style switches to be replaced without soldering.
-
-The electrical input architecture is independent of the mechanical switch feel.
-
-Compatible linear, tactile or clicky switches may therefore be used where mechanical compatibility has been verified.
-
----
-
-# 10. Directional Input Architecture
-
-Four switches provide:
+The four directional controls are:
 
 ```text
 UP
@@ -326,542 +178,912 @@ LEFT
 RIGHT
 ```
 
-Each directional input ultimately controls the corresponding DB9 joystick signal.
+Each direction uses an independent mechanical switch path.
 
-The architecture intentionally avoids firmware-based scanning or matrix decoding.
+The architecture does not implement software or hardware SOCD filtering.
 
-Each direction therefore remains an independent hardware signal.
+Therefore electrically simultaneous combinations remain possible, including:
 
-This is important for combinations such as simultaneous direction presses and for deterministic input behaviour.
+```text
+UP + DOWN
+LEFT + RIGHT
+```
+
+Whether such combinations have meaningful behaviour depends on the connected host hardware and software.
 
 ---
 
-# 11. FIRE Architecture
+# 7. Mechanical Input System
 
-Rev 1.5 supports two FIRE functions.
+Rev1.5.1 uses MX-compatible mechanical switches for gameplay controls.
+
+The controller provides eight physical gameplay switch positions:
 
 ```text
-FIRE1 -> DB9 pin 6
-FIRE2 -> DB9 pin 9 / POTX
+UP
+DOWN
+LEFT
+RIGHT
+
+FIRE1 LEFT
+FIRE1 RIGHT
+
+FIRE2 LEFT
+FIRE2 RIGHT
 ```
 
-FIRE1 supports both:
-
-* direct manual firing
-* hardware-generated autofire
-
-FIRE2 remains independently available as a manual control.
-
-The architecture does not require the host to understand any additional controller protocol.
+The duplicated FIRE1 and FIRE2 controls provide an ambidextrous button arrangement.
 
 ---
 
-# 12. MOSFET Signal Switching
+# 8. Hot-Swap Architecture
 
-2N7002 N-channel MOSFETs are used in FIRE/autofire signal handling.
+Mechanical switches are not permanently soldered to the PCB.
 
-Validated generic mapping:
+Each gameplay switch is installed through an MX-compatible hot-swap socket.
+
+Production architecture:
 
 ```text
-Pin 1 = Gate
-Pin 2 = Source
-Pin 3 = Drain
+Mechanical MX Switch
+        │
+        ▼
+Kailh Hot-Swap Socket
+        │
+        ▼
+       PCB
+        │
+        ▼
+Input / Fire Logic
 ```
 
-The MOSFET architecture allows the controller logic to manipulate FIRE signals while maintaining the required joystick-side electrical behaviour.
+This architecture separates the mechanical wear component from the PCB.
 
-Manufacturer-specific pinout must be revalidated if the selected 2N7002 supplier changes.
+Advantages include:
+
+* switch replacement without soldering
+* switch-feel customization
+* improved serviceability
+* reduced PCB rework
+* longer practical controller service life
+
+The production socket is the Kailh/Kaihua `CPG151101S11`.
+
+The production-fitted switch is the Gateron KS-8 Yellow.
+
+Other mechanically compatible MX-family switches may be used subject to physical compatibility.
 
 ---
 
-# 13. Autofire Architecture
+# 9. FIRE1 Architecture
 
-Autofire is generated entirely in hardware.
+FIRE1 is the primary action signal.
 
-Primary functional blocks:
+Two physical FIRE1 switches are connected into the same logical FIRE1 function:
 
 ```text
-Protected +5 V
-     |
-     v
-ICM7555 oscillator
-     |
-     v
-AF_CLK
-     |
-     v
-CD4066 / control logic
-     |
-     v
-FIRE1 switching stage
-     |
-     v
-DB9 FIRE1
+FIRE1 LEFT ──┐
+             ├──► FIRE1 Manual Logic ──┐
+FIRE1 RIGHT ─┘                          │
+                                        ├──► FIRE1 Output
+Autofire Generator ─► Mode Control ─────┘
 ```
 
-The primary oscillator device is:
+The FIRE1 output can therefore originate from:
 
-**Renesas ICM7555CBAZ**
+* manual button activation
+* hardware-generated autofire pulses
 
-The CMOS implementation was selected to minimize supply-current demand compared with a traditional bipolar NE555.
+Autofire affects FIRE1 only.
+
+When autofire is disabled, FIRE1 operates as a conventional manual fire signal.
 
 ---
 
-# 14. Autofire Timing
+# 10. FIRE2 Architecture
 
-Rev 1.5 provides two fixed autofire speeds.
+FIRE2 is an independent secondary fire signal.
 
-Final timing resistors:
-
-```text
-FAST -> R13 = 330 kΩ
-SLOW -> R14 = 680 kΩ
-```
-
-These values were selected through physical gameplay testing.
-
-The objective is not merely to provide two electrically different frequencies, but to provide two settings that are clearly distinguishable during actual gameplay.
-
-The physical speed-selector behaviour is:
+Two physical switches provide the FIRE2 input:
 
 ```text
-LEFT  -> SLOW
-RIGHT -> FAST
+FIRE2 LEFT ──┐
+             ├──► FIRE2 Logic ──► FIRE2 Output
+FIRE2 RIGHT ─┘
 ```
 
-These values and switch directions are considered part of the current Rev 1.5 behaviour and shall not be changed as normal BOM substitutions.
+FIRE2 does not pass through the autofire timing system.
+
+There is no FIRE2 autofire in Rev1.5.1.
+
+Host-system and software support is required for meaningful use of the second fire signal.
 
 ---
 
-# 15. Autofire Enable Control
+# 11. Autofire Architecture
 
-Autofire can be enabled or disabled independently of the speed selection.
+Autofire is implemented entirely in hardware.
 
-The user therefore has two separate hardware controls:
+The timing source is a CMOS 555 timer.
+
+Production device:
+
+**Texas Instruments TLC555CDR**
+
+The functional architecture is:
 
 ```text
-AUTO:
-OFF / ON
-
-SPEED:
-SLOW / FAST
+                Timing Network
+                     │
+                     ▼
+              ┌─────────────┐
+              │   TLC555    │
+              │ Oscillator  │
+              └──────┬──────┘
+                     │
+                     ▼
+              Autofire Pulse
+                     │
+                     ▼
+               Mode Switching
+                     │
+                     ▼
+                FIRE1 Logic
+                     │
+                     ▼
+                FIRE1 Output
 ```
 
-Both functions use physical toggle switches.
-
-The current PCB/schematic mappings have been validated against the actual mechanical switch orientation.
-
-Their KiCad footprint or symbol assignments should not be changed merely for naming consistency.
+No processor or firmware participates in pulse generation.
 
 ---
 
-# 16. CD4066 Switching Logic
+# 12. Autofire Timing
 
-The autofire control architecture uses:
+Rev1.5.1 provides two fixed autofire rates.
+
+The timing network uses:
+
+```text
+FAST = 330 kΩ
+SLOW = 680 kΩ
+```
+
+These values form part of the validated Rev1.5.1 gameplay configuration.
+
+The architecture deliberately uses fixed hardware timing rather than continuously variable user adjustment.
+
+This provides:
+
+* predictable behaviour
+* repeatability between units
+* simplified operation
+* reduced accidental misconfiguration
+
+---
+
+# 13. Autofire Mode Selection
+
+Two physical controls manage the autofire system.
+
+## Autofire Enable
+
+Provides:
+
+```text
+OFF
+ON
+```
+
+## Speed Selection
+
+Provides:
+
+```text
+SLOW
+FAST
+```
+
+Functional architecture:
+
+```text
+                 ┌──────────────┐
+                 │ Autofire ON  │
+                 │    / OFF     │
+                 └──────┬───────┘
+                        │
+Timing Generator ───────┼──────► FIRE1 Logic
+                        │
+                 ┌──────┴───────┐
+                 │ SLOW / FAST  │
+                 │   Selection  │
+                 └──────────────┘
+```
+
+All mode selection remains hardware-based.
+
+---
+
+# 14. Analog Switching
+
+A CMOS bilateral-switch IC is used in the autofire control architecture.
+
+Production device:
 
 **Texas Instruments CD4066BM96**
 
-The CD4066 provides four bilateral CMOS switch sections.
+The CD4066 provides controlled switching of the relevant autofire timing paths.
 
-In Rev 1.5 it forms part of the autofire routing/control network.
-
-Unused switch sections are handled explicitly in the schematic and must not be assumed to be arbitrary floating logic.
-
-The device operates from the controller's protected supply rail.
+This avoids introducing programmable logic while allowing clean hardware mode selection.
 
 ---
 
-# 17. Autofire OFF-State Behaviour
+# 15. Output Switching Architecture
 
-A key architectural requirement is that disabling autofire must restore predictable manual FIRE operation.
+The controller uses MOSFET switching stages where required by the FIRE/autofire logic.
 
-Conceptually:
+Production device family:
+
+**2N7002 N-channel MOSFET**
+
+Functional purpose:
+
+* logic switching
+* signal control
+* isolation between timing circuitry and host-facing fire signals
+* predictable low-current operation
+
+The MOSFET stages preserve the behaviour expected from conventional joystick switching rather than actively driving logic-high levels into the host.
+
+---
+
+# 16. Host Interface Philosophy
+
+The controller is designed to behave as closely as practical to a conventional passive digital joystick from the perspective of the host.
+
+The architecture therefore emphasizes **signal assertion by switching toward ground**, rather than actively sourcing logic levels onto host signal lines.
+
+This is particularly important when interfacing modern controller electronics with vintage computer hardware.
+
+---
+
+# 17. Power Architecture
+
+Operating power is obtained from the host joystick interface.
+
+The +5 V path is divided into the following functional stages:
 
 ```text
-AUTOFIRE OFF
-     |
-     +----> oscillator influence removed/clamped
-     |
-     +----> manual FIRE1 remains available
+Host +5 V
+    │
+    ▼
+Resettable PTC
+    │
+    ▼
++5 V ESD / TVS Protection
+    │
+    ▼
+Protected +5 V Rail
+    │
+    ├──► Logic
+    ├──► Autofire
+    ├──► Status Indicators
+    └──► Backlight System
 ```
 
-Autofire logic must therefore never leave FIRE1 unintentionally asserted or floating when autofire is disabled.
+The design intentionally maintains low overall power consumption.
 
 ---
 
-# 18. Status Indication Architecture
+# 18. Overcurrent Protection
 
-Rev 1.5 uses two separate visual-indication systems:
+The +5 V input includes a resettable PTC.
+
+Production device:
+
+**Littelfuse 1206L005/30WR**
+
+Purpose:
+
+* limit fault current
+* reduce risk from accidental short circuits
+* protect the host joystick-port supply
+* provide automatically resettable protection
+
+The PTC is located upstream of the controller's powered circuitry.
+
+---
+
+# 19. +5 V ESD / TVS Protection
+
+The protected +5 V rail includes dedicated transient protection.
+
+Production device:
+
+**TPE0562BC3**
+
+Functional connection:
 
 ```text
-D1 -> Power indication
-D7 -> Autofire status indication
+Protected +5 V ─── TVS ─── GND
 ```
 
-They serve different purposes and should not be treated as a single generic RGB status system.
+The selected device topology and PCB connection were explicitly validated for Rev1.5.1.
+
+This protection supplements the PTC:
+
+* the PTC addresses sustained overcurrent conditions
+* the TVS addresses short-duration transient events
+
+The two devices therefore perform different protective functions.
 
 ---
 
-# 19. Power Indicator
+# 20. Signal-Line ESD Protection
 
-D1 is a conventional 3 mm THT LED.
+Externally accessible digital signal lines are protected against electrostatic discharge.
 
-Its purpose is to indicate the presence of controller supply power.
+Protection is implemented using multi-line ESD arrays positioned in the host-interface signal paths.
 
-The production LED colour may be selected as:
+Production device family:
 
-* Red
-* Blue
-* White
+**PESD5V0S4UD**
 
-The selected colour is a product configuration option rather than a functional hardware revision.
+Protected functional signals include:
+
+```text
+UP
+DOWN
+LEFT
+RIGHT
+FIRE1
+FIRE2
+```
+
+The protection architecture is intended to reduce the risk of ESD damage during:
+
+* controller connection
+* disconnection
+* handling
+* normal user interaction
+
+The ESD devices do not participate in normal joystick logic.
 
 ---
 
-# 20. Autofire Status Indicator
+# 21. Power Distribution and Decoupling
 
-D7 is a 3 mm red/green dual-colour LED.
+The protected +5 V rail supplies the active circuitry.
 
-Primary component:
+Local decoupling is provided using ceramic capacitors.
+
+The architecture includes:
+
+* local IC decoupling
+* VCC-to-GND high-frequency bypassing
+* ground copper zones
+* ground stitching vias
+
+These measures reduce:
+
+* supply noise
+* local switching disturbances
+* ground impedance
+
+while maintaining a simple two-layer PCB architecture.
+
+---
+
+# 22. Ground Architecture
+
+Ground is distributed using copper zones on both PCB layers.
+
+```text
+F.Cu GND Zone
+      │
+      │ Stitching Vias
+      ▼
+B.Cu GND Zone
+```
+
+Ground stitching vias provide low-impedance connections between the two planes.
+
+Additional stitching was introduced during Rev1.5.1 PCB validation where required to improve ground continuity.
+
+---
+
+# 23. Autofire Status Architecture
+
+Autofire status is indicated using a dual-colour LED.
+
+Production architecture:
+
+```text
+Autofire State
+      │
+      ├──► SLOW Driver ──► LED Channel
+      │
+      └──► FAST Driver ──► LED Channel
+```
+
+The indicator uses:
+
+* one red/green dual-colour LED
+* common-cathode topology
+* two transistor driver stages
+* independent current-limiting resistors
+
+Production LED:
 
 **Bivar 3BC-3-F**
 
-Electrical configuration:
+Driver devices:
 
-**Common Cathode**
+**MMBT3904 NPN transistors**
 
-Validated mapping:
+This architecture isolates the indicator load from the autofire control logic.
+
+---
+
+# 24. Power Indication
+
+A separate LED provides controller power indication.
+
+This indicator is independent from the dual-colour autofire status system.
+
+Functional separation:
 
 ```text
-Pin 1 -> RED anode
-Pin 2 -> Common cathode -> GND
-Pin 3 -> GREEN anode
+POWER LED
+    │
+    └──► Controller powered
+
+AUTOFIRE LED
+    │
+    └──► Autofire operating state / speed
 ```
 
-The two LED channels are controlled independently.
-
-This allows the controller to provide visual differentiation of autofire operating state/speed without firmware.
+This prevents ambiguity between power status and gameplay mode indication.
 
 ---
 
-# 21. LED Driver Architecture
+# 25. Key Backlight Architecture
 
-D7 is driven using two MMBT3904 NPN transistor stages.
+Rev1.5.1 introduces independent key illumination.
 
-Validated transistor pin mapping:
+Eight warm-white SMD LEDs are positioned beneath the gameplay switches.
 
 ```text
-Pin 1 = Base
-Pin 2 = Emitter
-Pin 3 = Collector
+Protected +5 V
+      │
+      ▼
+Backlight Switch
+      │
+      ▼
+BACKLIGHT_5V
+      │
+      ├──► R ─► LED 1
+      ├──► R ─► LED 2
+      ├──► R ─► LED 3
+      ├──► R ─► LED 4
+      ├──► R ─► LED 5
+      ├──► R ─► LED 6
+      ├──► R ─► LED 7
+      └──► R ─► LED 8
 ```
 
-The Rev 1.5 implementation uses the transistor stages as part of the LED status-driving network.
+Each LED has an independent current-limiting resistor.
 
-The schematic, transistor pinout and PCB footprint must remain mutually consistent.
+Production LED family:
+
+**XINGLIGHT XL-2012WWC**
+
+The LEDs are intentionally operated at relatively low current.
+
+The design goal is subtle illumination rather than high-brightness decorative lighting.
 
 ---
 
-# 22. Cable Architecture
+# 26. Backlight Control
 
-The current Rev 1.5 production concept uses a molded DB9 female cable with flying leads.
+Backlighting has a dedicated hardware ON/OFF control.
 
-Current sourcing is based on a Sega Mega Drive / Genesis 2 style replacement cable.
+Production switch:
 
-The cable itself is not treated as having a guaranteed wire-colour standard.
+**C&K PCM12SMTR**
 
-Therefore:
+The switch is physically located on the bottom side of the PCB.
+
+The backlight subsystem is independent from:
+
+* direction inputs
+* FIRE inputs
+* autofire timing
+* autofire status indication
+
+Disabling the backlight therefore has no effect on gameplay functionality.
+
+---
+
+# 27. Functional Independence
+
+One of the central Rev1.5.1 design principles is separation between functional subsystems.
 
 ```text
-DB9 pin number = authoritative
-wire colour     = batch-specific assembly information
+                    ┌──► Direction Inputs
+                    │
+Mechanical Inputs ──┼──► FIRE1
+                    │
+                    └──► FIRE2
+
+
+Autofire System ─────────► FIRE1 only
+
+Status System ───────────► Visual feedback only
+
+Backlight System ────────► Illumination only
+
+Protection System ───────► Electrical robustness
 ```
 
-This distinction is important for manufacturing safety.
-
-In particular:
-
-```text
-DB9 pin 7 = +5 V
-DB9 pin 8 = GND
-```
-
-must always be verified before assembly.
+A failure or disablement of a non-essential visual subsystem should not intentionally disable the fundamental manual controller inputs.
 
 ---
 
-# 23. J1 PCB Interface
+# 28. Latency Architecture
 
-The controller cable terminates directly at PCB solder pads.
+Rev1.5.1 contains no digital processing pipeline between a manual switch and the corresponding host input.
 
-J1 therefore represents an electrical PCB interface rather than a purchased board connector.
+There is no:
 
-The architecture intentionally avoids an additional internal plug/socket connection.
+* USB polling
+* Bluetooth transmission
+* firmware debounce loop
+* software input scanning
+* operating-system processing
+* protocol conversion
 
-Benefits include:
+For manual direction and fire inputs, latency is therefore dominated by:
 
-* reduced component count
-* reduced contact resistance
-* lower BOM cost
-* fewer potential intermittent connections
+* mechanical switch behaviour
+* transistor/MOSFET switching propagation where present
+* host-system input detection
 
-Cable strain relief must instead be provided mechanically by the enclosure/assembly.
-
----
-
-# 24. Mechanical Architecture
-
-The PCB architecture must accommodate:
-
-* eight MX-compatible switches
-* eight hot-swap sockets
-* two toggle switches
-* one power LED
-* one dual-colour autofire LED
-* controller cable exit
-* PCB mounting
-* enclosure clearances
-
-The hot-swap system is considered part of the Rev 1.5 mechanical architecture and must be preserved during PCB/layout changes.
+Electronic propagation delay within the controller is negligible relative to human input timescales and the host computer's frame timing.
 
 ---
 
-# 25. No Firmware Layer
+# 29. PCB Architecture
 
-Rev 1.5 deliberately contains no firmware layer.
+Rev1.5.1 uses a two-layer PCB.
 
-There is therefore no:
+Primary characteristics include:
 
-* key scanning firmware
-* debounce software
-* USB stack
-* configuration storage
-* bootloader
-* field firmware update
-* programmable autofire table
+* F.Cu signal and component routing
+* B.Cu routing
+* GND zones on both layers
+* GND stitching vias
+* top-side SMD electronics
+* selected bottom-side components
+* THT user-interface components
+* bottom-mounted hot-swap sockets
+* direct cable solder pads
 
-Any timing or behaviour change in Rev 1.5 is implemented through hardware component values or circuit topology.
-
-This provides a clear architectural boundary between Rev 1.5 and future programmable revisions.
-
----
-
-# 26. Compatibility Model
-
-Primary Rev 1.5 compatibility targets:
-
-| Platform        | Interface                      |
-| --------------- | ------------------------------ |
-| Commodore 64    | Atari-style joystick interface |
-| Commodore 128   | Atari-style joystick interface |
-| Commodore Amiga | Atari-style joystick interface |
-
-Other systems using a physically similar DE-9 connector are **not automatically electrically compatible**.
-
-Special attention must be given to:
-
-* +5 V availability
-* FIRE2 / POT line usage
-* output-driver expectations
-* auxiliary pin behaviour
-
-Physical connector compatibility alone is insufficient.
+The architecture supports a mixed manufacturing process.
 
 ---
 
-# 27. Rev 1.2 to Rev 1.5 Evolution
+# 30. Assembly Architecture
 
-Rev 1.5 is an evolutionary refinement of the earlier functional WASDPad architecture.
+The hardware is divided into assembly classes.
 
-Major Rev 1.5 architectural improvements include:
+## Automated SMD Assembly
 
-* PPTC +5 V protection
-* signal ESD protection
-* +5 V ESD protection
+Primarily:
+
+* ICs
+* MOSFETs
+* transistors
+* protection devices
+* resistors
+* capacitors
+* SMD backlight LEDs
+
+## Bottom-Side / Manual Assembly
+
+Primarily:
+
 * MX hot-swap sockets
-* standardized default mechanical switches
-* finalized SLOW / FAST autofire differentiation
-* dual-colour autofire status indication
-* improved component standardization
-* documented cable assembly
-* improved production validation requirements
+* backlight control switch
 
-The underlying hardware-only joystick concept remains unchanged.
+## Through-Hole Assembly
 
----
+Includes:
 
-# 28. Rev 1.5 Architectural Boundaries
+* power/status LEDs where applicable
+* small-signal diode
+* autofire control switches
 
-The following are explicitly within the Rev 1.5 architecture:
+## Mechanical Assembly
 
-* hardware-only operation
-* fixed two-speed autofire
-* physical autofire enable switch
-* physical speed selector
-* dual-colour autofire indication
-* MX hot-swap switches
-* FIRE1 and FIRE2
-* passive/discrete protection
-* DB9 host interface
+Includes:
 
-The following are **not** Rev 1.5 features:
+* MX mechanical switches
+* enclosure components
 
-* microcontroller control
-* firmware-adjustable autofire
-* USB HID
-* software configuration
-* programmable profiles
-* firmware-based debounce
-* persistent digital settings
+## Cable Assembly
 
-These belong to potential future hardware revisions.
+The DB9 cable is soldered directly to dedicated PCB pads.
 
 ---
 
-# 29. Future Architecture — Rev 2.0
+# 31. DB9 Interface
 
-Rev 2.0 is expected to be architecturally separate from Rev 1.5.
+The host connection uses the classic DB9 / DE-9 digital joystick interface architecture.
 
-Potential future functions may include:
-
-* RP2040-class microcontroller
-* firmware-controlled autofire
-* adjustable autofire rate
-* burst mode
-* configurable debounce
-* programmable profiles
-* persistent configuration
-* USB firmware update
-* optional USB HID
-* programmable LED behaviour
-
-These concepts must not be retroactively incorporated into Rev 1.5 documentation unless the Rev 1.5 hardware itself is changed.
-
----
-
-# 30. Engineering Validation Status
-
-Current architecture-level status:
-
-| Area                           | Status               |
-| ------------------------------ | -------------------- |
-| Hardware-only architecture     | Validated concept    |
-| DB9 interface                  | Defined              |
-| Direction controls             | Defined              |
-| FIRE1                          | Defined              |
-| FIRE2                          | Defined              |
-| Autofire architecture          | Defined              |
-| FAST/SLOW timing values        | Physically validated |
-| PPTC protection                | Selected             |
-| Signal ESD architecture        | Selected             |
-| +5 V ESD architecture          | Pinout validated     |
-| MX hot-swap architecture       | Defined              |
-| Default switch                 | Selected             |
-| Power indication               | Defined              |
-| Dual-colour indication         | Pinout validated     |
-| Controller cable architecture  | Defined              |
-| Cable batch verification       | Documented           |
-| Final schematic                | Engineering review   |
-| Final PCB                      | Engineering review   |
-| Rev 1.5 manufactured prototype | Pending              |
-| Complete system validation     | Pending              |
-
----
-
-# 31. Pre-Production Architectural Checks
-
-Before Rev 1.5 is approved for manufacturing, the final schematic and PCB must be checked against this architecture.
-
-Mandatory checks include:
-
-* DB9 pin mapping
-* +5 V / GND routing
-* PPTC placement and rating
-* D4/D5 ESD topology
-* D6 ESD topology and pin mapping
-* ICM7555 supply and timing network
-* CD4066 supply and switch mapping
-* 2N7002 pin mappings
-* MMBT3904 pin mappings
-* D7 common-cathode topology
-* D7 physical footprint/pin numbering
-* R13/R14 timing values
-* SLOW/FAST physical switch direction
-* FIRE1 manual operation with autofire disabled
-* FIRE2 independence
-* MX hot-swap footprint compatibility
-* cable pad numbering
-
-No production approval should be given solely from a clean ERC/DRC result; component pinout and functional topology checks remain mandatory.
-
----
-
-# 32. Related Documentation
+Primary functional connections are:
 
 ```text
-README.md
+UP
+DOWN
+LEFT
+RIGHT
+FIRE1
+FIRE2
++5 V
+GND
+```
 
-docs/
-├── README.md
-├── architecture/
-│   └── System_architecture.md
-├── specification/
-│   ├── PROJECT_SPECIFICATION.md
-│   └── FEATURE_SPECIFICATION.md
-└── assembly/
-    └── CABLE_ASSEMBLY.md
+The exact availability and interpretation of FIRE2 varies between host platforms and software.
 
+---
+
+# 32. Platform Compatibility
+
+The underlying architecture is intended for systems using compatible digital joystick signalling.
+
+Relevant platform families include:
+
+* Commodore 64
+* Commodore 128
+* VIC-20
+* Commodore Amiga
+* Atari-compatible digital joystick interfaces
+* additional compatible systems through appropriate adapters
+
+Adapters may be required where the physical connector or pinout differs.
+
+Electrical compatibility must be verified separately for each officially supported platform.
+
+A mechanically compatible connector alone does not establish electrical compatibility.
+
+---
+
+# 33. Plus/4 Family
+
+Commodore Plus/4-family systems use a different physical joystick connector.
+
+Compatibility therefore requires an adapter.
+
+The adapter maps the WASDPad digital joystick signals to the appropriate Plus/4-family connector.
+
+The Rev1.5.1 controller itself does not require firmware or protocol conversion for this purpose.
+
+---
+
+# 34. Design Boundaries
+
+Rev1.5.1 intentionally does **not** implement:
+
+* programmable profiles
+* firmware configuration
+* USB
+* Bluetooth
+* macros
+* software-defined autofire
+* programmable burst patterns
+* per-game profiles
+* MCU-based input processing
+
+These functions are outside the architectural scope of the discrete Rev1.5.1 platform.
+
+---
+
+# 35. Failure-Mode Philosophy
+
+The architecture is designed so that optional visual features remain separated from core gameplay functions.
+
+Examples:
+
+* backlight failure should not intentionally disable gameplay inputs
+* power-indicator failure should not disable controller operation
+* autofire status-indicator failure should not disable manual FIRE1
+* autofire can be disabled while retaining manual FIRE1 operation
+
+Protection-device failure modes remain dependent on the nature of the electrical event and are not assumed to be fail-safe.
+
+---
+
+# 36. Serviceability
+
+Rev1.5.1 improves serviceability through:
+
+* hot-swappable gameplay switches
+* conventional discrete components
+* identifiable component MPNs
+* documented footprints
+* documented datasheets
+* replaceable mechanical controls
+* no firmware dependency
+* no programmed device required for basic operation
+
+The architecture can therefore be diagnosed using conventional electronic test equipment.
+
+---
+
+# 37. Manufacturing Traceability
+
+The system architecture is supported by a controlled manufacturing dataset.
+
+Authoritative records include:
+
+```text
 hardware/rev1.5/
 ├── README.md
+├── Review_Record.MD
 └── bom/
     ├── README.md
-    ├── wasdpad+v1.5.csv
+    ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+    ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+    ├── DATASHEET_INDEX.md
     ├── ALTERNATE_PARTS.md
     └── PROCUREMENT_NOTES.md
 ```
 
+The Master BOM defines production component identity.
+
+The Master CPL defines component placement.
+
 ---
 
-# 33. Document Versioning
+# 38. Engineering Validation Status
 
-Architecture-document versions are independent of PCB hardware revisions.
+The Rev1.5.1 architecture has completed its pre-production engineering review.
 
-Current state:
+| Area                            | Status  |
+| ------------------------------- | ------- |
+| Functional architecture         | PASS    |
+| Schematic                       | PASS    |
+| ERC                             | PASS    |
+| PCB layout                      | PASS    |
+| DRC                             | PASS    |
+| Protection topology             | PASS    |
+| Critical component pinouts      | PASS    |
+| PCB assembly orientation review | PASS    |
+| Gerber generation               | PASS    |
+| Master BOM                      | PASS    |
+| Master CPL                      | PASS    |
+| Manufacturing documentation     | PASS    |
+| Physical Rev1.5.1 validation    | PENDING |
+
+The hardware is therefore classified as:
+
+**Production Release Candidate**
+
+---
+
+# 39. Production Validation Boundary
+
+The architecture and manufacturing dataset are considered complete for production-candidate manufacture.
+
+Final Production Approved status requires validation of the manufactured Rev1.5.1 hardware.
+
+Physical validation includes:
+
+* power integrity
+* current consumption
+* all direction inputs
+* FIRE1
+* FIRE2
+* autofire OFF
+* autofire SLOW
+* autofire FAST
+* status indication
+* key backlighting
+* backlight switching
+* hot-swap socket operation
+* DB9 cable mapping
+* representative host-system operation
+* extended gameplay testing
+
+The detailed validation gate is maintained in:
+
+`hardware/rev1.5/Review_Record.MD`
+
+---
+
+# 40. Future Architecture
+
+Rev1.5.1 represents the mature discrete-hardware architecture of WASDPad+.
+
+A future programmable generation may replace selected hardware blocks with MCU-controlled functions.
+
+A conceptual future architecture may replace:
 
 ```text
-Hardware Revision:      Rev 1.5
-Architecture Document:  v0.9
+Current Rev1.5.1
+----------------
+CMOS Autofire Timer
+Hardware Mode Selection
+Discrete Status Control
+
+            │
+            ▼
+
+Future Programmable Generation
+------------------------------
+MCU Timing
+Programmable Modes
+Firmware-Controlled Indicators
+Game-Specific Behaviour
 ```
 
-Documentation corrections or clarification do not require a new PCB revision unless the physical or electrical design changes.
+However, the following concepts are expected to remain valuable:
+
+* protected host interface
+* ESD protection
+* replaceable mechanical switches
+* hot-swap sockets
+* low-latency input architecture
+* serviceability
+* robust power distribution
+
+The future programmable architecture shall be documented separately and shall not redefine the Rev1.5.1 hardware specification.
 
 ---
 
-# 34. Version History
+# 41. Architectural Summary
 
-| Version | Date           | Status                     | Changes                                                                                                                                                                                                                                                                                                                                   |
-| ------- | -------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0.1     | Not recorded   | Draft                      | Initial system architecture documentation                                                                                                                                                                                                                                                                                                 |
-| 0.4     | Not recorded   | Development                | Initial Rev 1.5 architecture and future-revision separation                                                                                                                                                                                                                                                                               |
-| 0.6     | Not recorded   | Development                | Protection and hot-swap concepts introduced                                                                                                                                                                                                                                                                                               |
-| 0.8     | Not recorded   | Engineering                | Rev 1.5 architecture refined during BOM/component selection                                                                                                                                                                                                                                                                               |
-| **0.9** | **2026-08-18** | **Engineering Validation** | Updated to actual Rev 1.5 architecture; added PPTC and ESD architecture, finalized hot-swap system, Gateron switch baseline, ICM7555/CD4066 architecture, validated 330 kΩ / 680 kΩ autofire configuration, common-cathode dual-colour indication, cable/J1 architecture, compatibility boundaries and production validation requirements |
+WASDPad+ Rev1.5.1 is a:
 
----
+**hardware-only, low-latency, serviceable digital retro-computer controller architecture with protected host interfaces, replaceable MX-style gameplay switches, hardware autofire, independent visual indication and optional key backlighting.**
 
-# 35. Next Version
-
-The next planned architecture-document release is:
-
-**Version 1.0**
-
-Target milestone:
-
-**First complete Rev 1.5 prototype manufactured and successfully validated against the final schematic, PCB and functional requirements.**
-
-Until that milestone is reached:
+Its principal signal philosophy is:
 
 ```text
-Hardware Revision: Rev 1.5
-Architecture Status: Engineering Validation / Pre-Prototype
+PLAYER
+   │
+   ▼
+MECHANICAL SWITCH
+   │
+   ▼
+DISCRETE HARDWARE
+   │
+   ▼
+PROTECTED HOST SIGNAL
+   │
+   ▼
+RETRO COMPUTER
 ```
+
+There is no firmware or software layer between the player and the host interface.
+
+---
+
+# 42. Document Status
+
+**Architecture:** Frozen for Rev1.5.1 Production Release Candidate
+**Engineering Review:** PASS
+**Physical Hardware Validation:** PENDING
+**Production Approval:** PENDING
+
+Architecture changes after this point require controlled engineering review and corresponding documentation updates.
+
+---
+
+# 43. Revision History
+
+| Document Version | Date                       | Hardware Revision | Status                           | Description                                                                                                                                                                                                                                                                                            |
+| ---------------- | -------------------------- | ----------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1.0              | Earlier Rev1.5 development | Rev1.5            | Draft                            | Initial functional architecture; early PTC, hot-swap, ICM7555 and ESD concepts                                                                                                                                                                                                                         |
+| **2.0**          | **2026-08-29**             | **Rev1.5.1**      | **Production Release Candidate** | Architecture finalized against production hardware; added complete protection architecture, TLC555 autofire, FIRE1/FIRE2 separation, hot-swap system, dual-colour status architecture, key backlighting, ground architecture, assembly model, validation boundary and manufacturing-document hierarchy |
