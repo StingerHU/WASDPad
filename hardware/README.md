@@ -1,410 +1,319 @@
-# WASDPad+ Hardware
+# WASDPad Hardware
 
-**Document Version:** 0.9  
-**Current Hardware Revision:** Rev 1.5  
-**Status:** Engineering Validation  
-**Last Updated:** 2026-08-18
+This directory contains the hardware design, manufacturing documentation and revision-specific engineering records for the **WASDPad / WASDPad+** controller platform.
 
----
+WASDPad is a hardware-based retro-computer game controller designed around the traditional digital joystick interface used by systems such as the **Commodore 64** and **Amiga**.
 
-# 1. Purpose
+The project prioritizes:
 
-This directory contains revision-specific hardware design files and supporting documentation for the **WASDPad+** controller.
-
-The current development target is:
-
-**WASDPad+ Hardware Revision 1.5**
-
-Rev 1.5 is currently in:
-
-**Engineering Validation / Pre-Prototype**
+* deterministic hardware operation
+* extremely low input latency
+* compatibility with original retro hardware
+* serviceability
+* replaceable mechanical controls
+* electrical protection
+* reproducible manufacturing
+* documented component traceability
 
 ---
 
-# 2. Hardware Revisions
+# Hardware Revision Structure
 
-| Revision | Role | Status |
-|---|---|---|
-| Rev 1.2 | Validated predecessor / reference design | Complete / Reference |
-| **Rev 1.5** | Current protected and serviceable hardware-only design | **Engineering Validation** |
-| Rev 2.0 | Future programmable architecture | Future |
-
----
-
-# 3. Rev 1.5
-
-Rev 1.5 is the current hardware development revision.
-
-Major characteristics include:
-
-- hardware-only operation
-- direct Atari-style DE-9 / DB9 interface
-- independent directional controls
-- FIRE1 and FIRE2
-- two-speed hardware autofire
-- dedicated autofire OFF / ON control
-- SLOW / FAST selector
-- MX-compatible hot-swap gameplay switches
-- PPTC +5 V protection
-- signal-line ESD protection
-- +5 V ESD protection
-- power indication
-- dual-colour autofire indication
-
-Rev 1.5 requires no:
-
-- microcontroller
-- firmware
-- USB interface
-- host driver
-- configuration software
-
----
-
-# 4. Rev 1.5 Directory
+Hardware documentation is organized by PCB revision.
 
 ```text
 hardware/
+│
+├── README.md
+│
 └── rev1.5/
     ├── README.md
-    ├── bom/
-    │   ├── README.md
-    │   ├── wasdpad+v1.5.csv
-    │   ├── ALTERNATE_PARTS.md
-    │   └── PROCUREMENT_NOTES.md
-    ├── schematic/
-    └── pcb/
+    ├── Review_Record.MD
+    └── bom/
+        ├── README.md
+        ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+        ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+        ├── DATASHEET_INDEX.md
+        ├── ALTERNATE_PARTS.md
+        └── PROCUREMENT_NOTES.md
 ```
 
-The revision-specific README is the primary entry point:
+Each revision directory contains the engineering documentation applicable to that hardware generation.
+
+---
+
+# Current Hardware Generation
+
+## WASDPad+ Rev1.5.1
+
+**Status:** Production Release Candidate
+
+Revision 1.5.1 is the current production-oriented discrete-hardware version of WASDPad+.
+
+It evolves the validated earlier WASDPad design while retaining the fundamental architecture:
+
+* no microcontroller
+* no firmware
+* no operating-system dependency
+* direct hardware control
+* CMOS/discrete autofire logic
+* traditional retro-computer joystick signalling
+
+Major Rev1.5.1 improvements include:
+
+* Kailh MX-compatible hot-swap sockets
+* replaceable mechanical switches
+* +5 V resettable overcurrent protection
+* controller-line ESD protection
+* +5 V ESD/TVS protection
+* dual-colour autofire status indication
+* warm-white key backlighting
+* independent backlight control
+* improved PCB grounding
+* manufacturing-oriented component selection
+* complete Master BOM and CPL
+* manufacturer MPN traceability
+* datasheet documentation
+* controlled alternate-part policy
+* procurement and lifecycle documentation
+
+Detailed documentation:
+
+[`rev1.5/README.md`](rev1.5/README.md)
+
+---
+
+# Rev1.5.1 Engineering Status
+
+The principal pre-production engineering stages have been completed.
+
+| Engineering Area                | Status   |
+| ------------------------------- | -------- |
+| Hardware architecture           | Complete |
+| Schematic                       | Complete |
+| Component selection             | Complete |
+| PCB layout                      | Complete |
+| ERC                             | Passed   |
+| PCB DRC                         | Passed   |
+| Critical pinout review          | Passed   |
+| Protection topology review      | Passed   |
+| PCB assembly orientation review | Passed   |
+| Gerber generation               | Complete |
+| Drill data generation           | Complete |
+| Master BOM                      | Complete |
+| Master CPL                      | Complete |
+| Datasheet traceability          | Complete |
+| Alternate-part policy           | Complete |
+| Procurement documentation       | Complete |
+| Physical Rev1.5.1 validation    | Pending  |
+| Production approval             | Pending  |
+
+The current hardware may proceed to **production-candidate manufacture**.
+
+Final Production Approved status requires successful physical validation of manufactured Rev1.5.1 hardware.
+
+Engineering review record:
+
+[`rev1.5/Review_Record.MD`](rev1.5/Review_Record.MD)
+
+---
+
+# Manufacturing Documentation
+
+The authoritative Rev1.5.1 manufacturing documentation is located under:
+
+[`rev1.5/bom/`](rev1.5/bom/)
+
+The primary engineering records are:
+
+## Master Bill of Materials
+
+[`rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`](rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv)
+
+The Master BOM is the authoritative source for:
+
+* component designators
+* manufacturer part numbers
+* quantities
+* footprints
+* assembly classification
+* PCB side
+* supplier identifiers where applicable
+
+---
+
+## Master Component Placement List
+
+[`rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`](rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv)
+
+The Master CPL contains the complete component-placement dataset.
+
+Assembly-house-specific CPL files may be generated as subsets of this file.
+
+---
+
+## Datasheet Index
+
+[`rev1.5/bom/DATASHEET_INDEX.md`](rev1.5/bom/DATASHEET_INDEX.md)
+
+Provides centralized manufacturer and technical references for production components.
+
+---
+
+## Alternate Parts
+
+[`rev1.5/bom/ALTERNATE_PARTS.md`](rev1.5/bom/ALTERNATE_PARTS.md)
+
+Defines the controlled component-substitution policy, including:
+
+* Production Primary
+* Approved Alternate
+* Legacy Validated
+* Candidate
+* Not Approved
+
+---
+
+## Procurement Notes
+
+[`rev1.5/bom/PROCUREMENT_NOTES.md`](rev1.5/bom/PROCUREMENT_NOTES.md)
+
+Defines:
+
+* sourcing policy
+* supplier requirements
+* assembly-house substitutions
+* lifecycle management
+* incoming component verification
+* production traceability
+* procurement change control
+
+---
+
+# Documentation Authority
+
+For the current Rev1.5.1 hardware, engineering information should be resolved in the following order:
 
 ```text
-hardware/rev1.5/README.md
+Hardware architecture / revision status
+        ↓
+rev1.5/README.md
+
+Engineering release validation
+        ↓
+rev1.5/Review_Record.MD
+
+Production component identity
+        ↓
+rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+
+Component placement
+        ↓
+rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+
+Component technical references
+        ↓
+rev1.5/bom/DATASHEET_INDEX.md
+
+Component substitutions
+        ↓
+rev1.5/bom/ALTERNATE_PARTS.md
+
+Sourcing and lifecycle policy
+        ↓
+rev1.5/bom/PROCUREMENT_NOTES.md
 ```
 
----
-
-# 5. BOM
-
-Rev 1.5 component documentation is maintained under:
-
-```text
-hardware/rev1.5/bom/
-```
-
-## `wasdpad+v1.5.csv`
-
-Authoritative Rev 1.5 component list.
-
-Contains the selected:
-
-- components
-- values
-- quantities
-- footprints
-- manufacturer references
-- manufacturer part numbers
-- datasheet references
-
-## `README.md`
-
-Engineering overview of the BOM and major component decisions.
-
-## `ALTERNATE_PARTS.md`
-
-Defines approved and conditional component-substitution strategies.
-
-## `PROCUREMENT_NOTES.md`
-
-Defines sourcing and procurement guidance.
+The **Master BOM is authoritative for production component identity**.
 
 ---
 
-# 6. Schematic
+# Hardware Design Philosophy
 
-Rev 1.5 schematic files are maintained under:
+WASDPad intentionally follows a hardware-first design philosophy.
 
-```text
-hardware/rev1.5/schematic/
-```
+The controller avoids unnecessary abstraction between the player and the original computer hardware.
 
-Current status:
+For the current discrete-hardware generation, this means:
 
-**Engineering Review**
+* physical switches directly influence hardware logic
+* no firmware input scanning
+* no USB polling
+* no operating-system driver
+* no wireless protocol
+* no software translation layer
 
-Before manufacturing approval, the final schematic must pass both automated and manual validation.
-
-Critical manual checks include:
-
-- DB9 signal mapping
-- +5 V / GND routing
-- FIRE1 and FIRE2 paths
-- ICM7555 timing network
-- CD4066 connectivity
-- 2N7002 pin mapping
-- MMBT3904 pin mapping
-- D6 ESD topology and pinout
-- D7 dual-colour LED topology and pinout
-- autofire timing values
-- physical SLOW / FAST switch mapping
-
-A clean ERC result alone is not sufficient for release approval.
+The result is a controller architecture appropriate for original retro-computer hardware and latency-sensitive gameplay.
 
 ---
 
-# 7. PCB
+# Compatibility
 
-Rev 1.5 PCB files are maintained under:
+WASDPad is based on the traditional digital joystick-interface architecture associated with classic systems including:
 
-```text
-hardware/rev1.5/pcb/
-```
+* Commodore 64
+* Commodore Amiga
+* compatible Atari-style digital joystick interfaces
 
-Current status:
+Platform compatibility depends on the electrical implementation of the target system.
 
-**Engineering Review**
+Features beyond the standard single-fire digital joystick interface, particularly **FIRE2**, may require platform or software support.
 
-Before manufacturing approval, the final PCB must be checked for:
-
-- DRC compliance
-- component orientation
-- footprint/pad numbering
-- ESD placement
-- +5 V and GND routing
-- hot-swap socket geometry
-- toggle-switch orientation
-- LED orientation
-- cable-pad accessibility
-- mechanical clearances
-- final Gerber integrity
-
-A clean DRC result alone is not sufficient for production approval.
+Compatibility with a platform should therefore be explicitly validated before being considered officially supported.
 
 ---
 
-# 8. Critical Rev 1.5 Hardware Values
+# Revision Policy
 
-The following values are part of the validated Rev 1.5 behaviour:
+Hardware changes that affect any of the following should be documented under a new revision or controlled engineering update:
 
-```text
-R13 = 330 kΩ -> FAST
-R14 = 680 kΩ -> SLOW
+* schematic topology
+* PCB layout
+* pinout
+* electrical protection
+* timing behaviour
+* component footprint
+* mechanical compatibility
+* external interface
+* user-visible functionality
 
-Speed selector:
-LEFT  -> SLOW
-RIGHT -> FAST
-```
-
-These shall not be changed as ordinary procurement substitutions.
-
----
-
-# 9. Protection Architecture
-
-Rev 1.5 introduces dedicated host-interface protection.
-
-Primary components:
-
-```text
-PPTC:
-Littelfuse 1206L005/30WR
-
-Signal ESD:
-Nexperia PESD5V0S4UD
-
-+5 V ESD:
-Nexperia PESD6V0L2UU
-```
-
-Protection components and their PCB implementation must be checked against the manufacturer datasheets before manufacturing release.
+Simple sourcing changes may remain within the same hardware revision when the replacement is an approved equivalent and does not alter electrical or mechanical behaviour.
 
 ---
 
-# 10. Switch System
+# Future Hardware
 
-Primary hot-swap socket:
+Revision 1.5.1 represents the mature **discrete-hardware** branch of WASDPad+.
 
-**Kailh / Kaihua CPG151101S11**
+More advanced features requiring programmable control are intentionally outside the scope of Rev1.5.1.
 
-Default gameplay switch:
+A future hardware generation may introduce capabilities such as:
 
-**Gateron KS-8 Yellow**
+* programmable autofire
+* additional firing modes
+* configurable profiles
+* game-specific behaviour
+* enhanced status indication
 
-Rev 1.5 uses eight MX-compatible hot-swap gameplay-switch positions.
-
-Alternative MX-style switches may be used only when mechanical compatibility is confirmed.
-
----
-
-# 11. Status LEDs
-
-Rev 1.5 contains two independent status indicators.
-
-## D1 — Power
-
-3 mm THT LED.
-
-Available product variants may include:
-
-- Red
-- Blue
-- White
-
-## D7 — Autofire
-
-Primary component:
-
-**Bivar 3BC-3-F**
-
-Configuration:
-
-**Common Cathode**
-
-Validated logical pin assignment:
-
-```text
-Pin 1 -> RED
-Pin 2 -> Common Cathode / GND
-Pin 3 -> GREEN
-```
-
-The manufacturer datasheet, KiCad symbol and physical PCB footprint must be rechecked together before manufacturing approval.
+Such functionality should be implemented as a separate hardware generation rather than increasing the complexity of the stable Rev1.5.1 architecture.
 
 ---
 
-# 12. Manufacturing State
+# Current Release
 
-Current Rev 1.5 state:
+**Current Hardware:** WASDPad+ Rev1.5.1
+**Release Status:** Production Release Candidate
+**Engineering Review:** PASS
+**Physical Production Validation:** Pending
 
-| Area | Status |
-|---|---|
-| Architecture | Defined |
-| Project requirements | Defined |
-| Feature requirements | Defined |
-| Component selection | Complete |
-| BOM | Pre-Release Validated |
-| Cable assembly | Documented |
-| Schematic | Engineering Review |
-| PCB | Engineering Review |
-| Prototype manufacturing | Pending |
-| Prototype validation | Pending |
-| Production test procedure | Planned |
-| Production release | Pending |
+For detailed hardware information, continue with:
 
----
+**[`rev1.5/README.md`](rev1.5/README.md)**
 
-# 13. Related Documentation
+For the final pre-production engineering review:
 
-Project-level documentation:
+**[`rev1.5/Review_Record.MD`](rev1.5/Review_Record.MD)**
 
-```text
-README.md
-docs/README.md
-```
+For manufacturing and component documentation:
 
-Architecture:
-
-```text
-docs/architecture/System_architecture.md
-```
-
-Specifications:
-
-```text
-docs/specification/PROJECT_SPECIFICATION.md
-docs/specification/FEATURE_SPECIFICATION.md
-```
-
-Assembly:
-
-```text
-docs/assembly/CABLE_ASSEMBLY.md
-```
-
-Development roadmap:
-
-```text
-docs/roadmap/ROADMAP.md
-```
-
----
-
-# 14. Rev 2.0
-
-Rev 2.0 is a future architecture and is not part of the current Rev 1.5 release process.
-
-Potential Rev 2.0 functionality includes:
-
-- microcontroller-based operation
-- firmware-controlled autofire
-- adjustable autofire timing
-- burst mode
-- configurable debounce
-- game profiles
-- persistent configuration
-- programmable status indication
-- USB firmware update
-- optional USB HID
-
-Rev 2.0 development shall remain separate from Rev 1.5 engineering validation.
-
----
-
-# 15. Current Hardware Priority
-
-The current hardware-development sequence is:
-
-```text
-Final schematic audit
-        |
-        v
-Final PCB audit
-        |
-        v
-ERC / DRC
-        |
-        v
-Manufacturing outputs
-        |
-        v
-Rev 1.5 prototype
-        |
-        v
-Electrical validation
-        |
-        v
-Functional validation
-        |
-        v
-Mechanical validation
-        |
-        v
-Production release
-```
-
-The immediate priority is the **final Rev 1.5 schematic and PCB audit**.
-
----
-
-# 16. Version History
-
-| Version | Date | Status | Changes |
-|---|---|---|---|
-| 0.1 | Not recorded | Placeholder | Initial hardware directory placeholder |
-| **0.9** | **2026-08-18** | **Engineering Validation** | Converted hardware README into revision index; documented Rev 1.5 status, hardware structure, BOM, schematic and PCB state, protection architecture, hot-swap system, critical autofire values, status LEDs, manufacturing state and Rev 2.0 boundary |
-
----
-
-# 17. Next Version
-
-The next planned version is:
-
-**v1.0**
-
-Target milestone:
-
-**Rev 1.5 first complete prototype successfully manufactured and validated.**
-
----
-
-**Current Hardware Target: WASDPad+ Rev 1.5 — Engineering Validation / Pre-Prototype**
+**[`rev1.5/bom/`](rev1.5/bom/)**
