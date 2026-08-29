@@ -491,15 +491,13 @@ Defines controller cable mapping and mandatory production-batch continuity verif
 
 # Manufacturing Documentation
 
-Production documentation is maintained under:
-
-[`hardware/rev1.5/bom/`](hardware/rev1.5/bom/)
+Production documentation is maintained under the Rev1.5 hardware tree.
 
 Important files include:
 
 - [Master BOM](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) — authoritative production component identity
 - [Master CPL](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv) — authoritative component-placement data
-- [Datasheet Index](hardware/rev1.5/bom/DATASHEET_INDEX.md) — technical component references
+- [Datasheet Index](hardware/rev1.5/datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md) — technical component references
 - [Alternate Parts](hardware/rev1.5/bom/ALTERNATE_PARTS.md) — controlled substitution policy
 - [Procurement Notes](hardware/rev1.5/bom/PROCUREMENT_NOTES.md) — sourcing and procurement control
 
@@ -600,9 +598,12 @@ The Rev1.5.1 PCB also carries a small tribute to the Commodore 64 and the retro-
 
 # License and Project Use
 
-See the repository [`LICENSE`](LICENSE) file for the applicable licensing terms.
+See the project legal documentation:
 
-Publication of documentation or temporary public availability of this repository does not by itself grant rights beyond those explicitly stated in the repository license.
+- [Licensing](docs/legal/LICENSES.md)
+- [Trademarks](docs/legal/TRADEMARKS.md)
+
+Publication of documentation or temporary public availability of this repository does not by itself grant rights beyond those explicitly stated in the project licensing documentation.
 
 Third-party product names and trademarks remain the property of their respective owners.
 
