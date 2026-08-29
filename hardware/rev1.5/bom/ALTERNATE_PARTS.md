@@ -1,159 +1,206 @@
-# WASDPad Revision 1.5
+# WASDPad+ Revision 1.5.1
 
 ## Approved Alternate Parts
 
-**Document Version:** 0.9
-**Hardware Revision:** 1.5
-**Status:** Engineering Validation
-**Last Updated:** 2026-08-18
+**Document Version:** 1.0
+**Hardware Revision:** Rev1.5.1
+**Status:** Production Release Candidate
+**Last Updated:** 2026-08-29
 
 ---
 
 # 1. Purpose
 
-This document defines the alternate-component strategy for **WASDPad Hardware Revision 1.5**.
+This document defines the component-substitution policy and records approved, validated, legacy and candidate alternate components for **WASDPad+ Hardware Revision 1.5.1**.
 
-The primary BOM remains the authoritative source for production components.
+The authoritative production component identity is maintained in:
 
-Alternate components listed here may be used only when they meet the electrical, mechanical and manufacturing requirements of the primary component.
+`WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
 
-An alternate part is not considered approved solely because it has:
+This document does not replace the Master BOM.
+
+Its purpose is to define which components may be substituted and which technical checks are required before an alternate component may be used.
+
+---
+
+# 2. General Substitution Policy
+
+A component shall not be considered interchangeable solely because it has:
 
 * the same generic component name
-* the same package name
-* similar electrical ratings
-* the same nominal value
+* the same nominal electrical value
+* a visually similar package
+* a similar manufacturer description
+* the same number of pins
+* the same general function
 
-Pinout, footprint, polarity, mechanical dimensions, lifecycle status and system behaviour must also be verified.
+Before an alternate component is approved, all relevant electrical, mechanical and functional characteristics shall be verified.
 
----
+At minimum:
 
-# 2. Alternate-Part Status Definitions
-
-| Status           | Meaning                                                          |
-| ---------------- | ---------------------------------------------------------------- |
-| Approved         | Fully compatible for the defined use case                        |
-| Approved Variant | Approved configuration option rather than a technical substitute |
-| Candidate        | Likely compatible but requires validation                        |
-| Conditional      | May be used only if specified requirements are met               |
-| Not Approved     | Shall not be used without redesign or engineering review         |
-
----
-
-# 3. General Approval Requirements
-
-Before an alternate component is used in production, verify:
-
-* electrical function
-* nominal value
-* voltage and current rating
+* electrical ratings
+* operating voltage
+* current capability
+* power rating
 * tolerance
+* temperature range
 * package
 * footprint
 * pin numbering
+* pinout
 * polarity
-* operating temperature range
-* lifecycle status
-* availability
-* mechanical clearance
-* interaction with surrounding components
+* mechanical dimensions
+* functional behaviour
+* timing behaviour where applicable
+* protection topology where applicable
+* availability from a recognized supplier
 
-For semiconductors and protection devices, the manufacturer datasheet must be checked directly.
+No alternate part may introduce measurable degradation in:
+
+* controller compatibility
+* input latency
+* autofire timing stability
+* signal integrity
+* protection level
+* mechanical reliability
 
 ---
 
-# 4. Autofire Timer
+# 3. Status Definitions
 
-## Primary Component
+Alternate components are classified using the following status levels.
 
-**Renesas ICM7555CBAZ**
+| Status                 | Meaning                                                                                              |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Production Primary** | Component specified by the current Rev1.5.1 Master BOM                                               |
+| **Approved Alternate** | Electrically, mechanically and functionally verified as a replacement                                |
+| **Legacy Validated**   | Component used or validated during earlier WASDPad development and considered technically compatible |
+| **Candidate**          | Potential replacement requiring verification before production use                                   |
+| **Not Approved**       | Component known to be unsuitable or not permitted without redesign                                   |
+| **Not Evaluated**      | No compatibility determination has been made                                                         |
 
-Function:
+The Master BOM always defines the **Production Primary** component.
 
-* CMOS 555 timer
-* SOIC-8
-* low supply current
-* hardware autofire oscillator
+---
 
-## Alternate Strategy
+# 4. Integrated Circuits
 
-Other CMOS 7555-compatible timers may be considered only if they are electrically and pin compatible.
+## 4.1 U1 — CMOS Autofire Timer
 
-Potential families include:
+### Production Primary
 
-* TLC555 CMOS variants
-* LMC555 CMOS variants
-* other ICM7555-compatible devices
+**Texas Instruments `TLC555CDR`**
 
-### Requirements
+Requirements for any alternate:
 
-An alternate timer must provide:
-
-* standard 555 pinout
-* operation at approximately 5 V
-* CMOS implementation
-* low supply current
-* compatible trigger and threshold levels
-* compatible output behaviour
-* compatible reset input
+* CMOS 555 architecture
 * compatible SOIC-8 footprint
+* standard 555 pinout
+* reliable operation from +5 V
+* astable-mode compatibility
+* compatible timing behaviour with the existing R/C network
+* no significant increase in controller-port current consumption
 
-### Restriction
+### Legacy Validated Alternate
 
-Classic bipolar **NE555** devices are **not approved as drop-in production replacements** without electrical validation.
+**Renesas / Intersil `ICM7555CBAZ`**
 
-Their significantly higher supply current and different switching behaviour may affect:
+Status:
 
-* joystick-port current consumption
+**Legacy Validated**
+
+The ICM7555 was used during earlier WASDPad development and implements the same CMOS 555 operating principle.
+
+It remains a technically suitable alternate subject to availability and package/pinout verification.
+
+### Generic TLC555 / LMC555 / CMOS 555 Families
+
+Status:
+
+**Candidate**
+
+A generic CMOS 555 shall not automatically be substituted.
+
+The exact manufacturer MPN must be verified for:
+
+* operating voltage
+* supply current
+* output characteristics
+* package
+* pinout
 * timing behaviour
-* supply noise
-* PTC selection
 
-**Status:** Conditional
+### Bipolar NE555 Family
 
----
+Status:
 
-# 5. CMOS Bilateral Switch
+**Not Approved as Drop-In Production Alternate**
 
-## Primary Component
+Classic bipolar NE555 devices are not preferred because of their significantly higher supply-current characteristics.
 
-**Texas Instruments CD4066BM96**
-
-## Alternate Strategy
-
-A compatible CD4066B-family quad bilateral CMOS switch may be used if:
-
-* VDD range includes 5 V
-* pinout matches the current schematic
-* SOIC-14 mechanical footprint is compatible
-* control-input thresholds are compatible
-* ON resistance is acceptable for the signal path
-
-Possible manufacturers may include:
-
-* Texas Instruments
-* onsemi
-* Nexperia
-* STMicroelectronics
-* other established logic manufacturers
-
-Exact manufacturer part numbers shall be validated before production substitution.
-
-**Status:** Conditional
+Use would require explicit electrical review.
 
 ---
 
-# 6. 2N7002 MOSFETs
+## 4.2 U2 — Quad Bilateral CMOS Switch
 
-## Primary Component
+### Production Primary
 
-**onsemi 2N7002**
+**Texas Instruments `CD4066BM96`**
 
-Used throughout the FIRE and autofire logic.
+Any alternate must provide:
 
-## Alternate Strategy
+* CD4066-compatible functionality
+* +5 V operation
+* compatible SOIC-14 package
+* identical pinout
+* suitable ON resistance
+* suitable switching characteristics
 
-2N7002 devices from established manufacturers are generally acceptable if the following are verified:
+### Other CD4066B-Compatible Devices
+
+Status:
+
+**Candidate**
+
+Possible manufacturers may include other established semiconductor vendors.
+
+The exact MPN must be validated before production use.
+
+HC4066-family devices shall not automatically be treated as equivalent to CD4066B without electrical review.
+
+---
+
+# 5. MOSFETs and Transistors
+
+## 5.1 Q1–Q7 — N-Channel MOSFET
+
+### Production Primary
+
+**onsemi `2N7002LT1G`**
+
+Requirements for an alternate:
+
+* N-channel enhancement MOSFET
+* compatible operation at the available gate voltage
+* SOT-23 footprint compatibility
+* correct pin mapping
+* adequate VDS rating
+* adequate ID rating
+* sufficiently low leakage
+* suitable logic switching behaviour
+
+### Generic 2N7002
+
+Status:
+
+**Candidate**
+
+`2N7002` is a generic device family and manufacturer pinout/package details must be checked.
+
+A substitute shall not be approved based only on the `2N7002` name.
+
+Particularly verify:
 
 ```text
 Pin 1 = Gate
@@ -161,43 +208,26 @@ Pin 2 = Source
 Pin 3 = Drain
 ```
 
-Additional requirements:
-
-* N-channel MOSFET
-* SOT-23
-* suitable operation with approximately 5 V gate drive
-* low leakage
-* adequate drain-current capability
-* adequate VDS rating
-
-Potential manufacturers include:
-
-* onsemi
-* Nexperia
-* Diodes Incorporated
-* Vishay
-* Infineon
-* ROHM
-
-### Critical Requirement
-
-Do not approve an alternate solely from the `2N7002` generic name.
-
-The manufacturer datasheet pinout must be checked against the KiCad symbol and footprint.
-
-**Status:** Conditional / manufacturer-specific validation required
+against the actual selected manufacturer datasheet and PCB footprint.
 
 ---
 
-# 7. MMBT3904 NPN Transistors
+## 5.2 Q8–Q9 — NPN Status LED Drivers
 
-## Primary Component
+### Production Primary
 
-**MMBT3904 family, SOT-23**
+**onsemi `MMBT3904LT1G`**
 
-Used for the dual-colour autofire LED driver stages.
+Requirements for an alternate:
 
-Validated mapping:
+* NPN bipolar transistor
+* SOT-23 footprint compatibility
+* suitable collector current
+* suitable VCE rating
+* compatible gain characteristics
+* correct pin mapping
+
+Required Rev1.5.1 mapping:
 
 ```text
 Pin 1 = Base
@@ -205,577 +235,819 @@ Pin 2 = Emitter
 Pin 3 = Collector
 ```
 
-## Alternate Strategy
+### Generic MMBT3904
 
-MMBT3904 devices from established manufacturers may be used if the pinout is identical.
+Status:
 
-Potential manufacturers include:
+**Candidate**
 
-* onsemi
-* Nexperia
-* Diodes Incorporated
-* Central Semiconductor
-* ROHM
-
-Electrical requirements:
-
-* NPN transistor
-* SOT-23
-* sufficient gain at the LED operating current
-* suitable VCE rating
-* compatible pinout
-
-**Status:** Conditional / pinout verification required
+The exact manufacturer datasheet must be checked before substitution.
 
 ---
 
-# 8. General Resistors
+# 6. Protection Components
 
-## Primary Series
+Protection components require stricter substitution control than ordinary passive components.
 
-**YAGEO RC1206FR-07**
+A replacement shall not be approved solely from:
+
+* working voltage
+* package name
+* ESD rating
+* number of protected channels
+
+The **internal protection topology and pin mapping must also be verified**.
+
+---
+
+## 6.1 D4 / D5 — DB9 Signal ESD Protection
+
+### Production Primary
+
+**TECH PUBLIC `PESD5V0S4UD`**
+
+JLCPCB/LCSC:
+
+`C2987082`
+
+Package:
+
+SC-74-6 / SOT-23-6 compatible
+
+Validated topology/pin mapping:
+
+```text
+Pin 1 = K1
+Pin 2 = Common Anode
+Pin 3 = K2
+Pin 4 = K3
+Pin 5 = Common Anode
+Pin 6 = K4
+```
+
+Status:
+
+**Production Primary / Validated**
+
+### Nexperia `PESD5V0S4UD,115`
+
+Status:
+
+**Legacy Validated Alternate**
+
+This device formed the basis of the original protection design.
+
+Before substitution, verify the exact ordering suffix, package and datasheet pinout.
+
+### Other Quad-Line 5 V ESD Arrays
+
+Status:
+
+**Candidate**
+
+Required checks:
+
+* working voltage
+* breakdown voltage
+* clamping behaviour
+* capacitance
+* ESD rating
+* number of channels
+* package
+* common-anode topology
+* exact pin mapping
+
+A topology mismatch is grounds for rejection even if the electrical ratings appear similar.
+
+---
+
+## 6.2 D6 — +5 V ESD / TVS Protection
+
+### Production Primary
+
+**TECH PUBLIC `TPE0562BC3`**
+
+JLCPCB/LCSC:
+
+`C2841389`
+
+Package:
+
+SOT-323 / SC-70
+
+Validated Rev1.5.1 PCB connection:
+
+```text
+Pin 1 = Protected +5 V rail
+Pin 2 = NC
+Pin 3 = GND
+```
+
+Status:
+
+**Production Primary / Specifically Validated**
+
+The TPE0562BC3 is a bidirectional protection device and its internal topology differs from the device originally evaluated during Rev1.5 development.
+
+It shall therefore be treated as a specifically validated Rev1.5.1 component.
+
+### Nexperia `PESD6V0L2UU,115`
+
+Status:
+
+**Legacy Design Reference — Not Automatic Drop-In**
+
+This device was evaluated during the original protection design.
+
+Because its internal topology differs from the current production-selected TPE0562BC3, it shall **not** be treated as an uncontrolled interchangeable replacement.
+
+Any return to this device requires verification against the actual Rev1.5.1 schematic and PCB connection.
+
+### Other 5 V TVS / ESD Devices
+
+Status:
+
+**Candidate**
+
+Required verification:
+
+* unidirectional/bidirectional topology
+* pin mapping
+* working voltage
+* breakdown voltage
+* clamping voltage
+* surge/ESD capability
+* package
+* PCB connection
+
+---
+
+# 7. Resettable Fuse
+
+## F2 — +5 V Input Protection
+
+### Production Primary
+
+**Littelfuse `1206L005/30WR`**
+
+Requirements for an alternate:
+
+* resettable PPTC technology
+* 1206 footprint compatibility
+* comparable hold current
+* comparable trip current
+* suitable maximum voltage
+* suitable trip characteristics
+* suitable resistance
+* appropriate behaviour with the retro-computer controller-port +5 V supply
+
+### Other 1206 PPTC Devices
+
+Status:
+
+**Candidate**
+
+A replacement must be selected from electrical characteristics rather than package and current marking alone.
+
+---
+
+# 8. Diodes
+
+## D2 — Small-Signal Switching Diode
+
+### Production Primary
+
+**`1N4148` THT**
+
+Package:
+
+DO-35
+
+Status:
+
+**Production Primary**
+
+Because `1N4148` is an industry-standard generic designation, qualified manufacturer versions may be used provided that the electrical ratings and physical package are compatible.
+
+### `1N4148W`
+
+Status:
+
+**Not a Direct PCB Alternate**
+
+The 1N4148W is commonly supplied in an SMD package.
+
+It may be electrically suitable but is **not footprint-compatible** with the Rev1.5.1 THT DO-35 position.
+
+Using it would require PCB or assembly adaptation.
+
+---
+
+# 9. Capacitors
+
+## 9.1 C1 — Autofire Timing Capacitor
+
+### Production Primary
+
+**Walsin `1206B224K500NT`**
+
+Nominal specification:
+
+* 220 nF
+* 50 V
+* X7R
+* ±10 %
+* 1206
+
+Any alternate shall maintain:
+
+* 220 nF nominal capacitance
+* X7R or electrically suitable stable dielectric
+* compatible tolerance
+* voltage rating ≥ required circuit voltage
+* 1206 footprint
+
+Because C1 influences autofire timing, large tolerance or dielectric changes are not permitted without timing verification.
+
+### Earlier KEMET Timing Capacitor
+
+Status:
+
+**Legacy Validated Alternate**
+
+An electrically equivalent 220 nF / 1206 / X7R KEMET device used during development may remain acceptable provided the exact MPN, tolerance and voltage rating are verified.
+
+---
+
+## 9.2 C2 / C3 — 100 nF Capacitors
+
+### Production Primary
+
+**Samsung Electro-Mechanics `CL31B104KBCNNNC`**
 
 Specification:
+
+* 100 nF
+* 50 V
+* X7R
+* 1206
+
+### Equivalent 100 nF X7R 1206 MLCC
+
+Status:
+
+**Candidate**
+
+Requirements:
+
+* 100 nF
+* X7R
+* 1206
+* suitable tolerance
+* voltage rating safely above +5 V
+
+---
+
+## 9.3 VCC-GND-Decoupling1
+
+### Production Primary
+
+**YAGEO `CC1206KRX7R8BB104`**
+
+Specification:
+
+* 100 nF
+* X7R
+* 1206
+
+### Equivalent 100 nF X7R 1206 MLCC
+
+Status:
+
+**Candidate**
+
+Any replacement shall provide suitable high-frequency local decoupling performance.
+
+---
+
+# 10. Resistors
+
+## Production Primary Family
+
+**YAGEO `RC1206FR-07` series**
+
+The Rev1.5.1 Master BOM standardizes SMD resistors on this family wherever practical.
+
+Typical characteristics:
 
 * 1206
 * thick film
 * ±1 %
 * 0.25 W
 
-## Alternate Strategy
+Production values include:
 
-Equivalent resistors from reputable manufacturers may be substituted freely if all of the following match or exceed the primary specification:
+* 270 Ω
+* 330 Ω
+* 3.3 kΩ
+* 4.7 kΩ
+* 10 kΩ
+* 100 kΩ
+* 330 kΩ
+* 680 kΩ
 
-* correct resistance
-* 1206 package
-* ±1 % tolerance or better
-* ≥0.25 W rating
+### Equivalent 1206 Resistors
 
-Potential manufacturers:
+Status:
 
-* Vishay
-* Panasonic
-* KOA Speer
-* Bourns
-* Stackpole
-* TE Connectivity
+**Candidate / Generally Acceptable After Verification**
 
-### Critical Timing Values
+An alternate resistor shall match:
 
-Extra care shall be taken with:
+* nominal resistance
+* footprint
+* tolerance equal to or better than required
+* power rating equal to or greater than required
+* suitable voltage rating
 
-* R13 = 330 kΩ FAST
-* R14 = 680 kΩ SLOW
+### Timing Resistors R13 / R14
 
-The resistance value shall not be changed as a procurement substitute.
+Additional restriction applies.
 
-**Status:** Approved by specification
+```text
+R13 = 330 kΩ FAST
+R14 = 680 kΩ SLOW
+```
 
----
+These values are part of the validated autofire behaviour.
 
-# 9. Capacitors
-
-## 9.1 100 nF Parts
-
-Primary:
-
-**KEMET C1206C104J3RACAUTO**
-
-Used for:
-
-* C2
-* C3
-* VCC-GND decoupling
-
-Minimum alternate specification:
-
-* 100 nF
-* 1206
-* X7R
-* ≥16 VDC
-* ±10 % or better
-
-For C3, tighter tolerance is preferred because it affects autofire timing.
-
-Preferred tolerance:
-
-**±5 %**
-
-Potential manufacturers:
-
-* KEMET
-* Murata
-* TDK
-* Samsung Electro-Mechanics
-* Yageo
-* Vishay
-
-**Status:** Approved by specification
+Alternate values shall **not** be substituted without gameplay and timing validation.
 
 ---
 
-## 9.2 C1 — 220 nF
+# 11. Status LEDs
 
-Primary:
+## 11.1 D1 — Power LED
 
-**KEMET C1206S224J3RACAUTO**
+### Production Primary
 
-Minimum alternate specification:
+**Bivar `3RD-F`**
 
-* 220 nF
-* 1206
-* X7R
-* ≥16 VDC
-* ±10 % or better
+Type:
 
-Preferred:
+3 mm red THT LED
 
-* 25 V
-* ±5 %
+Status:
 
-**Status:** Approved by specification
+**Production Primary**
+
+Other colours or compatible 3 mm THT LEDs may be technically possible, but forward voltage, polarity, mechanical dimensions and resulting brightness with `R_LED1 = 4.7 kΩ` shall be verified.
+
+### Alternative Colour LEDs
+
+Status:
+
+**Candidate / Cosmetic Variant**
+
+A colour change is considered a product variant rather than an uncontrolled component substitution.
 
 ---
 
-# 10. PTC Overcurrent Protection
+## 11.2 D7 — Dual-Colour Autofire Status LED
 
-## Primary Component
+### Production Primary
 
-**Littelfuse 1206L005/30WR**
+**Bivar `3BC-3-F`**
+
+Type:
+
+3 mm red/green bi-colour THT LED
+
+Required configuration:
+
+**Common cathode**
+
+Required pinout:
+
+```text
+Pin 1 = Red anode
+Pin 2 = Common cathode
+Pin 3 = Green anode
+```
+
+Status:
+
+**Production Primary / Validated**
+
+### Other 3 mm Red/Green Bi-Colour LEDs
+
+Status:
+
+**Candidate**
+
+Any replacement must be verified for:
+
+* common-cathode architecture
+* exact pin numbering
+* physical lead spacing
+* body diameter
+* red forward voltage
+* green forward voltage
+* brightness
+* viewing angle
+
+A common-anode LED is **not** a drop-in replacement.
+
+---
+
+# 12. Key Backlight LEDs
+
+## D8–D15
+
+### Production Primary
+
+**XINGLIGHT `XL-2012WWC`**
+
+JLCPCB/LCSC:
+
+`C965820`
 
 Specification:
 
-* 50 mA hold current
-* 150 mA trip current
-* 30 V maximum voltage
-* 1206
+* 0805
+* warm white
+* approximately 2500–3100 K
+* wide viewing angle
 
-## Alternate Strategy
+Status:
 
-An alternate PPTC may be considered if it provides:
+**Production Primary**
 
-* approximately 50 mA hold current
-* trip current appropriate for joystick-port protection
-* 1206 footprint compatibility
-* low enough cold resistance to avoid excessive voltage drop
-* voltage rating comfortably above 5 V
+The Rev1.5.1 circuit intentionally operates these LEDs at a low current through individual 3.3 kΩ resistors to produce subtle backlighting.
 
-Potential manufacturers:
+### Other 0805 White / Warm-White LEDs
 
-* Littelfuse
-* Bourns
-* Bel Fuse
-* Eaton
+Status:
 
-### Restriction
+**Candidate**
 
-A significantly higher hold-current device shall not be substituted automatically.
+Required verification:
 
-The 50 mA selection is intentionally related to the limited current capability of classic joystick ports.
+* 0805 footprint
+* polarity / pad orientation
+* forward voltage
+* brightness at low current
+* colour temperature
+* viewing angle
 
-**Status:** Conditional
+A significantly higher-efficiency LED may alter the intended visual appearance even if electrically compatible.
 
 ---
 
-# 11. D4 / D5 Signal ESD Arrays
+# 13. Backlight Switch
 
-## Primary Component
+## U3
 
-**Nexperia PESD5V0S4UD**
+### Production Primary
 
-Package:
+**C&K `PCM12SMTR`**
 
-**SOT457 / SC-74**
+Type:
 
-KiCad footprint:
+SMD slide switch
 
-```text
-Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm
-```
+PCB side:
 
-## Alternate Strategy
+Bottom
 
-An alternate device must provide:
+Status:
 
-* at least four protected lines
-* compatibility with 5 V digital signals
-* suitable IEC 61000-4-2 protection
-* low leakage
-* suitable capacitance
-* compatible six-pin package and pad geometry
-* matching internal topology or a corresponding schematic redesign
+**Production Primary**
 
-### Candidate Families
+An alternate must match:
 
-Possible alternatives may exist from:
+* switching function
+* contact arrangement
+* PCB footprint
+* pad geometry
+* actuator direction
+* actuator height
+* mechanical accessibility through the enclosure
 
-* STMicroelectronics
-* onsemi
-* Littelfuse
-* Semtech
-
-### Important Restriction
-
-Bidirectional and unidirectional protection arrays are not automatically interchangeable.
-
-Pinout and internal topology must be verified.
-
-**Status:** Conditional
+Mechanical compatibility with the enclosure is mandatory.
 
 ---
 
-# 12. D6 +5 V ESD Protection
+# 14. Autofire Control Switches
 
-## Primary Component
+## 14.1 SW_AUTO1 — Autofire ON/OFF
 
-**Nexperia PESD6V0L2UU**
+### Production Primary
 
-Package:
+**E-Switch `100SP1T1B4M2QE`**
 
-**SOT-323 / SC-70**
+Status:
 
-Validated implementation:
+**Production Primary / Validated**
 
-```text
-Pin 1 -> protected +5 V rail
-Pin 2 -> NC
-Pin 3 -> GND
-```
+Any alternate must match:
 
-## Alternate Strategy
-
-An alternate device must be suitable for protecting an approximately 5 V supply and provide:
-
-* compatible standoff voltage
-* compatible clamping behaviour
-* SOT-323 / SC-70 or PCB-compatible package
-* correct diode orientation
-
-The current schematic intentionally uses only one of the two internal protection channels.
-
-### Critical Requirement
-
-Any replacement must be checked against the actual schematic connection.
-
-**Status:** Conditional
+* electrical switching function
+* THT footprint
+* pin spacing
+* body dimensions
+* actuator dimensions
+* mounting geometry
+* enclosure clearance
 
 ---
 
-# 13. Dual-Colour Autofire LED
+## 14.2 SW_SPEED1 — Autofire Speed Selector
 
-## Primary Component
+### Production Primary
 
-**Bivar 3BC-3-F**
+**E-Switch `100SP3T1B1M2QEH`**
 
-Specification:
+Type:
 
-* 3 mm THT
-* Red / Green
-* common cathode
-* three pins
+SPDT ON-OFF-ON
 
-Validated pinout:
+Status:
 
-```text
-Pin 1 -> RED anode
-Pin 2 -> Common cathode
-Pin 3 -> GREEN anode
-```
+**Production Primary / Validated**
 
-## Alternate Strategy
-
-A replacement may be used only if it is:
-
-* 3 mm THT
-* three-pin
-* common cathode
-* mechanically compatible with `LED_THT:LED_D3.0mm-3`
-* compatible with the R22 / R23 driver network
-
-### Critical Restriction
-
-**Common-anode LEDs are NOT drop-in alternatives.**
-
-For example:
+Function:
 
 ```text
-Bivar 3BC-3-CA-F
+LEFT  = SLOW
+RIGHT = FAST
 ```
 
-is not approved because it requires a different driver topology.
+An alternate must reproduce the required switching behaviour and mechanical footprint.
 
-**Status:** Primary approved; alternatives require explicit pinout validation
-
----
-
-# 14. Power LED D1
-
-The power LED is intentionally configurable.
-
-## Approved Variants
-
-The supported customer-selectable colours are:
-
-* Red
-* Blue
-* White
-
-All variants shall use:
-
-* 3 mm THT package
-* two-pin LED
-* footprint `LED_THT:LED_D3.0mm`
-* R_LED1 = 4.7 kΩ
-
-### Current Approved Example Parts
-
-#### Red
-
-**Bivar 3RDL-S**
-
-#### Blue
-
-**Bivar 3BWD-S**
-
-#### White
-
-**LITEON LTW-420D7**
-
-These are treated as **Approved Variants**, not substitutes requiring a hardware revision.
-
-Brightness may vary between colours because R_LED1 remains fixed.
-
-**Status:** Approved Variant
+`SW_AUTO1` and `SW_SPEED1` use different MPNs and shall not be treated as interchangeable.
 
 ---
 
 # 15. MX Hot-Swap Sockets
 
-## Primary Component
+## SW1–SW8
 
-**Kailh / Kaihua CPG151101S11**
+### Production Primary
 
-KiCad footprint:
+**Kailh / Kaihua `CPG151101S11`**
 
-```text
-PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX
-```
+Type:
 
-## Alternate Strategy
+MX-compatible PCB hot-swap socket
 
-Other MX hot-swap sockets shall not be treated as drop-in replacements unless:
+PCB side:
 
-* PCB pad geometry matches
-* switch contact geometry matches
-* mechanical retention is compatible
-* enclosure and switch height remain valid
-
-A socket from another manufacturer may require a different PCB footprint.
-
-**Status:** Primary approved; alternatives require PCB-level validation
-
----
-
-# 16. Mechanical Gameplay Switches
-
-## Primary Component
-
-**Gateron KS-8 Yellow**
+Bottom
 
 Quantity:
 
-**8 per controller**
+8
 
-The switches are installed in the Kailh hot-swap sockets.
+Status:
 
-## Alternate Strategy
+**Production Primary**
 
-The controller may use other MX-compatible mechanical switches.
+An alternate hot-swap socket must be verified for:
 
-Potential compatible families include:
+* PCB footprint
+* pad geometry
+* switch-pin contact position
+* retention force
+* PCB thickness compatibility
+* mechanical switch compatibility
+* enclosure clearance
 
-* Cherry MX
-* Gateron MX
-* Kailh MX
-* TTC MX
-
-Approval criteria:
-
-* MX contact geometry
-* compatible switch-pin dimensions
-* compatible hot-swap socket engagement
-* compatible switch height
-* compatible enclosure clearance
-
-### User Preference
-
-Different switch feel is intentionally supported.
-
-Linear, tactile or clicky switches may be used if mechanically compatible.
-
-**Status:** Approved by mechanical compatibility
+Hot-swap sockets from another manufacturer shall not be assumed mechanically interchangeable.
 
 ---
 
-# 17. Autofire Toggle Switches
+# 16. Mechanical Key Switches
 
-## Primary Component
+## Production Fitted Switch
 
-**E-Switch 100SP1T1B4M2QE**
+**Gateron KS-8 Yellow**
 
-Used for:
+Status:
 
-* SW_AUTO1
-* SW_SPEED1
+**Production Primary / Replaceable Mechanical Component**
 
-## Alternate Strategy
+The mechanical key switches are user-replaceable through the Kailh hot-swap sockets.
 
-These switches are mechanically integrated into the PCB and enclosure.
-
-Any replacement must match:
-
-* pin spacing
-* mounting geometry
-* actuator dimensions
-* body size
-* electrical function
-* enclosure opening
-
-### Important Rev 1.5 Note
-
-The two switch positions intentionally use different KiCad footprint / symbol mappings due to the validated physical layout.
-
-The existing mapping shall not be changed merely to standardize library names.
-
-**Status:** Primary approved; alternates require mechanical validation
+Because they are not permanently soldered to the PCB, a broader range of compatible MX-style switches may be used.
 
 ---
 
-# 18. Controller Cable
+## Cherry MX-Compatible Switches
 
-## Primary Supplier Type
+Status:
 
-Generic Sega Mega Drive / Genesis 2 style controller cable.
+**Approved Mechanical Family Subject to Fit**
 
-Current supplier reference:
+Compatible Cherry MX switches may be used provided that:
+
+* switch pin geometry matches
+* center post geometry is compatible
+* switch body clears the enclosure
+* keycap interface is compatible
+* Kailh socket insertion does not require excessive force
+
+---
+
+## Other Gateron MX-Compatible Switches
+
+Status:
+
+**Approved Mechanical Family Subject to Fit**
+
+Different Gateron MX-compatible switch types may be used as user-selectable variants.
+
+Switch force and feel are user-experience parameters rather than electrical compatibility parameters.
+
+---
+
+## Kailh MX-Compatible Mechanical Switches
+
+Status:
+
+**Candidate / Mechanical Verification Required**
+
+Do not confuse **Kailh mechanical switches** with the production-selected **Kailh CPG151101S11 hot-swap socket**.
+
+Exact switch geometry must be checked.
+
+---
+
+## TTC MX-Compatible Mechanical Switches
+
+Status:
+
+**Candidate**
+
+Mechanical fit must be verified.
+
+---
+
+## Outemu MX-Compatible Mechanical Switches
+
+Status:
+
+**Candidate**
+
+Outemu switch-pin dimensions may differ from other MX-style switches.
+
+Socket compatibility must be verified before approval.
+
+---
+
+# 17. DB9 Controller Cable
+
+## Production Requirement
+
+The Rev1.5.1 Master BOM specifies a molded female DB9 controller cable with nine flying leads.
+
+The exact production cable supplier/MPN may vary until a permanent supplier is frozen.
+
+Status:
+
+**Supplier-Controlled Component**
+
+Any replacement cable must be verified for:
+
+* female DB9 connector
+* correct number of conductors
+* adequate conductor gauge
+* adequate insulation
+* suitable cable flexibility
+* strain relief
+* connector mechanical quality
+* continuity
+* pin-to-wire mapping
+
+Wire insulation colour shall not be assumed to identify DB9 pin numbers.
+
+The first cable from each new supplier or production batch should be continuity-tested.
+
+---
+
+# 18. PCB Interface J1
+
+J1 is a PCB solder-pad interface and is not a separately purchased component.
+
+Status:
+
+**PCB Feature / DNP**
+
+No alternate component is applicable.
+
+---
+
+# 19. Components Requiring Special Approval
+
+The following component classes shall **not** be substituted without explicit engineering review:
+
+1. D4 / D5 ESD protection arrays
+2. D6 +5 V ESD/TVS protection
+3. U1 autofire timer
+4. U2 bilateral switch
+5. Q1–Q7 MOSFETs where pin mapping differs
+6. Q8/Q9 transistors where pin mapping differs
+7. D7 dual-colour status LED
+8. F2 resettable fuse
+9. R13 / R14 autofire timing resistors
+10. U3 where mechanical dimensions differ
+11. SW_AUTO1 / SW_SPEED1 where switching topology differs
+12. Kailh hot-swap sockets where PCB geometry differs
+
+---
+
+# 20. Alternate-Part Approval Procedure
+
+Before a new alternate MPN is added to this document:
+
+1. Obtain the manufacturer datasheet.
+2. Record manufacturer and exact MPN.
+3. Compare electrical specifications against the Production Primary.
+4. Compare package and physical dimensions.
+5. Verify pin numbering and pinout.
+6. Verify PCB footprint compatibility.
+7. Verify polarity where applicable.
+8. Verify internal topology for protection devices.
+9. Verify mechanical fit for switches, sockets and LEDs.
+10. Update the Master BOM only if the alternate becomes the new production-selected component.
+11. Update `DATASHEET_INDEX.md`.
+12. Perform functional testing where the component can influence timing, latency, protection or user interaction.
+13. Record the approval status in this document.
+
+---
+
+# 21. Manufacturing Substitutions
+
+PCB assembly suppliers may propose component substitutions because of:
+
+* stock shortages
+* minimum order quantities
+* lifecycle changes
+* supplier changes
+* extended lead times
+
+A manufacturing-house substitution is **not automatically approved**.
+
+The proposed MPN shall be evaluated using the rules in this document before assembly.
+
+For ordinary passive components, verification may be straightforward.
+
+For:
+
+* semiconductors
+* ESD/TVS devices
+* switches
+* LEDs
+* hot-swap sockets
+* timing components
+
+explicit engineering review is required.
+
+---
+
+# 22. Documentation Authority
+
+The following document hierarchy applies:
 
 ```text
-AliExpress Item ID: 1005009578092300
+Production component identity
+        ↓
+WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+
+Component placement
+        ↓
+WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+
+Datasheets
+        ↓
+DATASHEET_INDEX.md
+
+Approved substitutions
+        ↓
+ALTERNATE_PARTS.md
+
+Supplier / sourcing information
+        ↓
+PROCUREMENT_NOTES.md
 ```
 
-Configuration:
-
-* molded DB9 female connector
-* nine internal conductors
-* flying leads on PCB side
-
-## Alternate Strategy
-
-A different cable may be used if:
-
-* connector is DB9 female
-* mechanical fit is acceptable
-* sufficient cable length is provided
-* all required conductors exist
-* conductor quality is acceptable
-
-### Mandatory Requirement
-
-Wire colour is **not** part of the electrical specification.
-
-Every new supplier or production batch must have its DB9-pin-to-wire mapping checked using a continuity meter.
-
-Refer to:
-
-```text
-docs/assembly/CABLE_ASSEMBLY.md
-```
-
-**Status:** Approved by batch validation
-
----
-
-# 19. J1 PCB Cable Pads
-
-J1 is not a procurement component.
-
-It is a PCB feature implemented using:
-
-```text
-Connector_Wire:SolderWirePad_1x01_SMD_1.5x3mm
-```
-
-There is therefore no alternate purchased part.
-
-**Status:** Not applicable
-
----
-
-# 20. PCB and Footprints
-
-Alternate components must not force an unreviewed PCB footprint change.
-
-If an alternate requires:
-
-* different pad dimensions
-* different pin pitch
-* different pin numbering
-* different package geometry
-
-the component must be treated as a design change rather than a normal BOM substitution.
-
-Such a change requires:
-
-1. schematic review
-2. footprint review
-3. PCB DRC
-4. manufacturing review
-5. prototype validation
-
----
-
-# 21. Procurement Priority
-
-When selecting between primary and alternate components, preference shall be given in this order:
-
-1. Primary approved BOM component
-2. Approved variant
-3. Previously validated equivalent
-4. Candidate from a recognized manufacturer
-5. New alternate requiring engineering validation
-
-Marketplace-only substitutes shall not be used for protection components or semiconductors unless authenticity is known.
-
----
-
-# 22. No-Substitution Components
-
-The following characteristics shall not be changed without engineering review:
-
-* R13 = 330 kΩ FAST timing
-* R14 = 680 kΩ SLOW timing
-* D7 common-cathode configuration
-* D6 protection polarity/topology
-* PTC current class
-* MX hot-swap footprint
-* toggle-switch mechanical geometry
+If an alternate listed here becomes the standard production component, the **Master BOM must be updated first**.
 
 ---
 
 # 23. Version History
 
-| Document Version | Date           | Status                     | Changes                                                                                                                                                                                                               |
-| ---------------- | -------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0.1              | Not recorded   | Draft                      | Initial placeholder alternate-part document                                                                                                                                                                           |
-| 0.3              | Not recorded   | Draft                      | Initial generic substitution guidance                                                                                                                                                                                 |
-| **0.9**          | **2026-08-18** | **Engineering Validation** | Updated with actual Rev 1.5 primary components, D1 colour variants, MX-switch strategy, semiconductor replacement rules, ESD restrictions, PTC requirements, cable batch strategy and validated no-substitution rules |
-
----
-
-# 24. Next Version
-
-The next planned version is:
-
-**1.0**
-
-It may be released when the complete Revision 1.5 prototype has passed full electrical, functional, mechanical and manufacturing validation.
+| Version | Date           | Status                           | Changes                                                                                                                                                                                                                                                                                 |
+| ------- | -------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.1     | Not recorded   | Draft                            | Initial alternate-part policy and candidate mechanical switches                                                                                                                                                                                                                         |
+| **1.0** | **2026-08-29** | **Production Release Candidate** | Rebuilt against Rev1.5.1 Master BOM; TLC555 established as production timer; production ESD/TVS devices documented; capacitors, transistors, LEDs, backlight system, switches and hot-swap sockets added; mechanical-switch policy expanded; substitution approval procedure formalized |
