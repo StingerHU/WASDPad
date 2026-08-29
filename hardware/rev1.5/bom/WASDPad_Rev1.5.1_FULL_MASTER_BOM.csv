@@ -1,0 +1,84 @@
+﻿Designator,MPN,Quantity,Footprint,Description,JLCPCB Part #,Layer,Assembly
+U3,PCM12SMTR,1,PCM12SMTR_CNK,"C&K PCM12SMTR SMD slide switch for key backlight, bottom side",,Bottom,Bottom SMD
+C1,1206B224K500NT,1,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,220 nF X7R timing capacitor,C1857,Top,Top SMD
+C2,CL31B104KBCNNNC,1,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,100 nF X7R capacitor,C24497,Top,Top SMD
+C3,CL31B104KBCNNNC,1,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,100 nF X7R capacitor,C24497,Top,Top SMD
+D1,3RD-F,1,LED_THT:LED_D3.0mm,Bivar 3 mm red THT power/status LED (default red option),,Top,THT
+D2,1N4148,1,Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal,"100 V small-signal switching diode, THT DO-35",,Top,THT
+D4,PESD5V0S4UD,1,Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm,5 V quad ESD protection array,C2987082,Top,Top SMD
+D5,PESD5V0S4UD,1,Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm,5 V quad ESD protection array,C2987082,Top,Top SMD
+D6,TPE0562BC3,1,Package_TO_SOT_SMD:SOT-323_SC-70,"5 V dual-line ESD/TVS protection device, validated replacement",C2841389,Top,Top SMD
+D7,3BC-3-F,1,LED_THT:LED_D3.0mm-3,"Bivar 3 mm red/green bi-color LED, common cathode pin 2",,Top,THT
+D8,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D9,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D10,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D11,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D12,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D13,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D14,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+D15,XL-2012WWC,1,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,0805 white SMD LED for key backlight,C965820,Top,Top SMD
+F2,1206L005/30WR,1,Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder,"Resettable PTC fuse, 1206",C3760487,Top,Top SMD
+Q1_Q_FIRE_INV1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q2_Q_AF_INV1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q3_Q_SHOT_BLOCK1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q4_Q_FIRE1_SHOT1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q5_Q_AF_NOBTN_CLAMP1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q6_Q_AF_OFF_CLAMP1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q7_Q_FIRE1_AF1,2N7002LT1G,1,Package_TO_SOT_SMD:SOT-23,"2N7002 N-channel MOSFET, SOT-23",C16338,Top,Top SMD
+Q8_SLOW1,MMBT3904LT1G,1,Package_TO_SOT_SMD:SOT-23,"MMBT3904 NPN transistor, SOT-23",C81464,Top,Top SMD
+Q9_FAST1,MMBT3904LT1G,1,Package_TO_SOT_SMD:SOT-23,"MMBT3904 NPN transistor, SOT-23",C81464,Top,Top SMD
+R1,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R2,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R3,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R4,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R5,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R6,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R7,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R8,RC1206FR-07100KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (100k),C137393,Top,Top SMD
+R9,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R10,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R11,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R12,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R13,RC1206FR-07330KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330K),C137312,Top,Top SMD
+R14,RC1206FR-07680KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (680K),C137241,Top,Top SMD
+R15,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R16,RC1206FR-07100KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (100k),C137393,Top,Top SMD
+R17,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10k),C132649,Top,Top SMD
+R18,RC1206FR-07100KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (100k),C137393,Top,Top SMD
+R19,RC1206FR-07100KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (100k),C137393,Top,Top SMD
+R20,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10K),C132649,Top,Top SMD
+R21,RC1206FR-0710KL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (10K),C132649,Top,Top SMD
+R22,RC1206FR-07270RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (270),C137341,Top,Top SMD
+R23,RC1206FR-07330RL,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (330),C114944,Top,Top SMD
+R24,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R25,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R26,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R27,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R28,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R29,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R30,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R31,RC1206FR-073K3L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (3k3),C137292,Top,Top SMD
+R_LED1,RC1206FR-074K7L,1,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,1206 resistor (4k7),C137262,Top,Top SMD
+SW1,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW2,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW3,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW4,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW5,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW6,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW7,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW8,CPG151101S11,1,PCM_Switch_Keyboard_Hotswap_Kailh:SW_Hotswap_Kailh_MX,"Kailh MX hot-swap socket, bottom side",,Bottom,Bottom SMD
+SW_AUTO1,100SP1T1B4M2QE,1,ToggleSwitches:SW_100SP1T1B4M2QE,"E-Switch miniature toggle switch, autofire ON/OFF",,Top,THT
+SW_SPEED1,100SP3T1B1M2QEH,1,ToggleSwitches:SW_100SP3T1B1M2QEH,"E-Switch SPDT On-Off-On miniature toggle switch, autofire speed selector",,Top,THT
+U1,TLC555CDR,1,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,"Texas Instruments TLC555 CMOS timer, validated ICM7555 replacement",C6986,Top,Top SMD
+U2,CD4066BM96,1,Package_SO:SO-14_3.9x8.65mm_P1.27mm,Texas Instruments CD4066B quad bilateral CMOS switch,C54755,Top,Top SMD
+VCC-GND-Decoupling1,CC1206KRX7R8BB104,1,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,100 nF X7R VCC-GND decoupling capacitor,C527347,Top,Top SMD
+MECH_SW1,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW1,,Top,Mechanical / manual
+MECH_SW2,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW2,,Top,Mechanical / manual
+MECH_SW3,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW3,,Top,Mechanical / manual
+MECH_SW4,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW4,,Top,Mechanical / manual
+MECH_SW5,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW5,,Top,Mechanical / manual
+MECH_SW6,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW6,,Top,Mechanical / manual
+MECH_SW7,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW7,,Top,Mechanical / manual
+MECH_SW8,Gateron KS-8 Yellow,1,-,Gateron KS-8 Yellow MX-compatible mechanical switch installed in SW8,,Top,Mechanical / manual
+CABLE,DB9F molded 9-wire cable,1,-,Molded female DB9 controller cable with 9 flying leads; pin 5 unused,,External,Cable / manual
+J1,PCB FEATURE / DNP,1,Connector_Wire:SolderWirePad_1x01_SMD_1.5x3mm,DB9 cable solder-pad interface on PCB; not a purchased component,,Top,PCB feature / DNP
