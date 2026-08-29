@@ -10,7 +10,7 @@
 
 ## Modern controls. Original hardware.
 
-**WASDPad+** is an open hardware game controller designed for classic computers using the traditional Atari-style digital joystick interface.
+**WASDPad+** is a custom hardware game controller designed for Commodore 64, Amiga and compatible retro computers.
 
 It combines the familiar precision of a keyboard-style WASD layout with an electrical architecture designed specifically for original retro hardware.
 
