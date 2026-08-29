@@ -1,286 +1,642 @@
 # WASDPad+
 
-**Hardware WASD-style controller platform for Commodore 64, Amiga and Atari-compatible systems**
+### Hardware WASD-style controller for Commodore 64, Amiga and compatible retro computers
 
-**Project Documentation Version:** 0.9  
-**Current Hardware Revision:** Rev 1.5  
-**Project Status:** Active Development / Rev 1.5 Engineering Validation  
-**Last Updated:** 2026-08-18
-
----
-
-## Overview
-
-WASDPad+ is a custom hardware controller designed primarily for retro computers using the classic Atari-style DE-9 / DB9 joystick interface.
-
-The project provides a keyboard-like WASD control layout while remaining electrically compatible with systems such as:
-
-- Commodore 64
-- Commodore 128
-- Commodore Amiga
-- Atari-compatible joystick interfaces
-- other compatible active-low DE-9 controller ports
-
-The design is entirely hardware-based.
-
-No microcontroller, firmware, USB interface or software driver is required for normal controller operation.
-
-The current development version is:
-
-**WASDPad+ Hardware Revision 1.5**
-
-Rev 1.5 focuses on improving electrical protection, serviceability, switch replacement, manufacturing consistency and status indication while retaining the proven hardware architecture of previous revisions.
+**Current Hardware:** Rev1.5.1
+**Status:** Production Release Candidate
+**Architecture:** Pure hardware — no MCU, firmware or drivers
 
 ---
 
-# Main Features
+## Modern controls. Original hardware.
 
-WASDPad+ Rev 1.5 provides:
+**WASDPad+** is an open hardware game controller designed for classic computers using the traditional Atari-style digital joystick interface.
 
-- WASD-style directional controls
-- FIRE1 support
-- FIRE2 / POTX support
-- hardware autofire
-- selectable autofire OFF / ON
-- selectable SLOW / FAST autofire speed
-- dual-colour autofire status indication
-- dedicated power indicator LED
-- MX-compatible mechanical switches
-- Kailh hot-swap switch sockets
-- Gateron KS-8 Yellow switches as the default switch configuration
-- resettable +5 V overcurrent protection
-- ESD protection on externally accessible signals
-- protected +5 V input
-- direct DB9 controller cable connection
-- no firmware requirement
-- no microcontroller dependency
+It combines the familiar precision of a keyboard-style WASD layout with an electrical architecture designed specifically for original retro hardware.
 
----
+The controller connects directly to the joystick port.
 
-# Design Philosophy
+No USB conversion.
+No Bluetooth.
+No firmware.
+No software driver.
+No input polling.
 
-The WASDPad+ project follows several basic design principles.
+Just switches, discrete hardware and the original computer.
 
-## Native Retro Hardware Interface
+```text
+PLAYER
+   │
+   ▼
+MX MECHANICAL SWITCH
+   │
+   ▼
+DISCRETE HARDWARE
+   │
+   ▼
+PROTECTED DE-9 SIGNAL
+   │
+   ▼
+RETRO COMPUTER
+```
 
-The controller connects directly to the target computer's joystick port.
-
-No protocol conversion is required.
-
----
-
-## Hardware-Only Operation
-
-Normal controller operation does not depend on:
-
-- firmware
-- operating-system drivers
-- USB
-- programmable microcontrollers
-- software configuration
-
-This keeps the signal path deterministic and suitable for latency-sensitive retro gaming.
+The current **Rev1.5.1** hardware is the production-oriented evolution of the WASDPad platform, adding hot-swappable mechanical switches, hardware autofire, electrical protection, dual-colour status indication and subtle key backlighting while retaining the direct hardware signal path of the original design.
 
 ---
 
-## Serviceability
+# Why WASDPad?
 
-Revision 1.5 introduces MX hot-swap sockets so the primary gameplay switches can be replaced without soldering.
+Classic joystick games were designed around digital inputs:
 
-This allows the user to experiment with different MX-compatible mechanical switches and makes worn switches easy to replace.
+```text
+UP
+DOWN
+LEFT
+RIGHT
+FIRE
+```
 
----
+Traditional joysticks translate these into movement of a physical stick.
 
-## Electrical Protection
+WASDPad takes a different approach.
 
-Rev 1.5 introduces dedicated protection for both the host computer and controller electronics.
+The directional controls are individual mechanical keys arranged in a familiar keyboard-style layout.
 
-Protection includes:
+This provides:
 
-- resettable PPTC protection on the +5 V supply
-- ESD protection on joystick signal lines
-- ESD protection on the incoming +5 V rail
-- supply decoupling
+* short physical travel
+* crisp digital actuation
+* independent directional control
+* familiar WASD ergonomics
+* replaceable mechanical switches
+* direct electrical signalling
 
-These additions are particularly important because the controller is powered directly from the host computer's joystick port.
+The controller does not emulate a joystick through software.
 
----
-
-# Current Hardware Revision
-
-## WASDPad+ Rev 1.5
-
-Revision 1.5 is the current engineering revision.
-
-Its main development goals are:
-
-- improved electrical protection
-- improved manufacturing repeatability
-- MX hot-swap support
-- standardized component sourcing
-- improved autofire speed differentiation
-- dual-colour autofire indication
-- documented cable assembly
-- production-oriented BOM
-- improved hardware validation procedures
-
-The fundamental joystick interface and hardware-only architecture remain compatible with the previous validated design.
+**Electrically, it is the joystick.**
 
 ---
 
-# Autofire
+# Rev1.5.1 Highlights
 
-Rev 1.5 contains a hardware autofire generator based on a CMOS 555 timer.
+## ⌨️ Eight Mechanical Gameplay Switches
 
-Primary timer:
+Rev1.5.1 provides eight primary gameplay controls:
 
-**Renesas ICM7555CBAZ**
+```text
+UP
+DOWN
+LEFT
+RIGHT
 
-Two fixed autofire rates are available.
+FIRE1 LEFT
+FIRE1 RIGHT
+
+FIRE2 LEFT
+FIRE2 RIGHT
+```
+
+The duplicated FIRE buttons create an ambidextrous layout.
+
+---
+
+## 🔄 MX Hot-Swap
+
+All eight gameplay switches use **Kailh MX-compatible hot-swap sockets**.
+
+Production socket:
+
+**Kailh / Kaihua CPG151101S11**
+
+Default switch:
+
+**Gateron KS-8 Yellow**
+
+Mechanical switches can therefore be replaced without soldering.
+
+This makes it possible to:
+
+* replace worn switches
+* experiment with different switch types
+* customize switch feel
+* service the controller without PCB rework
+
+---
+
+## 🔥 Hardware Autofire
+
+FIRE1 includes a completely hardware-generated autofire system.
+
+The production circuit uses a:
+
+**Texas Instruments TLC555CDR CMOS timer**
+
+with hardware mode selection through a:
+
+**Texas Instruments CD4066BM96**
+
+Two fixed autofire rates are available:
 
 | Mode | Timing Resistance |
-|---|---:|
-| FAST | 330 kΩ |
-| SLOW | 680 kΩ |
+| ---- | ----------------: |
+| SLOW |            680 kΩ |
+| FAST |            330 kΩ |
 
-The current physical switch behaviour is:
+Physical selector orientation:
 
 ```text
 LEFT  -> SLOW
 RIGHT -> FAST
 ```
 
-The final resistor values were selected through physical gameplay testing.
+Autofire can be independently enabled or disabled.
 
-The SLOW mode provides a clearly distinguishable lower firing rate compared with FAST.
+When disabled, FIRE1 behaves as a conventional joystick fire button.
 
----
-
-# Status Indication
-
-## Power LED
-
-The controller contains a dedicated 3 mm power LED.
-
-The production configuration may use:
-
-- Red
-- Blue
-- White
-
-depending on the requested controller configuration.
+There is no firmware involved in generating the autofire pulses.
 
 ---
 
-## Autofire Status LED
+## 🔴🟢 Dual-Colour Autofire Status
 
-Rev 1.5 uses a dual-colour 3 mm LED:
+A dedicated red/green status LED provides visual feedback for the autofire system.
+
+Production LED:
 
 **Bivar 3BC-3-F**
 
-Configuration:
+The indicator uses independent transistor driver stages and is electrically separated from the gameplay signal path.
 
-**Common Cathode**
-
-The two LED channels are independently driven and indicate autofire operating state/speed.
-
-The selected LED pinout and driver transistor mapping have been verified against the component datasheets and KiCad footprints.
+A separate red LED provides controller power indication.
 
 ---
 
-# Mechanical Switches
+## 💡 Warm-White Key Backlighting
 
-The default Rev 1.5 gameplay switch is:
+Rev1.5.1 introduces subtle illumination beneath all eight gameplay switches.
 
-**Gateron KS-8 Yellow**
+Eight warm-white SMD LEDs provide the backlight:
 
-Eight switches are used per controller.
+**XINGLIGHT XL-2012WWC**
 
-The switches are installed into:
+Each LED has an independent current-limiting resistor and is intentionally operated at low current.
 
-**Kailh CPG151101S11 MX hot-swap sockets**
+The goal is not high-brightness decorative lighting.
 
-This allows compatible MX-style switches to be replaced without soldering.
+The goal is a restrained, functional glow beneath the keys.
 
-Other compatible switches may be supported where mechanical and electrical compatibility has been verified.
+A dedicated hardware switch allows the entire backlight system to be turned on or off independently from controller operation.
 
 ---
 
 # Electrical Protection
 
-## Overcurrent Protection
+Original retro computers were not designed with modern hot-plugging and ESD expectations in mind.
 
-The +5 V supply uses a resettable PPTC:
+Rev1.5.1 therefore includes dedicated protection between the external controller environment and the host computer.
+
+## +5 V Overcurrent Protection
+
+The joystick-port +5 V supply passes through a resettable PPTC:
 
 **Littelfuse 1206L005/30WR**
 
-Nominal characteristics:
-
-- 50 mA hold current
-- 150 mA trip current
-- 30 V maximum voltage
-- 1206 package
-
-The selection takes the limited current capability of classic joystick ports into account.
+This limits current during sustained fault conditions and automatically resets after the fault is removed.
 
 ---
 
-## Signal ESD Protection
+## Signal-Line ESD Protection
 
-Joystick signal protection is provided by:
+Externally accessible joystick signals are protected using dedicated multi-line ESD arrays.
 
-**Nexperia PESD5V0S4UD**
+Production devices:
 
-These devices protect externally accessible controller signal lines.
+**TECH PUBLIC PESD5V0S4UD**
 
----
-
-## +5 V ESD Protection
-
-The protected +5 V rail uses:
-
-**Nexperia PESD6V0L2UU**
-
-The Rev 1.5 implementation uses one protection channel:
-
-```text
-Pin 1 -> protected +5 V rail
-Pin 2 -> NC
-Pin 3 -> GND
-```
-
-The device topology and pin mapping have been verified against the manufacturer datasheet.
+Protected signal architecture includes the direction and fire interfaces.
 
 ---
 
-# Controller Cable
+## +5 V Transient Protection
 
-Rev 1.5 currently uses a generic molded DB9 female controller cable with flying leads.
+The protected +5 V rail includes dedicated ESD / TVS protection.
 
-The validated supplier cable is sold as a Sega Mega Drive / Genesis 2 style replacement controller cable.
+Production device:
 
-The cable is soldered directly to the PCB.
+**TECH PUBLIC TPE0562BC3**
 
-Detailed wiring and production verification instructions are documented in:
+The protection topology and PCB connection were explicitly reviewed as part of the Rev1.5.1 engineering release process.
 
-```text
-docs/assembly/CABLE_ASSEMBLY.md
-```
+---
 
-## Important Manufacturing Rule
+# Direct Retro Hardware Interface
 
-Wire colours must **not** be assumed to remain identical between supplier batches.
+WASDPad+ does not insert a digital protocol between the player and the computer.
 
-The first cable from every new batch must undergo a complete DB9 pin-to-wire continuity test before production assembly begins.
-
-Special attention must be paid to:
+For normal manual inputs:
 
 ```text
-DB9 pin 7 -> +5 V
-DB9 pin 8 -> GND
+Mechanical Switch
+       │
+       ▼
+Hardware Signal Path
+       │
+       ▼
+Host Joystick Input
 ```
 
-An incorrect power-wire assignment may damage the controller or connected host computer.
+There is no:
+
+* USB polling interval
+* wireless transmission
+* firmware input scan
+* operating-system driver
+* software translation
+* protocol conversion
+
+This makes the architecture deterministic and particularly suitable for latency-sensitive retro gaming.
+
+---
+
+# FIRE1 and FIRE2
+
+Rev1.5.1 provides two independent fire functions.
+
+### FIRE1
+
+DE-9 pin 6
+
+Supports:
+
+* manual fire
+* hardware autofire
+
+### FIRE2
+
+DE-9 pin 9 / POTX
+
+Supports:
+
+* independent manual second-fire input
+
+FIRE2 functionality depends on the target computer and software.
+
+Autofire applies to **FIRE1 only** in Rev1.5.1.
+
+---
+
+# DE-9 Interface
+
+The controller follows the classic digital joystick interface architecture.
+
+| DE-9 Pin | Function                                     |
+| -------: | -------------------------------------------- |
+|        1 | UP                                           |
+|        2 | DOWN                                         |
+|        3 | LEFT                                         |
+|        4 | RIGHT                                        |
+|        5 | Auxiliary / unused in current cable assembly |
+|        6 | FIRE1                                        |
+|        7 | +5 V                                         |
+|        8 | GND                                          |
+|        9 | FIRE2 / POTX                                 |
+
+The electrical pin number is authoritative.
+
+Cable conductor colours are **not** considered authoritative because they may vary between manufacturing batches.
+
+---
+
+# Target Platforms
+
+Primary development targets are:
+
+* **Commodore 64**
+* **Commodore 128**
+* **Commodore Amiga**
+
+The architecture may also work with other systems using electrically compatible Atari-style digital joystick interfaces.
+
+Compatibility must be evaluated electrically — connector shape alone does not guarantee compatibility.
+
+The Commodore Plus/4 family can be supported through an appropriate passive pin-mapping adapter.
+
+---
+
+# Rev1.5.1 Architecture
+
+The controller remains intentionally modular.
+
+```text
+                    HOST DE-9 PORT
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+             +5 V                  GND
+              │                     │
+              ▼                     │
+       Resettable PPTC              │
+              │                     │
+              ▼                     │
+       ESD / TVS Protection         │
+              │                     │
+              ▼                     │
+      Protected Power Rail          │
+              │                     │
+      ┌───────┼────────┬────────────┤
+      │       │        │            │
+      ▼       ▼        ▼            ▼
+   Inputs  Autofire  Status      Backlight
+            Logic     LEDs         System
+      │       │
+      └───┬───┘
+          ▼
+    Output Switching
+          │
+          ▼
+   Protected Signals
+          │
+          ▼
+      HOST COMPUTER
+```
+
+The visual systems are deliberately separated from the primary gameplay path.
+
+A backlight or indicator failure should not intentionally prevent basic manual controller operation.
+
+---
+
+# Hardware-Only by Design
+
+Rev1.5.1 deliberately does **not** contain a microcontroller.
+
+That is not a limitation accidentally left in the design.
+
+It is part of the design philosophy.
+
+The current generation prioritizes:
+
+* simplicity
+* deterministic behaviour
+* repairability
+* low power consumption
+* compatibility with vintage hardware
+* understandable electronics
+* long-term serviceability
+
+There is no programmed component required for normal operation.
+
+---
+
+# PCB and Manufacturing
+
+Rev1.5.1 has completed its principal pre-production engineering stages.
+
+The PCB design includes:
+
+* two-layer construction
+* GND copper zones on both layers
+* GND stitching vias
+* SMD logic and protection electronics
+* bottom-mounted MX hot-swap sockets
+* bottom-mounted backlight control
+* THT user-interface components
+* direct controller-cable connection
+* mixed automated/manual assembly
+
+Engineering checks completed:
+
+```text
+Schematic Review                 PASS
+ERC                              PASS
+PCB Layout Review                PASS
+DRC                              PASS
+Critical Pinout Review           PASS
+Protection Topology Review       PASS
+Assembly Orientation Review      PASS
+Gerber Generation                COMPLETE
+Master BOM                       COMPLETE
+Master CPL                       COMPLETE
+Manufacturing Documentation      COMPLETE
+```
+
+---
+
+# Current Release Status
+
+## WASDPad+ Rev1.5.1
+
+**Production Release Candidate**
+
+The Rev1.5.1 design is frozen for production-candidate manufacture.
+
+Completed:
+
+* [x] hardware architecture
+* [x] schematic
+* [x] component selection
+* [x] PCB layout
+* [x] electrical protection
+* [x] hardware autofire
+* [x] hot-swap architecture
+* [x] status indication
+* [x] key backlighting
+* [x] ERC
+* [x] DRC
+* [x] critical pinout validation
+* [x] protection topology validation
+* [x] assembly orientation review
+* [x] Gerber generation
+* [x] Master BOM
+* [x] Master CPL
+* [x] datasheet traceability
+* [x] alternate-part policy
+* [x] procurement documentation
+* [x] engineering release review
+
+Remaining:
+
+* [ ] production-candidate manufacture
+* [ ] complete physical assembly
+* [ ] electrical bring-up
+* [ ] functional validation
+* [ ] real-system gameplay validation
+* [ ] final enclosure validation
+* [ ] Production Approval
+
+The project intentionally distinguishes between:
+
+**engineering-ready for manufacture**
+
+and
+
+**physically production-validated hardware**.
+
+Rev1.5.1 currently satisfies the first condition.
+
+---
+
+# Release Path
+
+```text
+                    Rev1.5.1
+                DESIGN FREEZE
+                     ✓
+                     │
+                     ▼
+             Engineering Review
+                    PASS
+                     │
+                     ▼
+          Production-Candidate
+              Manufacturing
+                     │
+                     ▼
+                  Assembly
+                     │
+                     ▼
+            Electrical Bring-Up
+                     │
+                     ▼
+          Functional Validation
+                     │
+                     ▼
+         Real-System Validation
+                     │
+                     ▼
+          Enclosure Validation
+                     │
+                     ▼
+             PRODUCTION
+               APPROVED
+```
+
+No additional Rev1.5.1 feature development is planned before this validation process is complete.
+
+---
+
+# Documentation
+
+The project maintains separate documents for feature behaviour, architecture, manufacturing and engineering validation.
+
+## Start Here
+
+### [Documentation Index](docs/README.md)
+
+The documentation index provides the complete map of the current Rev1.5.1 documentation set.
+
+---
+
+## Feature Specification
+
+### [Rev1.5.1 Feature Specification](docs/specification/FEATURE_SPECIFICATION.md)
+
+Defines:
+
+> **What does WASDPad+ Rev1.5.1 do?**
+
+Includes:
+
+* controls
+* FIRE1 / FIRE2
+* autofire behaviour
+* hot-swap functionality
+* status indication
+* backlighting
+* protection features
+* interface behaviour
+* validation requirements
+
+---
+
+## System Architecture
+
+### [System Architecture](docs/architecture/System_architecture.md)
+
+Defines:
+
+> **How does WASDPad+ Rev1.5.1 work?**
+
+Includes:
+
+* signal architecture
+* power architecture
+* protection architecture
+* autofire architecture
+* switching
+* backlighting
+* PCB architecture
+* assembly architecture
+* compatibility philosophy
+
+---
+
+## Hardware Engineering
+
+### [Rev1.5.1 Hardware Documentation](hardware/rev1.5/README.md)
+
+Primary revision-specific hardware engineering documentation.
+
+---
+
+## Engineering Review
+
+### [Rev1.5.1 Engineering Review Record](hardware/rev1.5/Review_Record.MD)
+
+Formal pre-production engineering review and release decision.
+
+---
+
+## Development Roadmap
+
+### [Development Roadmap](docs/roadmap/ROADMAP.md)
+
+Tracks:
+
+* current release state
+* manufacturing
+* physical validation
+* Production Approval
+* stable Rev1.5.1 maintenance
+* future Rev2.0 direction
+
+---
+
+## Cable Assembly
+
+### [Cable Assembly Procedure](docs/assembly/CABLE_ASSEMBLY.md)
+
+Defines the controller cable mapping and mandatory production-batch continuity verification procedure.
+
+---
+
+# Manufacturing Documentation
+
+Production documentation is maintained under:
+
+[`hardware/rev1.5/bom/`](hardware/rev1.5/bom/)
+
+Important files include:
+
+### [Master BOM](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv)
+
+Authoritative source for production component identity.
+
+### [Master CPL](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv)
+
+Authoritative component-placement dataset.
+
+### [Datasheet Index](hardware/rev1.5/bom/DATASHEET_INDEX.md)
+
+Centralized technical references for production components.
+
+### [Alternate Parts](hardware/rev1.5/bom/ALTERNATE_PARTS.md)
+
+Controlled component-substitution policy.
+
+### [Procurement Notes](hardware/rev1.5/bom/PROCUREMENT_NOTES.md)
+
+Sourcing, lifecycle, incoming-verification and procurement-control policy.
 
 ---
 
@@ -293,265 +649,191 @@ WASDPad/
 │
 ├── LICENSE
 │
+├── enclosure/
+│
 ├── docs/
 │   ├── README.md
-│   │
-│   └── assembly/
-│       └── CABLE_ASSEMBLY.md
+│   ├── architecture/
+│   │   └── System_architecture.md
+│   ├── assembly/
+│   │   └── CABLE_ASSEMBLY.md
+│   ├── roadmap/
+│   │   └── ROADMAP.md
+│   └── specification/
+│       └── FEATURE_SPECIFICATION.md
 │
-├── hardware/
-│   │
-│   └── rev1.5/
-│       ├── README.md
-│       │
-│       ├── bom/
-│       │   ├── README.md
-│       │   ├── BOM.csv
-│       │   ├── ALTERNATE_PARTS.md
-│       │   └── PROCUREMENT_NOTES.md
-│       │
-│       ├── schematic/
-│       │
-│       └── pcb/
-│
-└── ...
+└── hardware/
+    ├── README.md
+    └── rev1.5/
+        ├── README.md
+        ├── Review_Record.MD
+        ├── datasheets/
+        └── bom/
+            ├── README.md
+            ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+            ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+            ├── DATASHEET_INDEX.md
+            ├── ALTERNATE_PARTS.md
+            └── PROCUREMENT_NOTES.md
 ```
-
-The exact directory structure may evolve as manufacturing and release documentation is added.
 
 ---
 
-# Documentation
+# Manufacturing Philosophy
 
-## Rev 1.5 BOM
+WASDPad+ is not documented only as a schematic.
 
-Component-selection documentation is located in:
+Rev1.5.1 maintains a controlled production dataset covering:
+
+* component identity
+* manufacturer MPNs
+* supplier references
+* component placement
+* PCB side
+* assembly classification
+* datasheet traceability
+* approved / candidate alternates
+* procurement rules
+* cable verification
+* engineering release status
+
+The **Master BOM** is authoritative for production component identity.
+
+The **Master CPL** is authoritative for component placement.
+
+Assembly-house-specific files may be derived from these records but do not redefine them.
+
+---
+
+# Serviceability
+
+Rev1.5.1 was designed to remain repairable.
+
+The controller uses:
+
+* replaceable MX gameplay switches
+* hot-swap sockets
+* conventional discrete components
+* documented semiconductor MPNs
+* documented passive components
+* standard electronic packages
+* replaceable external cable
+* no programmed device required for operation
+
+This makes the hardware suitable not only for manufacture, but also for long-term maintenance.
+
+---
+
+# Rev1.2 → Rev1.5.1
+
+Rev1.5.1 builds on the earlier validated WASDPad hardware platform.
+
+The goal was not to replace the fundamental controller concept.
+
+The goal was to mature it.
+
+Major improvements include:
 
 ```text
-hardware/rev1.5/bom/
+Rev1.2
+  │
+  ├── Proven hardware control concept
+  ├── Direction + FIRE architecture
+  └── Hardware autofire
+          │
+          ▼
+Rev1.5.1
+  │
+  ├── MX hot-swap sockets
+  ├── Production component selection
+  ├── Improved autofire implementation
+  ├── Dual-colour status indication
+  ├── +5 V overcurrent protection
+  ├── Signal ESD protection
+  ├── +5 V transient protection
+  ├── Improved PCB grounding
+  ├── Warm-white key backlighting
+  ├── Independent backlight control
+  ├── Master BOM / CPL
+  └── Production engineering documentation
 ```
 
-The BOM documentation contains:
-
-- primary component selection
-- manufacturer part numbers
-- footprints
-- datasheets
-- approved alternates
-- procurement notes
-- component validation status
-
-The Rev 1.5 BOM component-selection phase is currently considered:
-
-**Pre-Release Validated**
+Rev1.5.1 represents the mature discrete-hardware branch of the project.
 
 ---
 
-## Cable Assembly
+# Future Rev2.0
 
-Cable assembly documentation is located in:
+A future Rev2.0 may explore a programmable architecture.
 
-```text
-docs/assembly/CABLE_ASSEMBLY.md
-```
+Possible concepts include:
 
-It contains:
+* MCU-controlled autofire
+* adjustable firing rates
+* burst-fire modes
+* configurable debounce
+* game-specific profiles
+* persistent configuration
+* programmable indication
+* USB configuration
+* optional USB HID support
 
-- DB9 pin assignments
-- validated wire-colour mapping
-- J1 pad mapping
-- unused conductor handling
-- mandatory new-batch continuity testing
-- final assembly verification
+An MCU platform such as the **RP2040 family** may be evaluated.
 
----
+Rev2.0 is intentionally separated from Rev1.5.1.
 
-# Rev 1.5 Development Status
-
-| Area | Status |
-|---|---|
-| Electrical architecture | ✅ Defined |
-| Component selection | ✅ Complete |
-| Rev 1.5 BOM | ✅ Pre-Release Validated |
-| Autofire resistor values | ✅ Physically Validated |
-| D6 ESD topology/pinout | ✅ Validated |
-| D7 dual-colour LED pinout | ✅ Validated |
-| Q1/Q2 transistor pinout | ✅ Validated |
-| Hot-swap architecture | ✅ Defined |
-| Controller cable mapping | ✅ Validated |
-| Cable manufacturing procedure | ✅ Documented |
-| Schematic | 🚧 Engineering Review |
-| PCB layout | 🚧 Engineering Review |
-| Rev 1.5 prototype | ⏳ Pending |
-| Full functional validation | ⏳ Pending |
-| Production release | ⏳ Pending |
+The objective is to stabilize and validate the discrete Rev1.5.1 platform before introducing programmable complexity.
 
 ---
 
-# Current Development Focus
+# Contributing
 
-The primary component-selection phase for Rev 1.5 has been completed.
+Engineering contributions, testing results and compatibility findings are welcome.
 
-Current development work is focused on:
+When proposing hardware changes, please distinguish between:
 
-1. final Rev 1.5 schematic review
-2. final symbol / footprint / pinout verification
-3. PCB layout review
-4. ERC and DRC validation
-5. first Rev 1.5 prototype manufacturing
-6. prototype electrical testing
-7. gameplay validation
-8. manufacturing documentation
-9. production release preparation
+* documentation corrections
+* sourcing substitutions
+* electrical design changes
+* PCB changes
+* mechanical changes
+* new features
 
----
-
-# Pre-Production Validation
-
-Before Rev 1.5 can be considered production-ready, the following validation must be completed.
-
-## Electrical
-
-- verify +5 V and GND resistance before power-up
-- verify protected +5 V rail
-- verify controller supply current
-- verify FIRE1
-- verify FIRE2
-- verify UP
-- verify DOWN
-- verify LEFT
-- verify RIGHT
-- verify autofire OFF
-- verify autofire SLOW
-- verify autofire FAST
-- verify power LED
-- verify dual-colour autofire indication
-
-## Design
-
-- KiCad ERC passes
-- KiCad PCB DRC passes
-- all symbol-to-footprint mappings verified
-- protection-device pinouts verified
-- DB9 cable mapping verified
-- no unintended +5 V / GND short circuit
-
-## Mechanical
-
-- all eight MX switches operate correctly
-- all hot-swap sockets retain switches correctly
-- toggle switches operate in the intended direction
-- cable strain relief is adequate
-- enclosure clearance is verified
-
----
-
-# Known Assembly Considerations
-
-## Solder Paste Under Fine-Pitch / SOIC Components
-
-During prototype debugging, incompletely reflowed solder paste beneath the ICM7555 package caused an unintended low-resistance path between the supply rails.
-
-After assembly:
-
-- inspect U1 carefully
-- remove excess solder paste and flux
-- check +5 V-to-GND resistance before power-up
-- do not assume a visually aligned IC is electrically correct
-
-This check should form part of the Rev 1.5 production test procedure.
-
----
-
-# Compatibility
-
-The WASDPad+ electrical interface is intended for systems using the classic Atari-style joystick interface.
-
-Primary development targets include:
-
-- Commodore 64
-- Commodore 128
-- Commodore Amiga
-
-Compatibility with other systems using similar DE-9 interfaces must be evaluated individually because pin usage and electrical behaviour may differ between platforms.
-
-In particular, FIRE2 / POTX behaviour is system-dependent.
-
----
-
-# Project Status
-
-WASDPad+ is currently an active hardware-development project.
-
-Rev 1.5 has completed its primary component-selection and BOM phase.
-
-The project is now transitioning from component selection into:
-
-**final design verification and prototype validation.**
-
-Rev 1.5 shall not be considered production-approved until a complete Rev 1.5 prototype has been manufactured and successfully passed the documented validation procedure.
-
----
-
-# Documentation Versioning
-
-Documentation versions are independent from PCB hardware revisions.
-
-For example:
-
-```text
-Hardware Revision: Rev 1.5
-README Version:    0.9
-BOM README:        0.9
-```
-
-Documentation-only corrections do not require a hardware revision increment.
-
-A hardware revision shall only change when the electrical or physical PCB design changes in a way that affects manufactured hardware.
-
----
-
-# Version History
-
-| Documentation Version | Date | Project State | Changes |
-|---|---|---|---|
-| 0.1 | Not recorded | Initial | Initial repository documentation |
-| 0.5 | Not recorded | Development | Rev 1.5 development structure and initial BOM work |
-| 0.8 | Not recorded | Engineering | Rev 1.5 protection, hot-swap and autofire development |
-| **0.9** | **2026-08-18** | **Engineering Validation** | Updated repository to current Rev 1.5 status; component selection completed; BOM pre-release validated; final autofire values documented; D6/D7/Q1/Q2 validation recorded; Gateron/Kailh switch architecture documented; DB9 cable assembly and batch-verification procedure added |
-
----
-
-# Next Documentation Release
-
-The next planned root documentation version is:
-
-**README v1.0**
-
-Target milestone:
-
-**WASDPad+ Rev 1.5 prototype successfully manufactured and fully validated.**
-
-At that point the Rev 1.5 documentation may transition from:
-
-```text
-Pre-Release / Engineering Validation
-```
-
-to:
-
-```text
-Production Validated
-```
-
-provided that all schematic, PCB, electrical, mechanical and functional validation requirements have passed.
+Changes affecting manufactured hardware should be reviewed against the current Rev1.5.1 architecture and production documentation before being considered compatible with the existing revision.
 
 ---
 
 # License
 
-See the repository `LICENSE` file for licensing terms.
+See the repository [`LICENSE`](LICENSE) file for licensing terms.
+
+Third-party component names, product names and trademarks remain the property of their respective owners.
 
 ---
 
-**WASDPad+ Rev 1.5 — Hardware controller development project**
+# Project Snapshot
+
+```text
+Project              WASDPad+
+Current Hardware     Rev1.5.1
+Architecture         Discrete / Hardware-Only
+Interface            DE-9 Digital Joystick
+Primary Platforms    Commodore 64 / 128 / Amiga
+Gameplay Switches    8 × MX-Compatible Hot-Swap
+FIRE Inputs          FIRE1 + FIRE2
+Autofire             Hardware / FIRE1
+Autofire Modes       OFF / SLOW / FAST
+Key Backlight        8 × Warm-White LED
+Protection           PPTC + Signal ESD + +5 V TVS
+Firmware             None
+Drivers              None
+Current Status       Production Release Candidate
+```
+
+---
+
+## WASDPad+ Rev1.5.1
+
+### Built for the machines that made digital controls matter.
+
+**Direct hardware. Mechanical switches. No firmware between you and the game.**
