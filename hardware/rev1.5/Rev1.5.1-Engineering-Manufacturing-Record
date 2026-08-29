@@ -1,0 +1,1050 @@
+# WASDPad+ Rev1.5.1 — Engineering & Manufacturing Release Review Record
+
+**Hardware Revision:** Rev1.5.1
+**Review Date:** 2026-08-29
+**Document Version:** 1.0
+**Status:** PASS — Production Release Candidate
+
+---
+
+## 1. Review Scope
+
+This review records the final pre-production engineering validation status of **WASDPad+ Hardware Revision 1.5.1**.
+
+The review covers:
+
+* schematic architecture
+* power distribution
+* controller signal paths
+* FIRE1 / FIRE2 logic
+* hardware autofire
+* status indication
+* key backlighting
+* electrical protection
+* critical component pinouts
+* PCB routing
+* PCB grounding
+* ERC
+* DRC
+* footprint verification
+* component orientation
+* Gerber generation
+* drill data
+* Master BOM
+* Master CPL
+* datasheet traceability
+* alternate-component control
+* procurement documentation
+* PCB assembly preparation
+
+This review establishes Rev1.5.1 as a:
+
+**Production Release Candidate**
+
+Final **Production Approved** status requires successful assembly and physical validation of production Rev1.5.1 hardware.
+
+---
+
+# 2. Power and Ground
+
+Reviewed items:
+
+* [x] DE-9 +5 V supply path reviewed
+* [x] DE-9 GND path reviewed
+* [x] +5 V protection architecture reviewed
+* [x] F2 resettable PTC placement reviewed
+* [x] VCC-GND decoupling present
+* [x] Local IC decoupling reviewed
+* [x] F.Cu GND zone reviewed
+* [x] B.Cu GND zone reviewed
+* [x] GND stitching vias added where required
+* [x] Ground connectivity verified by PCB DRC
+* [x] No unresolved VCC/GND routing issue identified
+
+**Result: PASS**
+
+---
+
+# 3. Overcurrent Protection
+
+**Reference:** F2
+**Production MPN:** Littelfuse `1206L005/30WR`
+
+Reviewed items:
+
+* [x] Resettable PPTC used on +5 V input
+* [x] 1206 footprint verified
+* [x] Placement reviewed
+* [x] Electrical function reviewed
+* [x] Device included in Master BOM
+* [x] Datasheet reference documented
+
+**Result: PASS**
+
+---
+
+# 4. Signal ESD Protection
+
+## D4 / D5
+
+**Production MPN:** TECH PUBLIC `PESD5V0S4UD`
+**JLCPCB/LCSC:** `C2987082`
+
+Reviewed items:
+
+* [x] D4 signal protection reviewed
+* [x] D5 signal protection reviewed
+* [x] Package compatibility verified
+* [x] PCB footprint compatibility verified
+* [x] Internal topology reviewed
+* [x] Pin mapping verified
+
+Validated device mapping:
+
+```text id="4h21sv"
+Pin 1 = K1
+Pin 2 = Common Anode
+Pin 3 = K2
+Pin 4 = K3
+Pin 5 = Common Anode
+Pin 6 = K4
+```
+
+* [x] Component orientation reviewed in PCB assembly preview
+* [x] Production MPN recorded in Master BOM
+* [x] Datasheet reference documented
+
+**Result: PASS**
+
+---
+
+# 5. +5 V ESD / TVS Protection
+
+## D6
+
+**Production MPN:** TECH PUBLIC `TPE0562BC3`
+**JLCPCB/LCSC:** `C2841389`
+
+The production device differs internally from the protection component evaluated during the earlier Rev1.5 design phase.
+
+The actual Rev1.5.1 implementation was therefore explicitly reviewed.
+
+Validated PCB connection:
+
+```text id="b21p8v"
+Pin 1 = Protected +5 V rail
+Pin 2 = NC
+Pin 3 = GND
+```
+
+Reviewed items:
+
+* [x] Device datasheet reviewed
+* [x] Bidirectional TVS topology reviewed
+* [x] Working voltage reviewed
+* [x] Package verified
+* [x] SOT-323 footprint verified
+* [x] Pin mapping verified
+* [x] PCB connection verified
+* [x] Component orientation reviewed
+* [x] Production MPN recorded in Master BOM
+* [x] Datasheet reference documented
+
+**Result: PASS**
+
+---
+
+# 6. Direction Controls
+
+Independent control paths reviewed for:
+
+* [x] UP
+* [x] DOWN
+* [x] LEFT
+* [x] RIGHT
+
+Additional checks:
+
+* [x] Independent direction paths retained
+* [x] Direct hardware signalling retained
+* [x] No firmware scanning introduced
+* [x] No keyboard-matrix scanning introduced
+* [x] Multiple simultaneous direction activation remains electrically possible
+* [x] No SOCD filtering introduced
+
+**Result: PASS**
+
+---
+
+# 7. FIRE1
+
+FIRE1 remains the primary action input.
+
+Reviewed items:
+
+* [x] Manual FIRE1 path reviewed
+* [x] Left FIRE1 physical switch reviewed
+* [x] Right FIRE1 physical switch reviewed
+* [x] FIRE1 autofire path reviewed
+* [x] FIRE1 gating stages reviewed
+* [x] FIRE1 inversion stages reviewed
+* [x] Manual FIRE1 operation retained when autofire is disabled
+* [x] Direct DE-9 signalling retained
+
+**Result: PASS**
+
+---
+
+# 8. FIRE2
+
+FIRE2 remains an independent secondary action input.
+
+Reviewed items:
+
+* [x] FIRE2 signal path reviewed
+* [x] Left FIRE2 physical switch reviewed
+* [x] Right FIRE2 physical switch reviewed
+* [x] FIRE2 remains independent from FIRE1
+* [x] No FIRE2 autofire introduced
+* [x] Host/software dependency of FIRE2 support documented
+
+**Result: PASS**
+
+---
+
+# 9. Hardware Autofire
+
+Autofire is implemented entirely in hardware.
+
+## U1 — Timer
+
+**Production MPN:** Texas Instruments `TLC555CDR`
+**JLCPCB/LCSC:** `C6986`
+
+Reviewed items:
+
+* [x] CMOS 555 architecture retained
+* [x] +5 V operation verified
+* [x] SOIC-8 package verified
+* [x] Standard 555 pinout verified
+* [x] Astable operation compatible with existing circuit
+* [x] Production replacement for earlier ICM7555 implementation reviewed
+* [x] PCB orientation reviewed
+
+## U2 — Switching
+
+**Production MPN:** Texas Instruments `CD4066BM96`
+**JLCPCB/LCSC:** `C54755`
+
+Reviewed items:
+
+* [x] CD4066 switching architecture reviewed
+* [x] +5 V operation reviewed
+* [x] SOIC-14 footprint reviewed
+* [x] Pinout reviewed
+* [x] PCB orientation reviewed
+
+## Timing
+
+Final Rev1.5.1 timing values:
+
+| Mode | Component |  Value |
+| ---- | --------- | -----: |
+| FAST | R13       | 330 kΩ |
+| SLOW | R14       | 680 kΩ |
+
+Reviewed items:
+
+* [x] R13 = 330 kΩ
+* [x] R14 = 680 kΩ
+* [x] FAST / SLOW selection logic reviewed
+* [x] LEFT = SLOW
+* [x] RIGHT = FAST
+* [x] Relevant pull-up / pull-down networks reviewed
+* [x] Timing values retained from physical gameplay validation
+
+**Result: PASS**
+
+---
+
+# 10. Autofire Controls
+
+Two independent physical controls are used.
+
+## SW_AUTO1
+
+**Production MPN:** E-Switch `100SP1T1B4M2QE`
+
+Function:
+
+```text id="4ik3lq"
+Autofire OFF / ON
+```
+
+## SW_SPEED1
+
+**Production MPN:** E-Switch `100SP3T1B1M2QEH`
+
+Function:
+
+```text id="z6olp5"
+LEFT  = SLOW
+RIGHT = FAST
+```
+
+Reviewed items:
+
+* [x] Separate MPNs correctly documented
+* [x] Switch functions reviewed
+* [x] THT implementation reviewed
+* [x] Speed selector topology reviewed
+* [x] Mechanical function documented
+
+**Result: PASS**
+
+---
+
+# 11. MOSFET Logic
+
+## Q1–Q7
+
+**Production MPN:** onsemi `2N7002LT1G`
+
+Validated mapping:
+
+```text id="vnh9yg"
+Pin 1 = Gate
+Pin 2 = Source
+Pin 3 = Drain
+```
+
+Reviewed items:
+
+* [x] Seven MOSFET logic stages present
+* [x] SOT-23 footprint verified
+* [x] Symbol-to-footprint mapping reviewed
+* [x] Pin mapping verified
+* [x] PCB orientation reviewed
+* [x] FIRE/autofire logic stages reviewed
+
+**Result: PASS**
+
+---
+
+# 12. Autofire Status Indicator
+
+## D7
+
+**Production MPN:** Bivar `3BC-3-F`
+
+Configuration:
+
+**Red / Green — Common Cathode**
+
+Validated pinout:
+
+```text id="ck2lrp"
+Pin 1 = Red Anode
+Pin 2 = Common Cathode
+Pin 3 = Green Anode
+```
+
+Reviewed items:
+
+* [x] Datasheet pinout reviewed
+* [x] KiCad symbol pinout reviewed
+* [x] Physical footprint pad numbering reviewed
+* [x] Common-cathode topology confirmed
+* [x] Pin 2 connected to GND
+* [x] R22 = 270 Ω
+* [x] R23 = 330 Ω
+
+## Q8 / Q9 LED Drivers
+
+**Production MPN:** onsemi `MMBT3904LT1G`
+
+Validated mapping:
+
+```text id="atcy47"
+Pin 1 = Base
+Pin 2 = Emitter
+Pin 3 = Collector
+```
+
+Reviewed items:
+
+* [x] Q8 status-driver stage reviewed
+* [x] Q9 status-driver stage reviewed
+* [x] SOT-23 footprint verified
+* [x] Pin mapping verified
+* [x] PCB orientation reviewed
+
+**Result: PASS**
+
+---
+
+# 13. Power Indicator
+
+## D1
+
+**Production MPN:** Bivar `3RD-F`
+
+Reviewed items:
+
+* [x] 3 mm THT footprint reviewed
+* [x] Polarity reviewed
+* [x] R_LED1 = 4.7 kΩ
+* [x] Production component documented in Master BOM
+
+**Result: PASS**
+
+---
+
+# 14. Key Backlight System
+
+## D8–D15
+
+**Production MPN:** XINGLIGHT `XL-2012WWC`
+**JLCPCB/LCSC:** `C965820`
+
+Configuration:
+
+* 8 × warm-white 0805 LEDs
+* individual current-limiting resistor per LED
+
+Associated resistors:
+
+```text id="5t7ybv"
+R24–R31 = 3.3 kΩ
+```
+
+Reviewed items:
+
+* [x] Eight LED positions reviewed
+* [x] 0805 footprint reviewed
+* [x] LED polarity reviewed
+* [x] Footprint pad 1 / pad 2 orientation reviewed
+* [x] JLCPCB assembly preview reviewed
+* [x] D8–D15 orientation accepted
+* [x] Individual current limiting present
+* [x] Low-current subtle illumination design retained
+
+**Result: PASS**
+
+---
+
+# 15. Backlight Control
+
+## U3
+
+**Production MPN:** C&K `PCM12SMTR`
+
+PCB side:
+
+**Bottom**
+
+Reviewed items:
+
+* [x] Backlight ON/OFF function reviewed
+* [x] SMD footprint reviewed
+* [x] U3 intentionally located on B.Cu
+* [x] PCB placement corrected from Top to Bottom before manufacturing release
+* [x] +5 V / BACKLIGHT_5V routing updated after side correction
+* [x] Required vias added
+* [x] PCB rechecked after correction
+* [x] Gerbers regenerated after correction
+
+Manufacturing note:
+
+U3 is not required to be populated by the current automated top-side PCB assembly process and may be installed manually.
+
+**Result: PASS**
+
+---
+
+# 16. Mechanical Switch System
+
+## Hot-Swap Sockets
+
+**References:** SW1–SW8
+**Production MPN:** Kailh / Kaihua `CPG151101S11`
+
+Reviewed items:
+
+* [x] Eight socket positions present
+* [x] Bottom-side placement confirmed
+* [x] MX-compatible geometry reviewed
+* [x] Socket MPN documented
+* [x] Hot-swap architecture retained
+
+## Mechanical Switches
+
+Production fitted type:
+
+**Gateron KS-8 Yellow**
+
+Reviewed items:
+
+* [x] Eight gameplay switch positions
+* [x] Mechanical switches treated separately from hot-swap sockets
+* [x] Replaceability retained
+* [x] Compatible MX-family substitution policy documented
+
+**Result: PASS**
+
+---
+
+# 17. Supply Decoupling and Capacitors
+
+Reviewed production components include:
+
+## C1
+
+`1206B224K500NT`
+
+* 220 nF
+* X7R
+* 1206
+* autofire timing
+
+## C2 / C3
+
+Samsung `CL31B104KBCNNNC`
+
+* 100 nF
+* 50 V
+* X7R
+* 1206
+
+## VCC-GND-Decoupling1
+
+YAGEO `CC1206KRX7R8BB104`
+
+* 100 nF
+* X7R
+* 1206
+
+Reviewed items:
+
+* [x] Values verified
+* [x] Footprints verified
+* [x] Production MPNs recorded
+* [x] Timing role of C1 documented
+* [x] Supply decoupling present
+
+**Result: PASS**
+
+---
+
+# 18. PCB Routing Review
+
+The Rev1.5.1 PCB underwent final routing review.
+
+Previously identified unconnected items were resolved.
+
+Specific corrections included:
+
+* FIRE1_BTN_N routing correction
+* GND zone connectivity improvements
+* GND stitching vias
+* U3 side correction
+* U3 power/backlight routing correction
+
+Reviewed items:
+
+* [x] Signal routing reviewed
+* [x] Power routing reviewed
+* [x] GND connectivity reviewed
+* [x] FIRE1_BTN_N corrected
+* [x] U3 routing corrected
+* [x] No unresolved PCB connectivity errors
+
+**Result: PASS**
+
+---
+
+# 19. KiCad ERC
+
+Final Electrical Rules Checker review:
+
+* [x] ERC completed
+* [x] Errors: 0
+* [x] No unresolved electrical-rule violations
+
+**Result: PASS**
+
+---
+
+# 20. KiCad DRC
+
+Final Design Rules Checker review:
+
+* [x] DRC completed
+* [x] Unconnected items: 0
+* [x] Clearance errors: 0
+* [x] Routing errors: 0
+* [x] Electrical connectivity errors: 0
+* [x] Intentional custom-footprint/library warnings reviewed separately
+* [x] J1 solder-wire pads intentionally use custom/embedded PCB geometry
+
+Final PCB design status:
+
+**0 unresolved DRC errors / violations**
+
+**Result: PASS**
+
+---
+
+# 21. Component Footprint and Pinout Review
+
+Critical components reviewed include:
+
+* [x] U1 TLC555CDR
+* [x] U2 CD4066BM96
+* [x] D4 PESD5V0S4UD
+* [x] D5 PESD5V0S4UD
+* [x] D6 TPE0562BC3
+* [x] D7 3BC-3-F
+* [x] D8–D15 XL-2012WWC
+* [x] Q1–Q7 2N7002LT1G
+* [x] Q8/Q9 MMBT3904LT1G
+* [x] U3 PCM12SMTR
+* [x] SW1–SW8 CPG151101S11
+
+**Result: PASS**
+
+---
+
+# 22. PCB Assembly Orientation Review
+
+The PCB assembly placement preview was compared against the KiCad PCB design.
+
+Orientation corrections were applied where required.
+
+Validated assembly-orientation corrections included:
+
+```text id="f2lx08"
+D4 / D5 / D6 -> corrected
+Q1–Q9       -> corrected
+U1 / U2     -> corrected
+```
+
+D8–D15 LED orientation was separately reviewed against the KiCad footprint.
+
+Validated LED footprint orientation:
+
+```text id="wjzq1r"
+Pad 1 = left side
+Pad 2 = right side
+```
+
+The assembly preview was reviewed after correction.
+
+Reviewed items:
+
+* [x] D4 orientation accepted
+* [x] D5 orientation accepted
+* [x] D6 orientation accepted
+* [x] U1 orientation accepted
+* [x] U2 orientation accepted
+* [x] Q1–Q9 orientation accepted
+* [x] D8–D15 orientation accepted
+
+U3 and Kailh sockets are manually assembled in the current production process and are not dependent on the top-side automated placement review.
+
+**Result: PASS**
+
+---
+
+# 23. Gerber Manufacturing Output
+
+Final manufacturing Gerbers were regenerated after the U3 PCB-side correction.
+
+Generated layers include:
+
+```text id="q0gx4x"
+F.Cu
+B.Cu
+F.Mask
+B.Mask
+F.Silkscreen
+B.Silkscreen
+F.Paste
+B.Paste
+Edge.Cuts
+```
+
+Additional manufacturing files include:
+
+* plated-through-hole drill data
+* non-plated-through-hole drill data
+* Gerber job data
+
+Reviewed settings include:
+
+* Gerber X2 enabled
+* metric units
+* absolute origin
+* separate PTH / NPTH drill output
+
+Reviewed items:
+
+* [x] Copper layers generated
+* [x] Mask layers generated
+* [x] Silkscreen layers generated
+* [x] Paste layers generated
+* [x] Board outline generated
+* [x] PTH drill data generated
+* [x] NPTH drill data generated
+* [x] Gerbers regenerated after final PCB correction
+
+**Result: PASS**
+
+---
+
+# 24. Master BOM
+
+Authoritative file:
+
+`bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
+
+The Master BOM contains the complete project component set, including:
+
+* Top SMD
+* Bottom SMD
+* THT
+* mechanical components
+* hot-swap sockets
+* mechanical key switches
+* cable/interface information
+* manufacturer MPNs
+* JLCPCB/LCSC identifiers where applicable
+
+Reviewed items:
+
+* [x] Production MPNs consolidated
+* [x] Component designators recorded
+* [x] Footprints recorded
+* [x] Assembly classifications recorded
+* [x] Bottom-side components included
+* [x] THT components included
+* [x] Mechanical components included
+
+**Result: PASS**
+
+---
+
+# 25. Master CPL
+
+Authoritative file:
+
+`bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
+
+Reviewed items:
+
+* [x] Top-side placement data included
+* [x] Bottom-side placement data included
+* [x] THT placement information included
+* [x] Mechanical-switch placement information included
+* [x] U3 recorded on Bottom
+* [x] Kailh sockets recorded on Bottom
+* [x] Corrected orientation data retained where applicable
+
+Assembly-house-specific CPL files may be generated as subsets of the Master CPL.
+
+**Result: PASS**
+
+---
+
+# 26. Datasheet Traceability
+
+Datasheet index:
+
+`bom/DATASHEET_INDEX.md`
+
+Reviewed items:
+
+* [x] Integrated circuits documented
+* [x] Protection devices documented
+* [x] MOSFETs/transistors documented
+* [x] switches documented
+* [x] hot-swap sockets documented
+* [x] LEDs documented
+* [x] capacitors documented
+* [x] resistors documented
+* [x] mechanical switches documented
+* [x] manufacturer MPNs used as primary component identity
+
+Traceability model:
+
+```text id="tve1q7"
+PCB Designator
+      ↓
+Master BOM
+      ↓
+Manufacturer MPN
+      ↓
+DATASHEET_INDEX.md
+      ↓
+Manufacturer Datasheet
+```
+
+**Result: PASS**
+
+---
+
+# 27. Alternate-Part Control
+
+Document:
+
+`bom/ALTERNATE_PARTS.md`
+
+Reviewed items:
+
+* [x] Production Primary definition established
+* [x] Approved Alternate policy established
+* [x] Legacy Validated classification established
+* [x] Candidate classification established
+* [x] protection-device substitution restrictions documented
+* [x] timing-component restrictions documented
+* [x] pinout verification requirements documented
+* [x] mechanical compatibility requirements documented
+
+**Result: PASS**
+
+---
+
+# 28. Procurement Control
+
+Document:
+
+`bom/PROCUREMENT_NOTES.md`
+
+Reviewed items:
+
+* [x] sourcing policy documented
+* [x] MPN-based component identity established
+* [x] assembly-house substitution policy documented
+* [x] critical-component sourcing controls documented
+* [x] lifecycle management documented
+* [x] incoming component verification documented
+* [x] cable batch verification documented
+* [x] production traceability requirements documented
+* [x] procurement change control documented
+
+**Result: PASS**
+
+---
+
+# 29. Controller Cable
+
+The controller uses a molded female DE-9 cable with flying leads soldered directly to the PCB.
+
+Reviewed items:
+
+* [x] Direct PCB solder-pad architecture retained
+* [x] J1 treated as PCB feature / DNP
+* [x] Cable documented as separate procurement/manual-assembly item
+* [x] Cable pin mapping verification requirement documented
+* [x] Wire colour explicitly not treated as authoritative pin identification
+* [x] New supplier/batch continuity-test requirement documented
+
+**Result: PASS**
+
+---
+
+# 30. Documentation Consistency
+
+The Rev1.5.1 hardware documentation was updated to use the current production component selection.
+
+Primary hardware documentation now references:
+
+* TLC555CDR instead of the earlier ICM7555 production selection
+* TECH PUBLIC production ESD devices
+* production capacitor MPNs
+* separate SW_AUTO1 and SW_SPEED1 MPNs
+* Kailh hot-swap socket MPN
+* Gateron production switch type
+* key-backlight system
+* U3 backlight switch
+* complete Master BOM/CPL
+* centralized datasheet index
+
+Reviewed documents:
+
+* [x] `hardware/rev1.5/README.md`
+* [x] `hardware/rev1.5/bom/README.md`
+* [x] `hardware/rev1.5/bom/ALTERNATE_PARTS.md`
+* [x] `hardware/rev1.5/bom/PROCUREMENT_NOTES.md`
+* [x] `hardware/rev1.5/bom/DATASHEET_INDEX.md`
+* [x] Master BOM
+* [x] Master CPL
+
+**Result: PASS**
+
+---
+
+# 31. Remaining Validation Gate
+
+The engineering and manufacturing dataset is complete enough to release the Rev1.5.1 hardware for prototype / production-candidate manufacture.
+
+The following validation remains intentionally open:
+
+## Physical Rev1.5.1 Hardware Validation
+
+Required after receipt and assembly of the production-candidate PCB:
+
+* [ ] visual PCB inspection
+* [ ] component-orientation inspection
+* [ ] solder-joint inspection
+* [ ] +5 V to GND resistance / short check before power-up
+* [ ] +5 V rail verification
+* [ ] current-consumption measurement
+* [ ] power LED test
+* [ ] UP test
+* [ ] DOWN test
+* [ ] LEFT test
+* [ ] RIGHT test
+* [ ] simultaneous-direction test
+* [ ] FIRE1 left test
+* [ ] FIRE1 right test
+* [ ] FIRE2 left test
+* [ ] FIRE2 right test
+* [ ] autofire OFF test
+* [ ] autofire SLOW test
+* [ ] autofire FAST test
+* [ ] SLOW/FAST selector orientation test
+* [ ] red/green status indication test
+* [ ] D8–D15 key-backlight test
+* [ ] backlight ON/OFF test
+* [ ] Kailh socket retention test
+* [ ] mechanical-switch replacement test
+* [ ] DB9 cable continuity verification
+* [ ] Commodore 64 functional test
+* [ ] representative two-button software test
+* [ ] Amiga functional test where applicable
+* [ ] extended gameplay test
+* [ ] thermal / abnormal-heating check
+
+Completion of this section is required before changing the hardware status to:
+
+**Production Approved**
+
+---
+
+# 32. Known Open Items
+
+No known schematic, PCB routing, BOM, CPL, footprint or manufacturing-data issue currently blocks Rev1.5.1 prototype manufacture.
+
+Open work is limited to:
+
+1. manufacture of the Rev1.5.1 production-candidate hardware
+2. physical assembly
+3. electrical bring-up
+4. functional testing
+5. host-system validation
+6. production approval decision
+
+---
+
+# 33. Final Engineering Review Result
+
+## Schematic
+
+**PASS**
+
+## ERC
+
+**PASS — 0 unresolved errors**
+
+## PCB Layout
+
+**PASS**
+
+## DRC
+
+**PASS — 0 unresolved routing/connectivity violations**
+
+## Critical Component Pinouts
+
+**PASS**
+
+## Protection Topology
+
+**PASS**
+
+## PCB Assembly Orientation Review
+
+**PASS**
+
+## Gerber / Drill Generation
+
+**PASS**
+
+## Master BOM
+
+**PASS**
+
+## Master CPL
+
+**PASS**
+
+## Datasheet Traceability
+
+**PASS**
+
+## Alternate-Part Control
+
+**PASS**
+
+## Procurement Documentation
+
+**PASS**
+
+## Physical Rev1.5.1 Validation
+
+**PENDING**
+
+---
+
+# 34. Release Decision
+
+**WASDPad+ Hardware Revision 1.5.1 is approved for production-candidate manufacture.**
+
+Engineering review result:
+
+**PASS**
+
+Release classification:
+
+**PRODUCTION RELEASE CANDIDATE**
+
+The design may proceed to PCB manufacture and assembly.
+
+This review does **not** yet classify Rev1.5.1 as Production Approved.
+
+Production approval shall be issued only after successful completion of the physical validation gate defined in Section 31.
+
+---
+
+# 35. Review Record
+
+**Project:** WASDPad+
+**Hardware Revision:** Rev1.5.1
+**Review Type:** Final Engineering & Manufacturing Release Review
+**Review Date:** 2026-08-29
+**Document Version:** 1.0
+
+**Engineering Review:** PASS
+**Manufacturing Data Review:** PASS
+**Release Decision:** APPROVED FOR PRODUCTION-CANDIDATE MANUFACTURE
+**Final Production Validation:** PENDING
+
+---
+
+# 36. Revision History
+
+| Version | Date           | Status                                  | Description                                                                                                                                                                                                                                                                                                                     |
+| ------- | -------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.9     | 2026-08-19     | PASS — Release Candidate                | Rev1.5 schematic final validation; ERC/DRC and initial component review                                                                                                                                                                                                                                                         |
+| **1.0** | **2026-08-29** | **PASS — Production Release Candidate** | Updated to Rev1.5.1; incorporated final production MPNs, protection validation, backlight system, U3 correction, PCB routing corrections, assembly orientation review, final Gerber/drill generation, Master BOM/CPL, datasheet traceability and procurement controls; physical hardware validation retained as final open gate |
