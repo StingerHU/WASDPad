@@ -588,9 +588,9 @@ The objective is to stabilize and validate the discrete Rev1.5.1 platform before
 WASDPad+ is the result of collaborative electronics, mechanical and testing work.
 
 **Original WASDPad concept:** Tibor Puskás  
-**PCB design:** STINGER / Krisztián Csere  
-**3D modelling and enclosure:** Dester3D / Sándor Sebesi  
-**Testing:** Megdlt / Norbert Krisztián
+**PCB design & engineering :** STINGER / Krisztián Csere  
+**3D modelling - enclosure:** Dester3D / Sándor Sebesi  
+**Testing:** Megott / Norbert Krisztián
 
 The Rev1.5.1 PCB also carries a small tribute to the Commodore 64 and the retro-computing community that inspired the project.
 
