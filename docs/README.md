@@ -1,5 +1,18 @@
 # WASDPad+ Documentation
 
+<!-- speed-selector-erratum-2026-10-16 -->
+> **2026-10-16 hardware design closure:** Rev1.5.1 SPEED selector fault measured,
+> identified and successfully patched on one assembled board, with full reported
+> Amiga 1200 gameplay validation. The definitive **Rev1.5.2 schematic, PCB and
+> updated series-production Gerbers** contain the correction (Gerber regeneration
+> project-owner confirmed). Only unmodified Rev1.5.1 stock requires the repair;
+> a newly fabricated Rev1.5.2 first-article test is still required.
+>
+> - [Rev1.5.1 / Rev1.5.2 engineering erratum](../hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+> - [Legacy Rev1.5.1 rework and measurement checklist](assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
+> - [Rev1.5.2 corrected production PCB/Gerber release](../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+
+
 **Document Version:** 1.0
 **Current Hardware Revision:** Rev1.5.1
 **Hardware Status:** Production Release Candidate
