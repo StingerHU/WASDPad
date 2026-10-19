@@ -930,7 +930,7 @@ Authoritative records include:
 ```text
 hardware/rev1.5/
 ├── README.md
-├── Review_Record.MD
+├── Rev1.5.1-Engineering-Manufacturing-Record.MD
 └── bom/
     ├── README.md
     ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
@@ -1029,7 +1029,7 @@ Physical validation includes:
 
 The detailed validation gate is maintained in:
 
-`hardware/rev1.5/Review_Record.MD`
+`hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD`
 
 ---
 
