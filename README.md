@@ -1,5 +1,20 @@
 # WASDPad+
 
+<!-- speed-selector-erratum-2026-10-16 -->
+> **2026-10-16 SPEED-selector erratum and corrected manufacturing baseline:**
+> The original Rev1.5.1 PCB contains a confirmed physical-common-pin mapping
+> defect. The cause was established by electrical measurements, then repaired
+> with three cuts and three rear-side jumpers on an assembled Rev1.5.1 unit;
+> **all reported functions passed real Amiga 1200 gameplay**. The Rev1.5.2
+> schematic and final PCB fix the pin-to-pad mapping, and the **Rev1.5.2
+> series-production Gerber outputs have been updated** (project-owner
+> confirmation). Rev1.5.2 is the manufacturing design baseline; do not use
+> unmodified Rev1.5.1 Gerbers. First-article testing of newly manufactured
+> Rev1.5.2 hardware remains a separate acceptance activity.
+> See the [engineering erratum](hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md),
+> [rework guide](docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) and
+> [Rev1.5.2 manufacturing release notes](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+
 ### Hardware WASD-style game controller for Commodore 64, Amiga and compatible retro computers
 
 **Current Hardware:** Rev1.5.1  
