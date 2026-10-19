@@ -34,6 +34,12 @@ The ZIP contains the following Rev1.5.1-named production planning files. They ar
 
 The matching **Rev1.5.2 KiCad source, fabrication Gerber/drill outputs and revision-specific BOM/CPL are not in this repository export**. Their absence here does not mean the physical board was not manufactured: the owner confirms it was produced and fully function-tested. The public repository is not itself a complete independently auditable Rev1.5.2 fabrication archive until those files are published.
 
+## Historical hardware engineering documentation
+
+The detailed earlier hardware-directory overview—covering component-manufacturing authority, revision-control rules, protection philosophy, sourcing, compatibility and pre-production status—is retained as the [Rev1.5.1 historical hardware overview](README_REV1.5.1_HISTORICAL.md). The [complete historical development roadmap](../docs/roadmap/ROADMAP_REV1.5.1_HISTORICAL.md) and [formal engineering/manufacturing review](rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD) are also preserved.
+
+The Rev1.5.1 text must not be interpreted as the active manufacturing release. The active hardware is **Rev1.5.2**.
+
 ## Revision control
 
 - **Rev1.2:** validated initial discrete-hardware platform.

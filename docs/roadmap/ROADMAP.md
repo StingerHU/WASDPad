@@ -80,6 +80,12 @@ Future exploratory features could include MCU-controlled or user-adjustable auto
 - [Historical Rev1.5.1 engineering review](../../hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD)
 - [Assembly and functional test procedure](../assembly/ASSEMBLY.md)
 
+## Historical engineering milestones and complete Rev1.5.1 development plan
+
+The original 700-line engineering roadmap, including feature validation checklists, component review, assembly, electrical bring-up, platform testing, enclosure work, release gates and the Rev2.0 concept, is preserved without losing those technical details: [Rev1.5.1 historical roadmap](ROADMAP_REV1.5.1_HISTORICAL.md).
+
+Its *Production Release Candidate* and *validation pending* language describes the earlier Rev1.5.1 project state. The current Rev1.5.2 release has already passed functional validation on a newly manufactured unit.
+
 ## Roadmap revision history
 
 | Version | Date | Notes |

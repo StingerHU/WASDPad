@@ -518,7 +518,7 @@ Functional connection:
 Protected +5 V ─── TVS ─── GND
 ```
 
-The selected device topology and PCB connection were explicitly validated for Rev1.5.2.
+The selected TVS topology and PCB connection were reviewed during Rev1.5.1 engineering and carried forward into the Rev1.5.2 design. The new Rev1.5.2 unit passed the project-owner-reported full functional test; this statement does not claim a separate new component-level TVS test log.
 
 This protection supplements the PTC:
 
@@ -598,7 +598,7 @@ B.Cu GND Zone
 
 Ground stitching vias provide low-impedance connections between the two planes.
 
-Additional stitching was introduced during Rev1.5.2 PCB validation where required to improve ground continuity.
+Additional stitching was introduced during Rev1.5.1 PCB engineering and carried forward into the Rev1.5.2 layout where applicable.
 
 ---
 
@@ -1018,6 +1018,12 @@ The physical SPEED selector has **pad 2 as common**; the final Rev1.5.2 schemati
 **Document version:** 3.0 (2026-10-19)
 
 The Rev1.5.1 review record remains in the repository as a historical artifact, not as the present release status.
+
+---
+
+## Historical Rev1.5.1 architecture snapshot
+
+The earlier complete Rev1.5.1 system architecture, including its original architecture diagrams and validation boundaries, is preserved as a [historical system architecture snapshot](System_architecture_REV1.5.1_HISTORICAL.md). Its date-specific “Production Release Candidate” and “Physical Validation: PENDING” statements are historical, not the final Rev1.5.2 status.
 
 ---
 

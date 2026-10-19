@@ -11,7 +11,7 @@
 
 This document defines the manufacturing, PCB assembly, manual soldering, cable assembly and final verification procedure for **WASDPad+ Rev1.5.2**.
 
-It replaces the earlier cable-only assembly document and expands the scope to the complete production-candidate assembly process.
+It replaces the earlier cable-only assembly document and expands the scope to the complete released-hardware assembly and acceptance process.
 
 The document covers:
 
@@ -39,7 +39,7 @@ The CSV files currently in this repository are **Rev1.5.1-labelled historical BO
 
 # 2. Current Manufacturing Model
 
-The current Rev1.5.2 production-candidate manufacturing model uses a mixed automated/manual assembly process.
+The released Rev1.5.2 manufacturing model uses a mixed automated/manual assembly process.
 
 ```text
 PCB fabrication
@@ -157,7 +157,7 @@ The cable assembly is considered part of final controller assembly, not automate
 
 # 4. PCB Manufacturing
 
-The Rev1.5.2 PCB manufacturing package is generated from the frozen production-candidate PCB design.
+The Rev1.5.2 PCB manufacturing package is generated from the frozen Rev1.5.2 final-release PCB design.
 
 Required manufacturing outputs include:
 
@@ -174,7 +174,7 @@ Required manufacturing outputs include:
 - non-plated-through-hole drill data
 - Gerber job information where applicable
 
-The production-candidate Gerbers and drill data shall be generated only from the approved Rev1.5.2 PCB design.
+The production Gerbers and drill data shall be generated only from the approved Rev1.5.2 final-release PCB design.
 
 Before placing a manufacturing order:
 
@@ -213,7 +213,7 @@ Lead-containing HASL shall not be selected for normal Rev1.5.2 production unless
 
 All automated SMT assembly for Rev1.5.2 shall use **lead-free solder paste**.
 
-For the current JLCPCB prototype/production-candidate assembly:
+For a JLCPCB production order (if applicable to the actual released manufacturing order):
 
 - solder paste is applied as part of the factory SMT process
 - components are machine-placed
@@ -291,7 +291,7 @@ Critical orientation-sensitive components include:
 - Q1–Q9
 - D8–D15
 
-Previously validated Rev1.5.2 assembly orientation corrections shall be retained in the production assembly CPL.
+The final Rev1.5.2 assembly CPL shall retain all orientation corrections confirmed applicable to the released design, including those carried forward from earlier Rev1.5.1 engineering.
 
 Particular attention shall be paid to:
 
@@ -845,7 +845,7 @@ After cable soldering, verify:
 
 # 32. Initial Power-Up
 
-The first power-up of a newly assembled production-candidate unit shall be controlled.
+The first power-up of any newly assembled unit shall be controlled.
 
 Recommended sequence:
 
@@ -864,7 +864,7 @@ Only after passing basic bring-up should the unit be connected to representative
 
 # 33. Functional Acceptance Test
 
-Every production-candidate unit shall verify:
+Every newly assembled production unit shall verify:
 
 - UP
 - DOWN
@@ -894,7 +894,7 @@ A unit failing any mandatory function shall not be classified as production-acce
 
 # 34. Real-System Validation
 
-Production-candidate units shall be validated on representative original hardware.
+Newly assembled production units shall be validated on representative original hardware.
 
 Primary targets include:
 
@@ -955,7 +955,7 @@ For each production batch, record where practical:
 - rework performed
 - final validation result
 
-For Rev1.5.2 production-candidate builds, JLCPCB is the current PCB manufacturer and top-side SMT assembly provider.
+JLCPCB was the documented Rev1.5.1 PCB and SMT provider. For Rev1.5.2 production builds, record the actual PCB fabricator and assembly provider from the applicable order; do not infer them from the Rev1.5.1 records.
 
 ---
 

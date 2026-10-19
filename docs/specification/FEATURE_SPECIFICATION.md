@@ -802,6 +802,20 @@ A single confirmed PASS does not automatically certify every subsequently assemb
 
 ---
 
+### Detailed per-unit functional acceptance checks
+
+In addition to the confirmed functional PASS of the first manufactured Rev1.5.2 unit, each subsequent assembled controller should be checked for:
+
+- **FIRE1 release:** releasing FIRE1 stops autofire and does not leave an unintended fire assertion.
+- **FIRE2 independence:** FIRE2 operates independently of the FIRE1 autofire timing circuit.
+- **Selector orientation:** FAST and SLOW agree with the physical switch/contact mapping; both modes cause distinct operating behavior.
+- **Input integrity:** no unrequested joystick direction or fire input is asserted.
+- **Power safety:** no +5 V / GND short, abnormal supply behavior or unexpected heating.
+- **Mechanical reliability:** hot-swap sockets retain the switches; switch removal/replacement does not damage PCB pads or socket connections.
+- **Cable/host:** confirm the DE-9 wiring and representative actual host behavior before batch acceptance.
+
+The complete Rev1.5.1 acceptance checklist is also retained in the [historical feature specification](FEATURE_SPECIFICATION_REV1.5.1_HISTORICAL.md). These are repeatable production QA criteria, **not** a claim that the current Rev1.5.2 release remains untested.
+
 ## 31. Real-System Validation
 
 A manufactured Rev1.5.2 sample has passed complete reported functionality (owner confirmed). The exact host and game list for that new sample were not included in this ZIP. Representative platforms for ongoing compatibility verification and subsequent production QA include:

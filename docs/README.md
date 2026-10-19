@@ -28,6 +28,18 @@ The first Rev1.5.1 SPEED selector had the wrong schematic-to-footprint common-te
 - [Legacy Rev1.5.1 rework guide and photographs](assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
 - [Historical Rev1.5.1 engineering and manufacturing review](../hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD)
 
+## Detailed historical engineering records (preserved, not current manufacturing instructions)
+
+The original detailed Rev1.5.1 development records are preserved as **historical snapshots** instead of being discarded when the current Rev1.5.2 release pages were streamlined:
+
+- [Full Rev1.5.1 documentation index and document authority/reading order](README_REV1.5.1_HISTORICAL.md)
+- [Detailed Rev1.5.1 roadmap, engineering and validation checklist](roadmap/ROADMAP_REV1.5.1_HISTORICAL.md)
+- [Original Rev1.5.1 feature specification and acceptance criteria](specification/FEATURE_SPECIFICATION_REV1.5.1_HISTORICAL.md)
+- [Original Rev1.5.1 architecture and engineering history](architecture/System_architecture_REV1.5.1_HISTORICAL.md)
+- [Original Rev1.5.1 hardware directory and revision-control policy](../hardware/README_REV1.5.1_HISTORICAL.md)
+
+**Do not mistake historical “pending”, “candidate”, or pre-physical PASS entries for the current release.** Rev1.5.2 is the final, manufactured and functionally validated hardware release.
+
 ## Manufacturing data and release traceability
 
 The owner confirms that Rev1.5.2 PCB artwork and Gerbers were updated, and a fabricated Rev1.5.2 sample passed full reported functionality. **This GitHub export does not include the matching Rev1.5.2 KiCad source, Gerber/drill set or Rev1.5.2-labelled BOM/CPL**; therefore the export cannot independently reproduce/verify the exact manufacturing dataset used for the tested sample.
