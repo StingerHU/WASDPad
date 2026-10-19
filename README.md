@@ -417,7 +417,13 @@ Start with the [documentation index](docs/README.md). Current release and techni
 
 # Manufacturing Documentation
 
-The released Rev1.5.2 design and corresponding Gerbers have successfully produced a functionally validated PCB (project-owner confirmation). The public repository ZIP, however, currently contains **only Rev1.5.1-named** [Master BOM](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) and [Master CPL](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv). These files are retained as **historical Rev1.5.1 manufacturing records**; their applicability to Rev1.5.2 must not be presumed merely from filenames or the absence of a change in component selection.
+The WASDPad+ Rev1.5.2 hardware design has been finalized, manufactured, and successfully functionally validated.
+
+**Manufacturing files availability:** The final Rev1.5.2 KiCad design sources and Gerber fabrication files are maintained privately and reserved for exclusive delivery to Commodore. These production files are intentionally not distributed through the public GitHub repository.
+
+The public repository contains the project's technical documentation, engineering history, validation results, and release records.
+
+The published Rev1.5.1 Master BOM and CPL are preserved as historical engineering references and must not be used as the Rev1.5.2 production dataset. The public repository ZIP, however, currently contains **only Rev1.5.1-named** [Master BOM](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) and [Master CPL](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv). These files are retained as **historical Rev1.5.1 manufacturing records**; their applicability to Rev1.5.2 must not be presumed merely from filenames or the absence of a change in component selection.
 
 - [Rev1.5.2 manufacturing release status and test evidence](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
 - [Historical Rev1.5.1 component documentation](hardware/rev1.5/bom/README.md)
