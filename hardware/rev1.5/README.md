@@ -1,5 +1,16 @@
 # WASDPad+ Hardware
 
+<!-- speed-selector-erratum-2026-10-16 -->
+> **Rev1.5.2 is the corrected series-production design baseline.** The Rev1.5.1
+> SPEED common-pin defect was electrically identified, physically repaired on
+> one Rev1.5.1 board and functionally validated on an Amiga 1200. The final
+> **Rev1.5.2 PCB and updated manufacturing Gerbers** include the fix
+> (project-owner confirmation); do not use old Rev1.5.1 fabrication files.
+> Newly fabricated Rev1.5.2 hardware still requires first-article acceptance.
+> See [engineering erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md),
+> [legacy rework](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md), and
+> [manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+
 ## Revision 1.5.1
 
 **Status:** Production Release Candidate
