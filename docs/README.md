@@ -55,6 +55,15 @@ The following currently present CSV/Markdown records are **historical Rev1.5.1 b
 
 **Current release authority:** [Rev1.5.2 manufacturing notes](../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md), the actual matching Rev1.5.2 fabrication data held by the project owner, and the recorded first-article functional result. Every future manufacturing lot requires normal revision control and per-unit/batch quality checks.
 
+## Enclosure and Ergonomics
+
+The finalized sixth-iteration Rev1.5.2 enclosure is documented separately from the electronic hardware. The rigid two-piece shell features secure PCB supports, snap-fit assembly with five optional M3 screws, integrated DB9 cable strain relief and a matching three-point TPU 85A wrist-rest interface.
+
+- [Finalized enclosure and ergonomic wrist rest](../enclosure/README.md)
+- [3D printing and mechanical assembly](../enclosure/PRINTING_AND_ASSEMBLY.md)
+- [Enclosure and wrist-rest render gallery](../enclosure/GALLERY.md)
+- [STL-derived dimensions and mechanical reference](../enclosure/MECHANICAL_REFERENCE.md)
+
 ## Additional project documentation
 
 - [Mechanical enclosure overview](../enclosure/README.md)
