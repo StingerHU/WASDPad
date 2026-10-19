@@ -57,4 +57,4 @@ The earlier fabricated stock can be recovered through the [three-cut / three-jum
 
 ---
 
-**See also:** [SPEED Selector Engineering Erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md) · [Rev1.5.1 Rework Procedure](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) · [Historical Engineering Review](Review_Record.MD).
+**See also:** [SPEED Selector Engineering Erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md) · [Rev1.5.1 Rework Procedure](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) · [Historical Engineering Review](Rev1.5.1-Engineering-Manufacturing-Record.MD).
