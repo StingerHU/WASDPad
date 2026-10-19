@@ -1,5 +1,15 @@
 # WASDPad+ Rev1.5.1 — Engineering & Manufacturing Release Review Record
 
+<!-- speed-selector-erratum-2026-10-16 -->
+> **Post-validation engineering erratum (2026-10-16):** The historic PASS below
+> predates discovery of an incorrect physical common-pad mapping in Rev1.5.1.
+> Electrical fault isolation and one full Amiga 1200 test of a patched Rev1.5.1
+> board passed. The corrected **Rev1.5.2 schematic, PCB and updated production
+> Gerbers** are now the manufacturing design baseline (Gerber update confirmed
+> by the project owner). Do not fabricate from unmodified Rev1.5.1 CAM files.
+> For details, see the [engineering erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+> and [Rev1.5.2 manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+
 **Hardware Revision:** Rev1.5.1
 **Review Date:** 2026-08-29
 **Document Version:** 1.0
@@ -1048,3 +1058,53 @@ Production approval shall be issued only after successful completion of the phys
 | ------- | -------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0.9     | 2026-08-19     | PASS — Release Candidate                | Rev1.5 schematic final validation; ERC/DRC and initial component review                                                                                                                                                                                                                                                         |
 | **1.0** | **2026-08-29** | **PASS — Production Release Candidate** | Updated to Rev1.5.1; incorporated final production MPNs, protection validation, backlight system, U3 correction, PCB routing corrections, assembly orientation review, final Gerber/drill generation, Master BOM/CPL, datasheet traceability and procurement controls; physical hardware validation retained as final open gate |
+
+---
+
+## Post-Review Corrective Action — 2026-10-16
+
+<!-- wasdpad-rev152-review-appendix-start -->
+## Post-Review Corrective Action — 2026-10-16
+
+The historical Rev1.5.1 PASS engineering review was superseded specifically
+for the SPEED-selector contact mapping following physical prototype tests.
+
+**Measured failure and root cause.** The physical three-terminal toggle has
+common pad 2; FAST closes 1–2 and SLOW closes 2–3. The old KiCad `SW_SP3T`
+schematic symbol used common pin 3. The original board therefore put
+`AF_SLOW_SEL` on pad 1, `AF_FAST_SEL` on pad 2 and `AF_EN_P` on pad 3. FAST
+failed because neither CD4066 control was driven HIGH. This was confirmed by
+switch contact, control-voltage and timer-output measurements.
+
+**Rev1.5.1 physical recovery.** Three original F.Cu traces were isolated and
+three insulated rear-side jumpers installed on one assembled board; the SPEED
+switch was not removed. Power-off continuity and isolation checks and a
+current-limited 5 V CV test passed. The unit passed **all reported functions
+in real Amiga 1200 gameplay**, including FAST/SLOW autofire and manual FIRE1.
+This validates the method on that particular board, not every other unit.
+
+**Definitive Rev1.5.2 production design correction.** The schematic now uses
+`Switch:SW_SPDT`, common pin/pad 2. The final PCB assigns `SW_SPEED1` pad 1 =
+`AF_FAST_SEL`, pad 2 = `AF_EN_P`, pad 3 = `AF_SLOW_SEL`, with corrected routing.
+The project owner also confirms **regeneration/update of the corresponding
+Rev1.5.2 manufacturing Gerbers for the intended series-production build**.
+The corrected Rev1.5.2 layout passed ERC 0 errors/0 warnings and PCB DRC
+0 errors/0 unconnected pads; 46 custom-footprint/J1 warning overrides remain
+separately documented. The Gerber archive was not independently inspected
+in this documentation pass.
+
+**Release disposition:** Rev1.5.2 corrected PCB and updated Gerbers are the
+series-production baseline; unmodified Rev1.5.1 fabrication outputs are
+obsolete for new manufacture. A newly fabricated Rev1.5.2 first article still
+requires electrical and real-host gameplay acceptance before recording its
+own production-unit validation. Rework and individually test remaining legacy
+Rev1.5.1 stock before use.
+
+**Mandatory prevention:** verify schematic pin number, footprint pad number,
+physical common terminal and both actuator positions against a real switch
+before future PCB design freeze.
+
+Evidence: [SPEED selector erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+· [Legacy three-cut/three-jumper rework](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
+· [Rev1.5.2 manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+<!-- wasdpad-rev152-review-appendix-end -->
