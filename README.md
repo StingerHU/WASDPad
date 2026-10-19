@@ -311,25 +311,32 @@ There is no programmed component required for normal controller operation.
 # Designed as a Complete Controller
 
 <p align="center">
-  <img src="docs/images/wasdpad_enclosures.jpg"
-       alt="WASDPad+ enclosure production"
+  <img src="enclosure/images/wasdpad_enclosure_showcase.jpg"
+       alt="WASDPad+ Rev1.5.2 — finalized enclosure and optional TPU wrist rest"
        width="100%">
 </p>
 
-WASDPad+ is developed as a complete controller platform rather than only as an electronic circuit.
+WASDPad+ is developed as a **complete retro-gaming controller**, combining custom electronics, mechanical switches, a purpose-built 3D-printed enclosure, ergonomic accessories, assembly engineering and documented validation.
 
-The project includes:
+The **Rev1.5.2 rigid enclosure is finalized after six design iterations**. It is a robust, two-piece construction with a precision-fit **upper housing** and **lower base**. The finished housing has been physically fitted to the controller PCB; the nominal top and bottom model footprint is approximately **221.75 × 91.15 mm** (STL-derived outer bounds, not assembled height).
 
-- custom PCB electronics
-- component selection
-- mechanical switch layout
-- custom enclosure design
-- 3D-printed enclosure production
-- assembly planning
-- manufacturing documentation
-- validation procedures
+Mechanical highlights:
 
-The enclosure and PCB are developed together so that switch position, user controls, status indicators, cable routing and serviceability form one integrated design.
+- **Secure PCB positioning:** integrated supports retain the board firmly in its intended location.
+- **Serviceable fastening:** snap-fit housing assembly, with **five optional M3 screw positions**.
+- **Protected cable termination:** a dedicated retaining clip seats the selected factory DB9 cable and helps transfer accidental pulling loads away from the soldered conductors.
+- **Product identification:** a dedicated label recess is provided on the underside.
+- **Customizable appearance:** rigid parts can be 3D printed in virtually any colour combination using the documented Bambu Lab PLA options.
+- **Ergonomic accessory:** an optional soft **black TPU 85A wrist rest**, held by **three matching attachment points** in the lower enclosure. The interface has been physically fitted and found stable and comfortable in use; the accessory remains **experimental / near-final** pending longer-term evaluation.
+
+The rigid housing is the **finalized sixth-iteration mechanical design**; no formal impact-resistance certification or quantified cable pull-force rating is claimed. Printable STL and editable mechanical design files are intentionally kept private for the Commodore handoff, while public construction details and illustrations are available below.
+
+| Enclosure documentation | Contents |
+| --- | --- |
+| [Enclosure design and ergonomics](enclosure/README.md) | Final two-piece enclosure, PCB fit, strain relief and TPU wrist rest |
+| [Printing and assembly](enclosure/PRINTING_AND_ASSEMBLY.md) | Printer/filament choices, Bambu Studio settings and assembly checks |
+| [Render gallery](enclosure/GALLERY.md) | Exterior, interior, underside and wrist-rest images |
+| [Mechanical reference](enclosure/MECHANICAL_REFERENCE.md) | STL-derived part envelopes and mechanical validation scope |
 
 ---
 
