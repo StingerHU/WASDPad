@@ -1,11 +1,11 @@
 # WASDPad+ Rev1.5.1 — SPEED Selector PCB Rework Procedure
 
-**Document revision:** 1.1  
+**Document revision:** 1.2  
 **Date:** 2026-10-16  
 **Applies to:** Original, uncorrected WASDPad+ Rev1.5.1 PCB assemblies and compatible unpopulated PCBs  
 **Validated scope:** One reworked assembled controller passed reported real-world Amiga 1200 gameplay tests  
 **Engineering reference:** [Rev1.5.1 to Rev1.5.2 SPEED Selector Erratum](../../hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)  
-**Production baseline:** **Rev1.5.2 final PCB and updated Rev1.5.2 Gerbers for series manufacture** (project-owner confirmation). This guide is for salvaging already fabricated **Rev1.5.1** boards; it is **not** an instruction to patch new Rev1.5.2 production PCBs.
+**Production baseline:** **Rev1.5.2 final PCB and updated Gerbers — newly manufactured Rev1.5.2 unit fully functionally validated (project-owner confirmation, October 2026).** This guide is for salvaging already fabricated **Rev1.5.1** boards; it is **not** an instruction to patch new Rev1.5.2 production PCBs.
 
 > **Important:** This procedure documents an actual successful physical patch, but cut and scrape locations must be confirmed by examining the specific PCB revision. Use an unpowered continuity meter, good magnification, and the original KiCad F.Cu/B.Cu layout. A mistaken trace cut or solder bridge may make the controller unsafe for the connected host.
 
@@ -101,7 +101,7 @@ A patch is not considered accepted until the complete controller functions corre
 
 Repeat and record at least: direction inputs, FIRE1 manual operation, FIRE2, AUTO OFF / ON, FAST/SLOW differentiation, both status LEDs, hot-swap control functionality and real gameplay.
 
-**Validation outcome:** the measured fault was corrected on an already-assembled Rev1.5.1 board. All reported controller functions passed during an actual Amiga 1200 gameplay session. This proves the rework on that unit and supports the corrected selector design; it does **not** claim that all original Rev1.5.1 stock or any newly manufactured Rev1.5.2 boards have been individually tested.
+**Validation outcome:** the measured fault was corrected on an already-assembled Rev1.5.1 board. All reported controller functions passed during an actual Amiga 1200 gameplay session. This proves the rework on that unit and supports the corrected selector design; it does **not** claim that all original Rev1.5.1 stock has been repaired or tested. **Separately, an actual newly manufactured Rev1.5.2 unit has now passed full reported functionality** (owner confirmed); see the [Rev1.5.2 release record](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
 ## 8. Finishing
 

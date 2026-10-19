@@ -1,26 +1,17 @@
 # WASDPad+
 
-<!-- speed-selector-erratum-2026-10-16 -->
-> **2026-10-16 SPEED-selector erratum and corrected manufacturing baseline:**
-> The original Rev1.5.1 PCB contains a confirmed physical-common-pin mapping
-> defect. The cause was established by electrical measurements, then repaired
-> with three cuts and three rear-side jumpers on an assembled Rev1.5.1 unit;
-> **all reported functions passed real Amiga 1200 gameplay**. The Rev1.5.2
-> schematic and final PCB fix the pin-to-pad mapping, and the **Rev1.5.2
-> series-production Gerber outputs have been updated** (project-owner
-> confirmation). Rev1.5.2 is the manufacturing design baseline; do not use
-> unmodified Rev1.5.1 Gerbers. First-article testing of newly manufactured
-> Rev1.5.2 hardware remains a separate acceptance activity.
-> See the [engineering erratum](hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md),
-> [rework guide](docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) and
-> [Rev1.5.2 manufacturing release notes](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+## Current release: WASDPad+ Rev1.5.2
+
+**Final Production Release — physically manufactured and functionally validated.** A newly manufactured Rev1.5.2 PCB was received and its complete controller functionality was successfully confirmed by the project owner in October 2026. The physical Rev1.5.1 SPEED-switch mapping defect was corrected in the Rev1.5.2 schematic, PCB and production Gerber outputs. The fix is therefore validated on both a reworked Rev1.5.1 prototype and a newly fabricated Rev1.5.2 PCB.
+
+The [Rev1.5.2 production release record](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) documents the manufacturing change and first-article functional validation. The [engineering erratum](hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md) and [legacy rework guide](docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) preserve the original fault analysis. **Do not manufacture from unmodified Rev1.5.1 Gerbers.**
 
 ### Hardware WASD-style game controller for Commodore 64, Amiga and compatible retro computers
 
-**Current Hardware:** Rev1.5.1  
-**Status:** Production Release Candidate  
+**Current Hardware:** Rev1.5.2  
+**Status:** Final Production Release — functional validation PASS  
 **Architecture:** Pure hardware — no MCU, firmware or drivers  
-**Last Updated:** 2026-08-29
+**Last Updated:** 2026-10-19
 
 <p align="center">
   <img src="docs/images/wasdpad_controllers.jpg"
@@ -48,7 +39,7 @@ No input polling.
 
 **Just switches, discrete hardware and the original computer.**
 
-The current **Rev1.5.1** hardware is the production-oriented evolution of the WASDPad platform. It adds MX hot-swap support, hardware autofire, electrical protection, dual-colour status indication and subtle key backlighting while retaining a direct, deterministic hardware signal path.
+The current **Rev1.5.2** hardware is the finalized, physically validated evolution of the WASDPad platform. It adds MX hot-swap support, hardware autofire, electrical protection, dual-colour status indication and subtle key backlighting while retaining a direct, deterministic hardware signal path.
 
 ---
 
@@ -76,11 +67,11 @@ The controller does not emulate a joystick through software.
 
 ---
 
-# Rev1.5.1 Highlights
+# Rev1.5.2 Highlights
 
 ## Eight Mechanical Gameplay Switches
 
-Rev1.5.1 provides eight primary gameplay controls:
+Rev1.5.2 provides eight primary gameplay controls:
 
 ```text
 UP
@@ -152,7 +143,7 @@ The indication circuitry is separate from the primary gameplay signal path.
 
 ## Warm-White Key Backlighting
 
-Rev1.5.1 introduces subtle illumination beneath all eight gameplay switches.
+The Rev1.5 series provides subtle illumination beneath all eight gameplay switches.
 
 Each key has an independently current-limited warm-white LED. The system is intentionally designed for restrained, functional illumination rather than high-brightness decorative lighting.
 
@@ -160,9 +151,9 @@ A dedicated hardware switch allows the entire backlight system to be turned on o
 
 ---
 
-# Rev1.5.1 PCB
+# PCB evolution: Rev1.5.1 to final Rev1.5.2
 
-Rev1.5.1 represents the production-oriented evolution of the WASDPad discrete-hardware architecture.
+Rev1.5.1 introduced the production-oriented hardware architecture; Rev1.5.2 corrected the SPEED-selector common contact mapping and is the final, functionally validated production revision.
 
 <p align="center">
   <img src="docs/images/wasdpad_rev1.5.1_pcb_front.png"
@@ -174,12 +165,12 @@ Rev1.5.1 represents the production-oriented evolution of the WASDPad discrete-ha
 </p>
 
 <p align="center">
-  <em>WASDPad+ Rev1.5.1 production-candidate PCB — front and rear views.</em>
+  <em>Historical Rev1.5.1 PCB artwork — front and rear views. These images are not presented as photographs of the new Rev1.5.2 board.</em>
 </p>
 
 The PCB combines the gameplay interface, autofire generator, output switching, status indication, power protection and backlight control in a single two-layer design.
 
-Rev1.5.1 uses a mixed assembly model with SMD electronics, THT user-interface components, bottom-side MX hot-swap sockets and manually installed mechanical components.
+The Rev1.5.2 hardware retains a mixed assembly model with SMD electronics, THT user-interface components, bottom-side MX hot-swap sockets and manually installed mechanical components.
 
 ---
 
@@ -187,7 +178,7 @@ Rev1.5.1 uses a mixed assembly model with SMD electronics, THT user-interface co
 
 Original retro computers were not designed around modern ESD and hot-plugging expectations.
 
-Rev1.5.1 therefore adds dedicated protection between the external controller environment and the host computer.
+The Rev1.5 hardware family therefore includes dedicated protection between the external controller environment and the host computer.
 
 Protection includes:
 
@@ -233,7 +224,7 @@ This keeps the architecture deterministic and particularly suitable for latency-
 
 # FIRE1 and FIRE2
 
-Rev1.5.1 provides two independent fire functions.
+Rev1.5.2 provides two independent fire functions.
 
 ### FIRE1
 
@@ -254,7 +245,7 @@ Supports:
 
 FIRE2 functionality depends on the target computer and software.
 
-Autofire applies to **FIRE1 only** in Rev1.5.1.
+Autofire applies to **FIRE1 only** in Rev1.5.2.
 
 ---
 
@@ -298,7 +289,7 @@ The Commodore Plus/4 family can be supported through an appropriate passive pin-
 
 # Hardware-Only by Design
 
-Rev1.5.1 deliberately does **not** contain a microcontroller.
+Rev1.5.2 deliberately does **not** contain a microcontroller.
 
 That is not an accidentally missing feature. It is part of the design philosophy.
 
@@ -344,185 +335,103 @@ The enclosure and PCB are developed together so that switch position, user contr
 
 # PCB and Manufacturing Engineering
 
-Rev1.5.1 has completed its principal pre-production engineering stages.
+**Final design baseline: Rev1.5.2.** The corrected schematic uses `Switch:SW_SPDT`, with the physical SPEED switch's centre **pad 2** connected to `AF_EN_P`:
 
-The PCB design includes:
+| Switch pad | Correct Rev1.5.2 connection | Function |
+| --- | --- | --- |
+| 1 | `AF_FAST_SEL` → CD4066 U2 pin 5 | FAST (pads 1–2 closed) |
+| 2 | `AF_EN_P` | Common / autofire enable |
+| 3 | `AF_SLOW_SEL` → CD4066 U2 pin 13 | SLOW (pads 2–3 closed) |
 
-- two-layer construction
-- GND copper zones on both layers
-- GND stitching vias
-- SMD logic and protection electronics
-- bottom-mounted MX hot-swap sockets
-- bottom-mounted backlight control
-- THT user-interface components
-- direct controller-cable connection
-- mixed automated/manual assembly
+The Rev1.5.2 schematic and PCB were corrected, and matching Gerber manufacturing outputs were generated and used for the successfully manufactured design (project-owner report). Earlier reported design checks: **ERC 0 errors / 0 warnings**, PCB **DRC 0 errors / 0 unconnected pads**, with **46 recorded custom-footprint/J1 warnings** requiring separate review documentation. These warnings must not be mistaken for unresolved SPEED-selector function failures.
 
-Engineering checks completed:
-
-```text
-Schematic Review                 PASS
-ERC                              PASS
-PCB Layout Review                PASS
-DRC                              PASS
-Critical Pinout Review           PASS
-Protection Topology Review       PASS
-Assembly Orientation Review      PASS
-Gerber Generation                COMPLETE
-Master BOM                       COMPLETE
-Master CPL                       COMPLETE
-Manufacturing Documentation      COMPLETE
-```
+The newly fabricated Rev1.5.2 unit has passed full reported controller functionality tests. Hardware manufacturing data in this repository should not be confused with the complete production handoff: the uploaded ZIP contains **Rev1.5.1-labelled historical BOM/CPL files**, but no Rev1.5.2 KiCad files, Gerber archive or revision-specific BOM/CPL to independently verify. See the [manufacturing release record](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
 ---
 
 # Current Release Status
 
-## WASDPad+ Rev1.5.1
+## WASDPad+ Rev1.5.2 — Final Production Release
 
-**Production Release Candidate**
+**Physical validation: PASS (manufactured Rev1.5.2 hardware, project-owner confirmation, October 2026).**
 
-The Rev1.5.1 design is frozen for production-candidate manufacture.
+- [x] Corrected physical SPEED-switch common-pad assignment in Rev1.5.2 schematic and PCB
+- [x] Updated Gerber fabrication outputs and manufactured a new Rev1.5.2 PCB
+- [x] Repaired and functionally tested a legacy Rev1.5.1 board
+- [x] Tested a **newly manufactured Rev1.5.2** controller; all reported functions passed
+- [x] Confirmed the FAST/SLOW SPEED-selector correction works on the manufactured revision
+- [x] Retained the pure-hardware architecture, hot-swap switching, dual FIRE inputs, ESD/overcurrent protection and backlighting
+- [x] Closed the Rev1.5.2 functional validation milestone
 
-Completed:
+**Evidence boundary:** The first-article PASS is reported by the project owner; this public documentation ZIP does not include original electrical logs or the exact production Gerber/BOM/CPL dataset. Normal per-unit quality control, release traceability and production-batch acceptance remain applicable to each future lot. This is not a claim that every future board has already been tested.
 
-- [x] hardware architecture
-- [x] schematic
-- [x] component selection
-- [x] PCB layout
-- [x] electrical protection
-- [x] hardware autofire
-- [x] hot-swap architecture
-- [x] status indication
-- [x] key backlighting
-- [x] ERC
-- [x] DRC
-- [x] critical pinout validation
-- [x] protection topology validation
-- [x] assembly orientation review
-- [x] Gerber generation
-- [x] Master BOM
-- [x] Master CPL
-- [x] datasheet traceability
-- [x] alternate-part policy
-- [x] procurement documentation
-- [x] engineering release review
-- [x] documentation consolidation
-
-Remaining:
-
-- [ ] production-candidate manufacture
-- [ ] complete physical assembly
-- [ ] electrical bring-up
-- [ ] functional validation
-- [ ] real-system gameplay validation
-- [ ] final enclosure validation
-- [ ] Production Approval
-
-The project intentionally distinguishes between:
-
-**engineering-ready for manufacture**
-
-and
-
-**physically production-validated hardware**.
-
-Rev1.5.1 currently satisfies the first condition.
+**Legacy Rev1.5.1:** Unmodified boards have a known SPEED fault and must not be used as the fabrication baseline; already manufactured boards may be [reworked individually](docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md).
 
 ---
 
 # Release Path
 
 ```text
-Rev1.5.1 Design Freeze
-          ✓
-          │
-          ▼
-Engineering Review
-        PASS
-          │
-          ▼
-Production-Candidate
-    Manufacturing
-          │
-          ▼
-       Assembly
-          │
-          ▼
- Electrical Bring-Up
-          │
-          ▼
-Functional Validation
-          │
-          ▼
-Real-System Validation
-          │
-          ▼
-Enclosure Validation
-          │
-          ▼
-PRODUCTION APPROVED
+Rev1.5.1 engineering review (historical)
+                 │
+                 ▼
+Physical test identified SPEED common-pad fault
+                 │
+                 ├──► Existing Rev1.5.1 PCB reworked and gameplay tested: PASS
+                 │
+                 ▼
+Rev1.5.2 schematic / PCB / manufacturing Gerbers corrected
+                 │
+                 ▼
+New Rev1.5.2 PCB manufactured
+                 │
+                 ▼
+Full functional test of manufactured Rev1.5.2: PASS
+                 │
+                 ▼
+     REV1.5.2 FINAL PRODUCTION RELEASE
+                 │
+                 ▼
+     Stable maintenance / future Rev2.0 R&D
 ```
 
-No additional Rev1.5.1 feature development is planned before this validation process is complete.
+Future production units should receive the standard incoming and end-of-line checks described in the [assembly and test procedure](docs/assembly/ASSEMBLY.md).
 
 ---
 
 # Documentation
 
-The project maintains separate documents for feature behaviour, architecture, manufacturing and engineering validation.
+Start with the [documentation index](docs/README.md). Current release and technical references:
 
-## Start Here
-
-### [Documentation Index](docs/README.md)
-
-The documentation index provides the complete map of the current Rev1.5.1 documentation set.
-
-### [Rev1.5.1 Feature Specification](docs/specification/FEATURE_SPECIFICATION.md)
-
-Defines what WASDPad+ Rev1.5.1 does, including controls, FIRE1/FIRE2, autofire, hot-swap functionality, indication, backlighting, protection features and validation requirements.
-
-### [System Architecture](docs/architecture/System_architecture.md)
-
-Defines how WASDPad+ Rev1.5.1 works at system level.
-
-### [Rev1.5.1 Hardware Documentation](hardware/rev1.5/README.md)
-
-Primary revision-specific hardware engineering documentation.
-
-### [Rev1.5.1 Engineering Review Record](hardware/rev1.5/Review_Record.MD)
-
-Formal pre-production engineering review and release decision.
-
-### [Development Roadmap](docs/roadmap/ROADMAP.md)
-
-Tracks manufacturing, physical validation, Production Approval and future development.
-
-### [Cable Assembly Procedure](docs/assembly/CABLE_ASSEMBLY.md)
-
-Defines controller cable mapping and mandatory production-batch continuity verification.
+- [Rev1.5.2 feature specification](docs/specification/FEATURE_SPECIFICATION.md)
+- [Rev1.5.2 system architecture](docs/architecture/System_architecture.md)
+- [Rev1.5.2 hardware overview](hardware/rev1.5/README.md)
+- [Rev1.5.2 production and first-article validation record](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+- [Rev1.5.1 → Rev1.5.2 engineering erratum](hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+- [Historical Rev1.5.1 engineering review](hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD)
+- [Rev1.5.1 field rework instructions](docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
+- [Assembly and DE-9 cable verification](docs/assembly/ASSEMBLY.md)
+- [Development roadmap and future Rev2.0](docs/roadmap/ROADMAP.md)
 
 ---
 
 # Manufacturing Documentation
 
-Production documentation is maintained under the Rev1.5 hardware tree.
+The released Rev1.5.2 design and corresponding Gerbers have successfully produced a functionally validated PCB (project-owner confirmation). The public repository ZIP, however, currently contains **only Rev1.5.1-named** [Master BOM](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) and [Master CPL](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv). These files are retained as **historical Rev1.5.1 manufacturing records**; their applicability to Rev1.5.2 must not be presumed merely from filenames or the absence of a change in component selection.
 
-Important files include:
+- [Rev1.5.2 manufacturing release status and test evidence](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+- [Historical Rev1.5.1 component documentation](hardware/rev1.5/bom/README.md)
+- [Historical Rev1.5.1 datasheet index](hardware/rev1.5/datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md)
+- [Approved alternate-part policy (Rev1.5.1 baseline)](hardware/rev1.5/bom/ALTERNATE_PARTS.md)
+- [Procurement notes (Rev1.5.1 baseline)](hardware/rev1.5/bom/PROCUREMENT_NOTES.md)
 
-- [Master BOM](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) — authoritative production component identity
-- [Master CPL](hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv) — authoritative component-placement data
-- [Datasheet Index](hardware/rev1.5/datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md) — technical component references
-- [Alternate Parts](hardware/rev1.5/bom/ALTERNATE_PARTS.md) — controlled substitution policy
-- [Procurement Notes](hardware/rev1.5/bom/PROCUREMENT_NOTES.md) — sourcing and procurement control
-
-Assembly-house-specific files may be derived from the Master BOM and Master CPL, but they do not redefine the project production records.
+**For manufacturing a new Rev1.5.2 lot, use the matching current Gerber/drill, BOM and CPL records from the actual Rev1.5.2 release package**, not a mixture of archived revisions. This ZIP alone is not a substitute for that fabrication package.
 
 ---
 
 # Serviceability
 
-Rev1.5.1 was designed to remain practical to maintain.
+Rev1.5.2 retains the hardware platform’s serviceability.
 
 The controller uses:
 
@@ -538,39 +447,26 @@ This makes the hardware suitable not only for manufacture, but also for long-ter
 
 ---
 
-# Rev1.2 → Rev1.5.1
-
-Rev1.5.1 builds on the earlier validated WASDPad hardware platform.
-
-The goal was not to replace the fundamental controller concept.
-
-The goal was to mature it.
+# Evolution: Rev1.2 → Rev1.5.1 → Rev1.5.2
 
 ```text
-Rev1.2
-  │
-  ├── Proven hardware control concept
-  ├── Direction + FIRE architecture
-  └── Hardware autofire
-          │
-          ▼
-Rev1.5.1
-  │
-  ├── MX hot-swap sockets
-  ├── Production component selection
-  ├── Improved autofire implementation
-  ├── Dual-colour status indication
-  ├── +5 V overcurrent protection
-  ├── Signal ESD protection
-  ├── +5 V transient protection
-  ├── Improved PCB grounding
-  ├── Warm-white key backlighting
-  ├── Independent backlight control
-  ├── Master BOM / CPL
-  └── Production engineering documentation
+Rev1.2 — proven digital control and hardware autofire
+   │
+   ▼
+Rev1.5.1 — protection, hot-swap, key illumination,
+            dual-colour status and manufacturing-oriented design
+   │
+   ├── Physical prototype revealed SPEED selector common-pad error
+   ├── Existing board reworked and validated on Amiga 1200
+   ▼
+Rev1.5.2 — corrected SPDT symbol/pad mapping and PCB routing,
+            matching production Gerbers, new fabricated board
+   │
+   ▼
+FULL FUNCTIONAL VALIDATION PASSED — FINAL PRODUCTION RELEASE
 ```
 
-Rev1.5.1 represents the mature discrete-hardware branch of the project.
+The Rev1.5.1 engineering record and rework instructions remain in the repository for traceability, not as the current manufacturing baseline.
 
 ---
 
@@ -592,9 +488,9 @@ Possible concepts include:
 
 An MCU platform such as the **RP2040 family** may be evaluated.
 
-Rev2.0 is intentionally separated from Rev1.5.1.
+Rev2.0 is intentionally separated from the stable Rev1.5.2 hardware platform.
 
-The objective is to stabilize and validate the discrete Rev1.5.1 platform before introducing programmable complexity.
+The Rev1.5.2 platform is now a completed and physically validated discrete-hardware release; any future programmable functions belong in Rev2.0.
 
 ---
 
@@ -629,24 +525,23 @@ Third-party product names and trademarks remain the property of their respective
 | | |
 |---|---|
 | **Project** | WASDPad+ |
-| **Current Hardware** | Rev1.5.1 |
-| **Architecture** | Discrete / hardware-only |
+| **Current Hardware** | **Rev1.5.2** |
+| **Release** | **Final Production Release — manufactured hardware tested** |
+| **Functional first-article validation** | **PASS — project-owner confirmed, October 2026** |
+| **Architecture** | Discrete / hardware-only, no firmware |
 | **Interface** | DE-9 digital joystick |
-| **Primary Platforms** | Commodore 64 / 128 / Amiga |
+| **Primary Platforms** | Commodore 64 / 128 / Amiga architecture; platform-specific compatibility applies |
 | **Gameplay Switches** | 8 × MX-compatible hot-swap |
 | **Fire Inputs** | FIRE1 + FIRE2 |
-| **Autofire** | Hardware / FIRE1 |
-| **Autofire Modes** | OFF / SLOW / FAST |
+| **Autofire** | Hardware / FIRE1 / OFF–SLOW–FAST |
 | **Key Backlight** | 8 × warm-white LED |
 | **Protection** | PPTC + signal ESD + +5 V TVS |
-| **Firmware** | None |
-| **Drivers** | None |
-| **Current Status** | Production Release Candidate |
+| **SPEED selector** | Rev1.5.2 corrected pin-2 common mapping |
+| **Historical documentation** | Rev1.5.1 preserved for engineering traceability |
 
 ---
 
 <p align="center">
-  <strong>WASDPad+ Rev1.5.1</strong><br>
-  Built for the machines that made digital controls matter.<br><br>
-  <strong>Direct hardware. Mechanical switches. No firmware between you and the game.</strong>
+  <strong>WASDPad+ Rev1.5.2 — Final Production Release</strong><br>
+  Direct hardware. Mechanical switches. No firmware between you and the game.
 </p>

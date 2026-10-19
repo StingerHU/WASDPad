@@ -1,60 +1,69 @@
-# WASDPad+ Rev1.5.2 — Corrected Series-Production Design Release Notes
+# WASDPad+ Rev1.5.2 — Final Production Release and Validation Record
 
-**Document revision:** 1.0  
-**Date:** 2026-10-16  
-**Design baseline:** `wasdpad+v1.5.2-fixed`  
-**Intended manufacturing baseline:** corrected Rev1.5.2 PCB layout **and its updated Gerber fabrication outputs**  
-**Release statement:** Project owner confirms the final PCB model and corresponding Gerber files were updated for the series-production build. This documentation package did not receive the Gerber archive for independent inspection.  
-**First-article status:** A newly fabricated Rev1.5.2 PCB has not yet been reported as physically tested; the first patched Rev1.5.1 board has passed Amiga 1200 functional/gameplay testing.
+**Hardware revision:** **Rev1.5.2** (`wasdpad+v1.5.2-fixed` design baseline)  
+**Document revision:** 2.0  
+**Release documentation updated:** 2026-10-19  
+**Release classification:** **FINAL PRODUCTION RELEASE**  
+**Manufactured Rev1.5.2 functional acceptance:** **PASS — project-owner confirmation, October 2026**
 
-## 1. Why the production artwork was revised
+## 1. Production release outcome
 
-The original Rev1.5.1 manufacturing PCB incorrectly mapped the SPEED switch's common contact. Measured physical switch behavior established **pad 2** as the actual common, but the previous schematic symbol `Switch:SW_SP3T` used schematic common **pin 3**. The FAST actuator position therefore failed to energize either relevant CD4066 channel. The issue was confirmed by bench measurements and corrected in the Rev1.5.2 schematic and layout.
+**WASDPad+ Rev1.5.2 is the final, functionally validated discrete-hardware production revision.** The owner reports receiving a newly manufactured Rev1.5.2 PCB in October 2026 and completing a **successful full-function controller test**. In particular, the FAST/SLOW SPEED-selector mapping corrected after the Rev1.5.1 investigation operates as designed. This is **a real manufactured Rev1.5.2 sample**, not solely a patched earlier board or an untested Gerber export.
 
-The rework of an already assembled Rev1.5.1 board was independently checked by continuity/isolation tests, a current-limited 5 V bench test and **successful Amiga 1200 gameplay exercising all reported controller functions**. This provides direct functional evidence that the corrected control mapping works.
+The owner also confirms that the corrected final PCB design and its matching Gerber fabrication outputs were updated and used for the manufactured revision. The release completes the known Rev1.5.1 fault corrective action.
 
-## 2. Exact fix incorporated into the production design
+**Validation attribution:** These physical-first-article results are reported by the project owner. This repository export contains neither the final physical test log, the release Gerber archive nor a Rev1.5.2-labelled BOM/CPL. This document records the reported result; it does not claim independent inspection of unavailable artifacts or certify every untested subsequent unit.
 
-| Physical `SW_SPEED1` pad (front/component view) | Corrected net | Destination / logic |
+## 2. Root cause and final production correction
+
+The original Rev1.5.1 board used an incorrect common-contact assignment for the physical SPEED toggle. The installed three-terminal switch has **physical pad 2 as common**, while the old `Switch:SW_SP3T` symbol used pin 3 as the schematic common. This resulted in a nonfunctional FAST mode on the unmodified Rev1.5.1 PCB.
+
+The Rev1.5.2 design corrected the schematic to `Switch:SW_SPDT`, retained the custom physical three-pad footprint and fixed all connected PCB routing:
+
+| Physical `SW_SPEED1` pad (front-side reference) | Rev1.5.2 net | Connection / observed contacts |
 | --- | --- | --- |
-| **1 — left** | `AF_FAST_SEL` | CD4066 U2 pin 5; FAST selected via contacts 1–2 |
-| **2 — center, COMMON** | `AF_EN_P` | Autofire enable; distributes to selected throw |
-| **3 — right** | `AF_SLOW_SEL` | CD4066 U2 pin 13; SLOW selected via contacts 2–3 |
+| **1 — FAST throw** | `AF_FAST_SEL` | CD4066 U2 pin 5; FAST closes pads 1–2 |
+| **2 — COMMON** | `AF_EN_P` | Autofire enable feed for selected mode |
+| **3 — SLOW throw** | `AF_SLOW_SEL` | CD4066 U2 pin 13; SLOW closes pads 2–3 |
 
-- Schematic symbol changed to **`Switch:SW_SPDT`**, whose common is pin 2.
-- Verified custom three-pad footprint and mechanical location retained.
-- PCB pad nets and routed F.Cu/B.Cu tracks corrected to match the physical switch.
-- **Final Rev1.5.2 Gerber fabrication outputs updated/regenerated from the corrected PCB for series production** (project-owner confirmed).
-- Unmodified Rev1.5.1 Gerbers **must not** be used for this production release.
+The separate AUTO OFF/ON control, mechanical gameplay inputs and FIRE1/FIRE2 architecture were not implicated in this common-pin error.
 
-## 3. Completed validation versus first-article acceptance
+## 3. Validation and closure record
 
-| Stage | Result / evidence |
+| Milestone | Actual result / provenance |
 | --- | --- |
-| Fault diagnosis | **Completed:** physical contact pairs, voltage levels and oscilloscope-independent continuity measurements identified the common-pin discrepancy. |
-| Rev1.5.1 physical fix | **Completed:** three copper cuts and three insulated jumper wires on first assembled sample. |
-| Rev1.5.1 functional proof | **Passed:** power-off continuity/isolation, CV bench supply and Amiga 1200 real gameplay for all reported controls/FAST/SLOW settings. |
-| Rev1.5.2 schematic | **Corrected:** ERC 0 errors / 0 warnings. |
-| Rev1.5.2 PCB | **Corrected:** DRC 0 errors, 0 unconnected pads; 46 pre-existing/overridden warnings are separately documented. |
-| Rev1.5.2 production Gerbers | **Updated for series manufacture:** per project-owner confirmation. Actual Gerber archive not attached for an independent plot/drill check. |
-| First fabricated Rev1.5.2 unit | **Not yet documented as tested:** complete first-article inspection and gameplay test upon receipt. |
+| Physical Rev1.5.1 fault diagnosis | **Complete:** switching contacts and PCB nets measured; incorrect common contact identified |
+| Legacy Rev1.5.1 recovery | **PASS:** three trace cuts + three insulated rear-side jumpers on one assembled unit |
+| Patched Rev1.5.1 functional test | **PASS:** continuity/shorts/current-limited 5 V bring-up; all reported functions validated during Amiga 1200 gameplay |
+| Rev1.5.2 schematic | **Corrected:** `SW_SPDT` symbol, common pin 2; previously reported ERC 0 errors / 0 warnings |
+| Rev1.5.2 PCB | **Corrected:** all three SPEED nets/routing; previously reported DRC 0 errors / 0 unconnected pads |
+| Rev1.5.2 manufacturing Gerbers | **Updated and fabricated:** matching new design outputs, project-owner confirmation |
+| **Manufactured Rev1.5.2 unit** | **RECEIVED and physically tested**, October 2026, project-owner confirmation |
+| **Manufactured Rev1.5.2 controller full functionality** | **PASS** — user confirms the Rev1.5.2 design is fully functional, including the selector fix |
+| **Current release** | **FINAL PRODUCTION RELEASE** |
 
-**Meaning of “production-ready”:** the known Rev1.5.1 SPEED-selector design defect has been identified, corrected and included in the manufacturing source/outputs. Boards fabricated from the **matching updated Rev1.5.2 Gerbers** are expected to have the correct switching circuitry. As with any PCB release, actual manufacturing quality and first-article function still require acceptance testing; no guaranteed zero-defect lot is claimed.
+The owner's report of *complete controller functionality* encompasses the design's intended control modes (directions, FIRE1/FIRE2, manual/autofire mode, FAST/SLOW selection, status indication and backlight functionality). It is a global outcome report: per-pin test logs, instrumented frequency and current readings, photographs of the new sample and details of the test host were not included with this repository ZIP and must not be inferred.
 
-## 4. Final production handoff and QA record
+## 4. Engineering QA notes and revision control
 
-Before a manufacturing order or batch acceptance, preserve the following evidence against the **same Rev1.5.2 release revision**:
+- **Recorded ERC/DRC results:** The earlier corrected design review recorded ERC 0 errors/0 warnings and DRC 0 errors/0 unconnected pads, with **46 warnings concerning customized footprint/J1 mappings**. These warnings were not reported as remaining SPEED selector functional defects. The corresponding signed/written disposition record is not present in this repository ZIP.
+- **Manufacturing source of truth:** The project owner confirms Rev1.5.2 Gerbers were regenerated from the corrected PCB. This archive **does not contain** the final Rev1.5.2 Gerber/drill package, KiCad source, or **Rev1.5.2-labelled** Master BOM/CPL; only older Rev1.5.1-labelled CSV files are present. Do not use the historical file names as proof of the current assembly record.
+- **New build traceability:** Retain the exact Rev1.5.2 manufacturing Gerbers, drill files, PCB revision, BOM, CPL and supplier/lot information for future board orders. Reconcile legacy component lists if reusing any part of them.
+- **Routine quality control:** A first manufactured sample passed functionality. Later fabricated units still require their own incoming/assembly/end-of-line acceptance checks. This does not mean the current design remains a production candidate.
+- **Scope of the release declaration:** Final production hardware release and full reported functional validation; no independent environmental, EMC, safety or regulatory certification is asserted.
 
-1. Confirm the CAM output set was regenerated **after** the last PCB change. Archive the dated Gerber/drill/outline files next to the Rev1.5.2 project source and identify the release unambiguously.
-2. Open the generated copper/mask/silkscreen/outline/drill outputs in an independent Gerber viewer or KiCad GerbView; compare `SW_SPEED1` pad placement and the associated copper routing with the corrected Rev1.5.2 PCB, including B.Cu connections and vias.
-3. Ensure no Rev1.5.1 manufacturing output has been mixed into the Rev1.5.2 production archive. Keep previous Gerbers labeled obsolete for new manufacture.
-4. Document disposition of **46 recorded warning overrides** (custom/auxiliary footprints and J1 mapping). These were separate from the SPEED-selector fault and must not silently be reclassified as cleared.
-5. Perform an incoming first-article continuity/short check and 5 V bench test. On a real Amiga 1200 or comparable approved host, verify directions, FIRE1/FIRE2, AUTO OFF/ON, FAST/SLOW differentiation and both indicators before accepting the series-production assembly run.
+## 5. Historical Rev1.5.1 inventory and records
 
-## 5. Existing Rev1.5.1 inventory
+At the time of diagnosis, inventory comprised four assembled and six bare Rev1.5.1 boards. One reworked assembled Rev1.5.1 example is known to have passed an Amiga 1200 gameplay test. Do not assume the remaining legacy examples have been repaired or passed. All **new PCB fabrication must use the corrected Rev1.5.2 release outputs**, never the unmodified Rev1.5.1 Gerbers.
 
-The earlier fabricated stock can be recovered through the [three-cut / three-jumper rework guide](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md). At the time of finding there were **four assembled and six bare Rev1.5.1 PCBs**. The first modified assembled PCB passed full reported Amiga 1200 gameplay validation; further reworked units need individual acceptance records. This legacy rework is **separate from the corrected Rev1.5.2 manufacturing release**.
+The original pre-production Rev1.5.1 PASS review remains archived as a dated review; it was superseded for SPEED selector mapping by the subsequent measured fault and corrected production release.
 
----
+## 6. References
 
-**See also:** [SPEED Selector Engineering Erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md) · [Rev1.5.1 Rework Procedure](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) · [Historical Engineering Review](Rev1.5.1-Engineering-Manufacturing-Record.MD).
+- [Rev1.5.1 → Rev1.5.2 measured engineering erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+- [Original Rev1.5.1 engineering and manufacturing review](Rev1.5.1-Engineering-Manufacturing-Record.MD)
+- [Legacy Rev1.5.1 three-cut/three-jumper repair](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
+- [Rev1.5.2 assembly and routine production acceptance](../../docs/assembly/ASSEMBLY.md)
+- [Rev1.5.2 final development milestone](../../docs/roadmap/ROADMAP.md)
+
+**Release decision:** **WASDPad+ Rev1.5.2 — FINAL PRODUCTION RELEASE. Manufactured sample fully functionally validated; PASS (project-owner reported, October 2026).**

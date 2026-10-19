@@ -1,27 +1,20 @@
 # WASDPad+ Hardware
 
-<!-- speed-selector-erratum-2026-10-16 -->
-> **Rev1.5.2 is the corrected series-production design baseline.** The Rev1.5.1
-> SPEED common-pin defect was electrically identified, physically repaired on
-> one Rev1.5.1 board and functionally validated on an Amiga 1200. The final
-> **Rev1.5.2 PCB and updated manufacturing Gerbers** include the fix
-> (project-owner confirmation); do not use old Rev1.5.1 fabrication files.
-> Newly fabricated Rev1.5.2 hardware still requires first-article acceptance.
-> See [engineering erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md),
-> [legacy rework](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md), and
-> [manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+## Revision 1.5.2 — Final Production Release
 
-## Revision 1.5.1
+**Hardware Revision:** **Rev1.5.2**  
+**Status:** **FINAL PRODUCTION RELEASE — manufactured Rev1.5.2 functional PASS**  
+**Release updated:** 2026-10-19
 
-**Status:** Production Release Candidate
-**Hardware Revision:** Rev1.5.1
-**Last Updated:** 2026-08-29
+The SPEED-switch common-pad problem identified on Rev1.5.1 was measured, repaired on an existing board and corrected in the Rev1.5.2 schematic, PCB routing and matching Gerber outputs. A **newly manufactured Rev1.5.2 controller was physically tested and all reported functionality passed** (project-owner confirmation, October 2026). The preceding Rev1.5.1 manufacturing review is retained as historical evidence, not the current revision's release verdict.
+
+The [Rev1.5.2 manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) are the current release record; see the [Rev1.5.1 engineering erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md) and [original engineering review](Rev1.5.1-Engineering-Manufacturing-Record.MD) for revision history.
 
 ---
 
 # Overview
 
-WASDPad+ Revision 1.5.1 is the production-oriented evolution of the proven Revision 1.2 hardware platform.
+WASDPad+ Revision 1.5.2 is the final, physically validated evolution of the proven Revision 1.2 hardware platform.
 
 The fundamental design philosophy remains unchanged:
 
@@ -33,7 +26,7 @@ The fundamental design philosophy remains unchanged:
 * minimal input latency
 * serviceable mechanical construction
 
-Revision 1.5.1 focuses on improving:
+The earlier Rev1.5.1 revision introduced, and Rev1.5.2 retains, improvements in:
 
 * electrical protection
 * reliability
@@ -51,7 +44,7 @@ The controller remains fundamentally compatible with the classic digital joystic
 
 # Key Improvements over Revision 1.2
 
-Revision 1.5.1 introduces the following major hardware improvements:
+The Rev1.5 hardware generation introduced the following major improvements, all retained in Rev1.5.2:
 
 * Kailh MX-compatible hot-swap sockets
 * replaceable Gateron / Cherry MX-compatible mechanical switches
@@ -77,7 +70,7 @@ Revision 1.5.1 introduces the following major hardware improvements:
 
 # Architecture
 
-Revision 1.5.1 remains a **fully hardware-based controller**.
+Revision 1.5.2 remains a **fully hardware-based controller**.
 
 It does not contain:
 
@@ -268,7 +261,7 @@ The board includes:
 * bottom-mounted backlight switch
 * PCB solder pads for the DB9 cable
 
-PCB routing and grounding were reviewed as part of the Rev1.5.1 manufacturing preparation.
+PCB routing and grounding were reviewed as part of the Rev1.5 development and Rev1.5.2 production preparation.
 
 The final design passed KiCad DRC with no unresolved electrical routing violations.
 
@@ -322,74 +315,44 @@ The DB9 controller cable is soldered directly to dedicated PCB pads.
 
 # Manufacturing Documentation
 
-Revision 1.5.1 uses a structured manufacturing-documentation model.
+The **current released revision is Rev1.5.2**. The owner confirms corrected PCB/gerber outputs were manufactured successfully and the resulting controller passed its complete functional test. The public repo ZIP does **not** contain the corresponding Rev1.5.2 CAD/gerber/BOM/CPL output bundle; do not use only the historical Rev1.5.1 BOM/CPL filenames as proof of the final assembly configuration.
 
-The authoritative BOM documentation is located under:
+**Historical Rev1.5.1 engineering and sourcing records still present in this repository:**
 
-```text id="rc5jpx"
-hardware/rev1.5/bom/
+```text
+hardware/rev1.5/
+├── Rev1.5.1-Engineering-Manufacturing-Record.MD
+├── REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md
+├── REV1.5.2_MANUFACTURING_RELEASE_NOTES.md
+├── datasheets/
+│   └── WASDPad_Rev1.5.1_DATASHEET_INDEX.md
+└── bom/
+    ├── README.md
+    ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+    ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+    ├── ALTERNATE_PARTS.md
+    └── PROCUREMENT_NOTES.md
 ```
 
-Primary files include:
-
-```text id="4ixzsv"
-WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
-WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
-DATASHEET_INDEX.md
-ALTERNATE_PARTS.md
-PROCUREMENT_NOTES.md
-```
+Preserve the exact Rev1.5.2 production-file set from the actual fabrication order separately, if not yet published here. The `Rev1.5.1`-named entries are not automatically valid for manufacturing Rev1.5.2.
 
 ---
 
-# Master BOM
+# Master BOM — historical Rev1.5.1 source
 
-`WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
-
-is the authoritative component list for the hardware revision.
-
-It records:
-
-* designators
-* manufacturer part numbers
-* quantities
-* footprints
-* component descriptions
-* JLCPCB/LCSC identifiers where applicable
-* PCB side
-* assembly classification
+[`WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`](bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) records the previous revision's component selection, quantities and footprints. It is not labelled or independently approved as the final Rev1.5.2 BOM in this repository export. A Rev1.5.2 order must be matched against its own released production dataset.
 
 ---
 
-# Master CPL
+# Master CPL — historical Rev1.5.1 source
 
-`WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
-
-provides the complete component-placement dataset.
-
-Manufacturing-house-specific CPL files may be generated as subsets of the Master CPL.
+[`WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`](bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv) records the previous revision's placement data. In particular, do not assume a historical dataset is unchanged or suitable for a new Rev1.5.2 assembly without production-release reconciliation.
 
 ---
 
 # Datasheet Traceability
 
-`DATASHEET_INDEX.md`
-
-maps production components to manufacturer or trusted supplier documentation.
-
-The traceability model is:
-
-```text id="izyl77"
-PCB Designator
-      ↓
-Master BOM
-      ↓
-Manufacturer MPN
-      ↓
-DATASHEET_INDEX.md
-      ↓
-Manufacturer Datasheet
-```
+The repository contains a [Rev1.5.1 component datasheet index](datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md). Use it as manufacturer reference information and reconcile component identity against the actual released Rev1.5.2 BOM before manufacturing. It does not establish a new Rev1.5.2 part list by itself.
 
 ---
 
@@ -428,84 +391,42 @@ defines:
 
 # Design Validation
 
-The Rev1.5.1 design has completed the principal pre-production engineering stages.
+| Validation evidence | Result |
+| --- | --- |
+| Original Rev1.5.1 pre-production review | Historical PASS; physical SPEED-selector fault discovered afterwards |
+| Rev1.5.1 electrical diagnosis | PASS — pin-2 common contact, contact closure and faulty nets confirmed |
+| Existing Rev1.5.1 physical correction | PASS — cuts/jumpers, bench measurements and Amiga 1200 gameplay |
+| Rev1.5.2 schematic / PCB revision | Corrected; previously reported ERC 0 errors / 0 warnings; DRC 0 errors / 0 unconnected pads |
+| Recorded custom-footprint/J1 DRC warnings | 46 in prior report; independent final waiver record not attached to this ZIP |
+| Rev1.5.2 production fabrication outputs | Updated and manufactured, project-owner confirmation |
+| **Newly manufactured Rev1.5.2 full functional test** | **PASS — project-owner confirmation, October 2026** |
+| **Current release status** | **FINAL PRODUCTION RELEASE** |
 
-| Area                              | Status   |
-| --------------------------------- | -------- |
-| Architecture                      | Complete |
-| Feature specification             | Complete |
-| Component selection               | Complete |
-| Schematic                         | Complete |
-| PCB layout                        | Complete |
-| ERC                               | Passed   |
-| PCB DRC                           | Passed   |
-| Protection-device topology review | Passed   |
-| Critical footprint/pinout review  | Passed   |
-| Gerber generation                 | Complete |
-| Master BOM                        | Complete |
-| Master CPL                        | Complete |
-| Datasheet index                   | Complete |
-| Alternate-part policy             | Complete |
-| Procurement documentation         | Complete |
-| Assembly data preparation         | Complete |
-| Production PCB assembly           | Pending  |
-| Rev1.5.1 physical validation      | Pending  |
-| Production approval               | Pending  |
+**Scope:** A manufactured Rev1.5.2 sample passed all reported controller functions. Production batch inspection, traceable BOM/CPL and any conformity/independent certification are separate matters and are not inferred from gameplay alone. See [manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
 ---
 
 # Production Release Status
 
-Revision 1.5.1 is currently classified as:
+**Rev1.5.2 — FINAL PRODUCTION RELEASE / PHYSICALLY FUNCTIONALLY VALIDATED.** The project owner has received and tested an actual fabricated Rev1.5.2 PCB, confirming that the SPEED selector fix and the controller's complete reported functionality work. The obsolete original Rev1.5.1 Gerbers shall not be reused for new manufacturing.
 
-**Production Release Candidate**
-
-This means that:
-
-* the electrical design is complete
-* the PCB layout is complete
-* manufacturing data has been generated
-* component selection has been frozen for the production candidate
-* BOM/CPL documentation is complete
-* critical component pinouts and protection topology have been reviewed
-
-Final **Production Approved** status requires successful assembly and physical functional validation of the Rev1.5.1 production hardware.
+The historic Rev1.5.1 Production Release Candidate status is retained only in its date-specific engineering record. It does not describe the current release.
 
 ---
 
-# Validation Before Production Approval
+# Repeatable acceptance checks for manufactured units
 
-The assembled Rev1.5.1 controller should be tested for:
+A first manufactured Rev1.5.2 controller has already **passed complete reported functional validation** (owner confirmation). To keep future production repeatable, perform the following on new units or batches:
 
-* UP
-* DOWN
-* LEFT
-* RIGHT
-* FIRE1 left
-* FIRE1 right
-* FIRE2 left
-* FIRE2 right
-* autofire OFF
-* autofire SLOW
-* autofire FAST
-* dual-colour autofire indication
-* key backlight
-* backlight ON/OFF control
-* +5 V continuity
-* GND continuity
-* absence of VCC-GND short circuit
-* DB9 cable mapping
-* hot-swap socket operation
-* mechanical-switch replacement
-* operation on representative target retro-computer hardware
+- PCB revision, assembly orientation, DB9 mapping, power-to-ground short and initial +5 V checks
+- UP / DOWN / LEFT / RIGHT, both FIRE1 controls, both FIRE2 controls
+- AUTO OFF / ON, **FAST and SLOW correctly distinguished**, manual FIRE1 retained
+- Power and red/green autofire indication
+- Hot-swap switches, key backlight, dedicated backlight control
+- Representative real-system play and enclosure/mechanical fit
+- Traceability against the correct **Rev1.5.2** Gerber/BOM/CPL handoff
 
-Successful completion of the validation procedure allows promotion from:
-
-**Production Release Candidate**
-
-to:
-
-**Production Approved**
+This is routine production QA and does not reclassify the already verified Rev1.5.2 design as an untested release.
 
 ---
 
@@ -529,13 +450,13 @@ Platform-specific electrical compatibility shall nevertheless be verified before
 
 # Revision Philosophy
 
-Revision 1.5.1 represents the mature discrete-hardware branch of WASDPad+.
+Revision 1.5.2 is the final, fully functionally validated discrete-hardware branch of WASDPad+.
 
 More advanced programmable features are intentionally outside the scope of this revision.
 
-Features requiring a microcontroller or firmware belong to a future hardware generation rather than Revision 1.5.1.
+Features requiring a microcontroller or firmware belong to the future Rev2.0 platform, not Rev1.5.2.
 
-This separation keeps Rev1.5.1:
+This separation keeps Rev1.5.2:
 
 * simple
 * deterministic
@@ -548,8 +469,9 @@ This separation keeps Rev1.5.1:
 
 # Revision History
 
-| Revision     | Status                           | Description                                                                                                                                                                   |
-| ------------ | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rev1.2       | Production validated             | Original validated WASDPad hardware platform                                                                                                                                  |
-| Rev1.5       | Development branch               | Reliability, protection, hot-swap and manufacturing improvements                                                                                                              |
-| **Rev1.5.1** | **Production Release Candidate** | Completed discrete-hardware production design with ESD/PTC protection, hot-swap sockets, dual-colour status indication, key backlighting and full manufacturing documentation |
+| Revision | Status | Description |
+| --- | --- | --- |
+| Rev1.2 | Validated legacy design | Original proven discrete-controller architecture |
+| Rev1.5 | Historical development | ESD protection, hot-swap, hardware autofire and backlight additions |
+| Rev1.5.1 | **Superseded — not a current production Gerber baseline** | Initial production-oriented design; physical selector mapping fault found; one unit successfully reworked and tested on Amiga 1200 |
+| **Rev1.5.2** | **FINAL PRODUCTION RELEASE — manufactured first-article functionality PASS** | Corrected `SW_SPEED1` common pin 2 mapping and PCB routing; updated Gerbers; newly fabricated Rev1.5.2 controller fully function-tested (owner confirmed October 2026) |

@@ -9,6 +9,11 @@
 > by the project owner). Do not fabricate from unmodified Rev1.5.1 CAM files.
 > For details, see the [engineering erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
 > and [Rev1.5.2 manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+>
+> **2026-10-19 update:** An actually manufactured **Rev1.5.2** controller was
+> received and tested; complete functionality **PASS** (project-owner report).
+> The dated Rev1.5.1 PASS/PENDING fields below remain historical and are not the
+> current Rev1.5.2 production classification.
 
 **Hardware Revision:** Rev1.5.1
 **Review Date:** 2026-08-29
@@ -770,7 +775,7 @@ Assembly-house-specific CPL files may be generated as subsets of the Master CPL.
 
 Datasheet index:
 
-`bom/DATASHEET_INDEX.md`
+`datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md`
 
 Reviewed items:
 
@@ -794,7 +799,7 @@ Master BOM
       ↓
 Manufacturer MPN
       ↓
-DATASHEET_INDEX.md
+WASDPad_Rev1.5.1_DATASHEET_INDEX.md
       ↓
 Manufacturer Datasheet
 ```
@@ -886,7 +891,7 @@ Reviewed documents:
 * [x] `hardware/rev1.5/bom/README.md`
 * [x] `hardware/rev1.5/bom/ALTERNATE_PARTS.md`
 * [x] `hardware/rev1.5/bom/PROCUREMENT_NOTES.md`
-* [x] `hardware/rev1.5/bom/DATASHEET_INDEX.md`
+* [x] `hardware/rev1.5/datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md`
 * [x] Master BOM
 * [x] Master CPL
 
@@ -1061,8 +1066,6 @@ Production approval shall be issued only after successful completion of the phys
 
 ---
 
-## Post-Review Corrective Action — 2026-10-16
-
 <!-- wasdpad-rev152-review-appendix-start -->
 ## Post-Review Corrective Action — 2026-10-16
 
@@ -1095,10 +1098,10 @@ in this documentation pass.
 
 **Release disposition:** Rev1.5.2 corrected PCB and updated Gerbers are the
 series-production baseline; unmodified Rev1.5.1 fabrication outputs are
-obsolete for new manufacture. A newly fabricated Rev1.5.2 first article still
-requires electrical and real-host gameplay acceptance before recording its
-own production-unit validation. Rework and individually test remaining legacy
-Rev1.5.1 stock before use.
+obsolete for new manufacture. A newly fabricated Rev1.5.2 unit has subsequently **PASSED all reported
+controller functionality**, as confirmed by the project owner in October 2026. The specific physical test logs were not included in the
+repository export; subsequent production units still require routine quality
+checks. Rework and individually test remaining legacy Rev1.5.1 stock before use.
 
 **Mandatory prevention:** verify schematic pin number, footprint pad number,
 physical common terminal and both actuator positions against a real switch
@@ -1108,3 +1111,21 @@ Evidence: [SPEED selector erratum](REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.m
 · [Legacy three-cut/three-jumper rework](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
 · [Rev1.5.2 manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 <!-- wasdpad-rev152-review-appendix-end -->
+
+---
+
+## Rev1.5.2 Final Production Release — Manufactured Hardware Acceptance (2026-10-19)
+
+**Current hardware:** Rev1.5.2  
+**Manufacturing release:** **FINAL PRODUCTION RELEASE**  
+**Newly fabricated Rev1.5.2 first-article functional test:** **PASS** (project-owner confirmation, October 2026)
+
+Following the dated Rev1.5.1 design review and the 2026-10-16 corrective-action investigation, the project owner commissioned/received a **new Rev1.5.2 PCB manufactured from the corrected production artwork**. The owner confirms that this physical Rev1.5.2 unit is **fully functional**, including the FAST/SLOW selector mapping that failed on the earlier unmodified revision.
+
+This evidence is **distinct from** the successful three-cut/three-jumper repair of the Rev1.5.1 prototype. The known design issue has therefore been addressed in the final CAD/Gerbers **and** functionally verified on newly fabricated Rev1.5.2 hardware.
+
+**Traceability:** A first-article functional PASS is reported, but the actual Rev1.5.2 production Gerber/BOM/CPL archive and per-test measurement log are not part of this public ZIP; this record does not assert independent verification of unavailable data. The 46 previously reported DRC custom-footprint/J1 warnings remain an engineering record item for controlled documentation, separate from the confirmed successful controller function. Future production lots are subject to normal QA.
+
+**Final disposition:** Rev1.5.2 **FINAL PRODUCTION RELEASE — PHYSICALLY FUNCTIONALLY VALIDATED**. The preceding Rev1.5.1 PASS and PENDING tables retain their historical meaning and must not be interpreted as current release status.
+
+See the [Rev1.5.2 manufacturing release record](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
