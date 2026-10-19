@@ -1,152 +1,132 @@
-# WASDPad+ Revision 1.5.1
+# WASDPad+ Rev1.5.2 — Bill of Materials and Component Documentation
 
-> **HISTORICAL REV1.5.1 REFERENCE — NOT THE CURRENT PRODUCTION FILE SET.** The current
-> WASDPad+ hardware is **Rev1.5.2 — Final Production Release**. A newly
-> fabricated Rev1.5.2 controller has passed full reported functionality (project-owner
-> confirmation, October 2026). This Rev1.5.1 document and its BOM/CPL naming
-> remain unchanged for engineering traceability; equivalence to the actual Rev1.5.2
-> production BOM/CPL has not been independently established from the GitHub ZIP.
-> For current release decisions use the [Rev1.5.2 production release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
-> Actual historical datasheet index: [WASDPad Rev1.5.1 datasheets](../datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md).
+> **CURRENT RELEASE: Rev1.5.2 — FINAL PRODUCTION RELEASE.** A newly manufactured
+> Rev1.5.2 controller passed the project owner's reported functional testing
+> in October 2026, including the corrected FAST/SLOW selector. **The component
+> BOM is unchanged from Rev1.5.1** (project-owner confirmation).
+>
+> **Publication policy:** The BOM, historical CPL, component datasheets,
+> sourcing and compliance references are public. The **KiCad schematic,
+> KiCad PCB layout and fabrication Gerber/drill/CAM files** are maintained
+> privately and reserved for exclusive delivery to **Commodore**. Their absence
+> from this public repository is intentional, not a missing engineering output.
 
-
-## Bill of Materials and Manufacturing Documentation
-
-**Document Version:** 1.0
-**Hardware Revision:** Rev1.5.1
-**Status:** Production Release Candidate
-**Last Updated:** 2026-08-29
+**Document Version:** 2.0  
+**Hardware Revision:** Rev1.5.2  
+**Hardware Status:** Final Production Release — manufactured functional validation PASS  
+**Compliance Evidence:** Research register; outstanding declarations flagged  
+**Last Updated:** 2026-10-19
 
 ---
 
-# 1. Purpose
+## 1. Purpose
 
-This directory contains the authoritative component, placement, sourcing and manufacturing documentation for **WASDPad+ Hardware Revision 1.5.1**.
+This directory documents the **public component, placement-history, sourcing,
+regulatory-reference and assembly-classification records** of WASDPad+
+Rev1.5.2. The component selection is identical to Rev1.5.1. Rev1.5.2 corrects
+the physical SPEED switch common-contact mapping in the schematic and PCB;
+it does **not** introduce a BOM/MPN change. See the [release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+and the [SPEED selector erratum](../REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md).
 
-Revision 1.5.1 is based on the validated WASDPad hardware architecture and introduces or finalizes:
+The retained hardware platform includes:
 
-* electrical protection
-* resettable +5 V overcurrent protection
-* DB9 signal ESD protection
-* +5 V rail ESD/TVS protection
-* MX hot-swap switch sockets
-* replaceable mechanical switches
+* pure hardware directional, FIRE1/FIRE2 and FAST/SLOW autofire control
+* resettable +5 V overcurrent, signal ESD and supply rail protection
+* MX hot-swap sockets and replaceable mechanical switches
 * dual-colour autofire status indication
-* switch backlighting
-* backlight enable/disable control
-* standardized SMD passive components
-* manufacturing-oriented BOM and CPL data
-* component traceability by manufacturer part number
-* centralized datasheet references
+* warm-white key backlighting and independent illumination control
+* standardized passives, MPN traceability, BOM/CPL and datasheet references
 
-The fundamental operating principle remains fully hardware-based.
-
-**Revision 1.5.1 does not require a microcontroller or firmware.**
+**Rev1.5.2 requires no microcontroller, firmware or driver.**
 
 ---
 
-# 2. Authoritative Files
+## 2. BOM Files and Supporting Documentation
 
-The BOM directory contains the following primary documentation:
+### 2.1 Directory layout
+
+The datasheet and declaration indexes are in the **sibling `datasheets/` folder**, not in `bom/`:
 
 ```text
-hardware/rev1.5/bom/
-│
-├── README.md
-├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
-├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
-├── WASDPad_Rev1.5.1_DATASHEET_INDEX.md
-├── ALTERNATE_PARTS.md
-└── PROCUREMENT_NOTES.md
+hardware/rev1.5/
+├── REV1.5.2_MANUFACTURING_RELEASE_NOTES.md
+├── datasheets/
+│   ├── WASDPad_Rev1.5.1_DATASHEET_INDEX.md
+│   └── WASDPad_Rev1.5.2_Regulatory_Declaration_URL_Index.md
+└── bom/
+    ├── README.md
+    ├── WASDPad_Rev1.5.2_BOM_Compliance_Links.xlsx
+    ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
+    ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
+    ├── ALTERNATE_PARTS.md
+    └── PROCUREMENT_NOTES.md
 ```
 
-## `WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
+### 2.2 Current Rev1.5.2 BOM and compliance Excel
 
-This is the **authoritative Master Bill of Materials** for WASDPad+ Rev1.5.1.
+**[WASDPad+ Rev1.5.2 BOM with Compliance Links (XLSX)](WASDPad_Rev1.5.2_BOM_Compliance_Links.xlsx)**
 
-It contains:
+The workbook retains the **83 original BOM line items** and adds datasheet,
+RoHS, REACH and evidence-quality references. The project owner confirms no
+component-list changes between Rev1.5.1 and Rev1.5.2. It contains:
 
-* reference designators
-* manufacturer part numbers
-* quantities
-* KiCad footprints
-* component descriptions
-* JLCPCB/LCSC part numbers where applicable
-* PCB side / layer information
-* assembly classification
-* THT components
-* bottom-side components
-* manually installed mechanical components
-* cable and PCB-interface items
+* **README** — purpose, provenance and evidence limitations
+* **MPN Compliance** — evidence-source register covering **29 unique MPN entries**
+* **BOM 83 rows** — designators, MPNs, quantities, footprints, assembly
+  classes and matching compliance-source columns
 
-If information in another BOM-related document conflicts with the Master BOM, the **Master BOM takes precedence**.
+**Scope:** The workbook is a **public BOM and compliance research register**,
+not a signed declaration of conformity and not a complete production PCB
+fabrication package. Where evidence is incomplete, the status is marked
+pending, provisional or source-limited; such entries are not certified.
 
----
+### 2.3 Historical Rev1.5.1 Master BOM (CSV)
 
-## `WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
+**[WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv](WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv)**
 
-This is the complete Master Component Placement List.
+The original Master BOM is retained unchanged for historical traceability.
+It includes reference designators, MPNs, quantities, KiCad footprints,
+component descriptions, supplier part numbers, PCB layer and assembly
+classification, including SMD, THT, mechanical, cable and DNP/PCB-feature items.
 
-It contains placement information for:
+The component identity was carried into Rev1.5.2 without MPN changes.
+The Rev1.5.1 CSV itself is **not** a replacement for the controlled Rev1.5.2
+fabrication and assembly handoff. If public documents disagree, reconcile
+against the owner's approved final-revision component list.
 
-* top-side SMD components
-* bottom-side SMD components
-* through-hole components
-* Kailh hot-swap sockets
-* manually installed mechanical switches
+### 2.4 Historical Rev1.5.1 Master CPL (CSV)
 
-The Master CPL is intended for manufacturing documentation and traceability.
+**[WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv](WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv)**
 
-Assembly-house-specific CPL files may be generated as subsets of this master file.
+The historic placement list covers top/bottom SMD, THT, hot-swap and
+manual-installation classes. It is **public** but is **not represented as a
+separately verified Rev1.5.2 placement export**. Rev1.5.2 fabrication must
+use the revision-matched, controlled production placement dataset.
 
----
+### 2.5 Datasheets and regulatory evidence
 
-## `WASDPad_Rev1.5.1_DATASHEET_INDEX.md`
+* [Rev1.5.1 Datasheet Index](../datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md) —
+  the technical references for the unchanged Rev1.5.2 component list.
+* [Rev1.5.2 RoHS/REACH Declaration URL Index](../datasheets/WASDPad_Rev1.5.2_Regulatory_Declaration_URL_Index.md) —
+  official manufacturer declarations, product-status pages, distributor
+  indicators and items that still require specific supplier evidence.
 
-Centralized datasheet and manufacturer-reference index.
+A datasheet, distributor product badge, manufacturer-status page and signed
+MPN-specific declaration are **different evidence classes**. They must not
+be conflated when reviewing compliance.
 
-Components are grouped by category, including:
+### 2.6 Other documentation
 
-* integrated circuits
-* protection devices
-* transistors and MOSFETs
-* switches and sockets
-* LEDs and optoelectronics
-* diodes
-* capacitors
-* resistors
-* mechanical switches
-* cable/interface components
-
-The Master BOM MPN remains the authoritative component identity.
-
----
-
-## `ALTERNATE_PARTS.md`
-
-Contains approved or technically evaluated replacement components.
-
-Alternate parts shall only be used after verification of:
-
-* electrical compatibility
-* package compatibility
-* footprint compatibility
-* pinout
-* polarity
-* voltage/current ratings
-* functional behaviour
-
-Protection devices require additional topology verification.
+* [ALTERNATE_PARTS.md](ALTERNATE_PARTS.md) — evaluated substitute parts and
+  requirements for checking function, pinout, polarity and footprint.
+* [PROCUREMENT_NOTES.md](PROCUREMENT_NOTES.md) — sourcing, suppliers,
+  lifecycle and purchasing guidance.
+* [Rev1.5.2 Manufacturing Release Notes](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) —
+  release status, speed-switch correction and first-article validation.
 
 ---
 
-## `PROCUREMENT_NOTES.md`
-
-Contains sourcing, lifecycle, supplier and production information that does not belong in the schematic or Master BOM.
-
----
-
-# 3. Revision 1.5.1 Component Status
+## 3. Rev1.5.2 Component Status
 
 | Component Group            | Status                                              |
 | -------------------------- | --------------------------------------------------- |
@@ -173,9 +153,9 @@ Contains sourcing, lifecycle, supplier and production information that does not 
 
 ---
 
-# 4. Core Active Components
+## 4. Core Active Components
 
-## 4.1 Autofire Timer
+### 4.1 Autofire Timer
 
 **Reference:** U1
 **Manufacturer:** Texas Instruments
@@ -190,7 +170,7 @@ KiCad footprint:
 Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
 ```
 
-The TLC555CDR is the production-selected timer for Rev1.5.1.
+The TLC555CDR remains the production-selected timer for Rev1.5.2; its MPN is unchanged from Rev1.5.1.
 
 It replaces the ICM7555 used during earlier development while preserving the CMOS 555 operating principle and required pin compatibility.
 
@@ -198,7 +178,7 @@ Bipolar NE555-family devices are not preferred because of their higher supply-cu
 
 ---
 
-## 4.2 Bilateral Switching Logic
+### 4.2 Bilateral Switching Logic
 
 **Reference:** U2
 **Manufacturer:** Texas Instruments
@@ -213,11 +193,11 @@ KiCad footprint:
 Package_SO:SO-14_3.9x8.65mm_P1.27mm
 ```
 
-The CD4066 provides hardware switching for the autofire speed-selection circuitry.
+The CD4066 provides hardware switching for the autofire speed-selection circuitry. Rev1.5.2 corrects the SPEED switch common-contact schematic/PCB mapping; no component substitution was required.
 
 ---
 
-## 4.3 MOSFET Logic
+### 4.3 MOSFET Logic
 
 **References:** Q1–Q7
 **Manufacturer:** onsemi
@@ -238,7 +218,7 @@ Pin 3 = Drain
 
 ---
 
-## 4.4 Autofire Status Drivers
+### 4.4 Autofire Status Drivers
 
 **References:** Q8, Q9
 **Manufacturer:** onsemi
@@ -259,16 +239,16 @@ Pin 3 = Collector
 
 ---
 
-# 5. Autofire Timing
+## 5. Autofire Timing
 
-Revision 1.5.1 provides two fixed hardware autofire speeds.
+Rev1.5.2 provides two fixed hardware autofire speeds.
 
 | Reference |  Value | Function |
 | --------- | -----: | -------- |
 | R13       | 330 kΩ | FAST     |
 | R14       | 680 kΩ | SLOW     |
 
-The values were selected through physical gameplay testing.
+The values were selected through physical gameplay testing and retained for Rev1.5.2.
 
 User-facing switch behaviour:
 
@@ -281,9 +261,9 @@ These values supersede earlier experimental autofire timing values.
 
 ---
 
-# 6. Passive Component Standardization
+## 6. Passive Component Standardization
 
-## 6.1 Resistors
+### 6.1 Resistors
 
 General SMD resistors are standardized on the **YAGEO RC1206FR-07** family wherever practical.
 
@@ -295,7 +275,7 @@ General characteristics:
 * 0.25 W
 * SMD
 
-Values used in Rev1.5.1 include:
+Values used in Rev1.5.2 include:
 
 * 270 Ω
 * 330 Ω
@@ -310,9 +290,9 @@ Exact designator-to-MPN assignments are maintained in the Master BOM.
 
 ---
 
-## 6.2 Capacitors
+### 6.2 Capacitors
 
-### C1
+#### C1
 
 **MPN:** `1206B224K500NT`
 **Value:** 220 nF
@@ -322,7 +302,7 @@ Exact designator-to-MPN assignments are maintained in the Master BOM.
 
 Used as a timing capacitor.
 
-### C2, C3
+#### C2, C3
 
 **Manufacturer:** Samsung Electro-Mechanics
 **MPN:** `CL31B104KBCNNNC`
@@ -331,7 +311,7 @@ Used as a timing capacitor.
 **Package:** 1206
 **JLCPCB/LCSC:** `C24497`
 
-### VCC-GND-Decoupling1
+#### VCC-GND-Decoupling1
 
 **Manufacturer:** YAGEO
 **MPN:** `CC1206KRX7R8BB104`
@@ -344,7 +324,7 @@ The dedicated VCC-GND decoupling capacitor shall be located close to the relevan
 
 ---
 
-# 7. Overcurrent Protection
+## 7. Overcurrent Protection
 
 **Reference:** F2
 **Manufacturer:** Littelfuse
@@ -359,9 +339,9 @@ The protection value was selected with the available current from the target ret
 
 ---
 
-# 8. ESD Protection
+## 8. ESD Protection
 
-## 8.1 D4 and D5 — DB9 Signal Protection
+### 8.1 D4 and D5 — DB9 Signal Protection
 
 **References:** D4, D5
 **Manufacturer:** TECH PUBLIC
@@ -382,7 +362,7 @@ The production-selected device pinout and topology were verified against the PCB
 
 ---
 
-## 8.2 D6 — +5 V Protection
+### 8.2 D6 — +5 V Protection
 
 **Reference:** D6
 **Manufacturer:** TECH PUBLIC
@@ -397,7 +377,7 @@ KiCad footprint:
 Package_TO_SOT_SMD:SOT-323_SC-70
 ```
 
-Validated Rev1.5.1 connection:
+Protection-device pin mapping originally validated during Rev1.5.1 engineering:
 
 ```text
 Pin 1 -> protected +5 V rail
@@ -407,15 +387,15 @@ Pin 3 -> GND
 
 The production-selected TPE0562BC3 differs internally from the originally evaluated PESD6V0L2UU device.
 
-It is therefore treated as a specifically validated Rev1.5.1 protection component rather than as an uncontrolled generic substitution.
+It remains the specified protection component for Rev1.5.2 rather than an uncontrolled generic substitution.
 
 **Validation status: PASS**
 
 ---
 
-# 9. LED System
+## 9. LED System
 
-## 9.1 D1 — Power Indicator
+### 9.1 D1 — Power Indicator
 
 **Reference:** D1
 **Manufacturer:** Bivar
@@ -432,7 +412,7 @@ Alternative approved LED colours or devices, where applicable, are documented in
 
 ---
 
-## 9.2 D7 — Autofire Status Indicator
+### 9.2 D7 — Autofire Status Indicator
 
 **Reference:** D7
 **Manufacturer:** Bivar
@@ -455,13 +435,13 @@ R22 = 270 Ω
 R23 = 330 Ω
 ```
 
-The common-cathode configuration is required by the Rev1.5.1 LED-driver topology.
+The common-cathode configuration is required by the Rev1.5.2 LED-driver topology.
 
 **Validation status: PASS**
 
 ---
 
-## 9.3 D8–D15 — Key Backlight
+### 9.3 D8–D15 — Key Backlight
 
 **References:** D8–D15
 **Manufacturer:** XINGLIGHT
@@ -486,7 +466,7 @@ The deliberately low LED current provides subtle key illumination rather than hi
 
 ---
 
-# 10. Backlight Control
+## 10. Backlight Control
 
 **Reference:** U3
 **Manufacturer:** C&K
@@ -500,9 +480,9 @@ The component is located on the bottom side of the PCB and may be manually assem
 
 ---
 
-# 11. Gameplay Switches
+## 11. Gameplay Switches
 
-Revision 1.5.1 uses eight MX-compatible mechanical switches.
+Rev1.5.2 uses eight MX-compatible mechanical switches.
 
 Preferred fitted switch:
 
@@ -518,7 +498,7 @@ The mechanical switches are replaceable and are not soldered directly to the PCB
 
 ---
 
-# 12. MX Hot-Swap Sockets
+## 12. MX Hot-Swap Sockets
 
 **References:** SW1–SW8
 **Manufacturer:** Kaihua / Kailh
@@ -548,11 +528,11 @@ The hot-swap sockets and mechanical switches are separate physical BOM items.
 
 ---
 
-# 13. Autofire Control Switches
+## 13. Autofire Control Switches
 
-Revision 1.5.1 uses two different E-Switch devices.
+Rev1.5.2 uses two different E-Switch devices.
 
-## SW_AUTO1 — Autofire Enable
+### SW_AUTO1 — Autofire Enable
 
 **Manufacturer:** E-Switch
 **MPN:** `100SP1T1B4M2QE`
@@ -564,7 +544,7 @@ Function:
 Autofire OFF / ON
 ```
 
-## SW_SPEED1 — Autofire Speed
+### SW_SPEED1 — Autofire Speed
 
 **Manufacturer:** E-Switch
 **MPN:** `100SP3T1B1M2QEH`
@@ -582,7 +562,7 @@ These are intentionally separate BOM items and shall not be treated as interchan
 
 ---
 
-# 14. DB9 Controller Cable
+## 14. DB9 Controller Cable
 
 The controller uses a molded female DB9 controller cable with flying leads.
 
@@ -596,7 +576,7 @@ Detailed assembly instructions may be maintained separately under the project as
 
 ---
 
-# 15. J1 Cable Interface
+## 15. J1 Cable Interface
 
 J1 consists of PCB solder pads rather than a separately procured connector.
 
@@ -612,7 +592,7 @@ The DB9 cable is soldered directly to these PCB pads.
 
 ---
 
-# 16. Assembly Classification
+## 16. Assembly Classification
 
 The Master BOM distinguishes between:
 
@@ -653,124 +633,148 @@ Includes J1 PCB solder-pad structures.
 
 ---
 
-# 17. Manufacturing Data Policy
+## 17. Public BOM and Private Design-File Policy
 
-The files in this directory form the **Master engineering dataset**.
+WASDPad+ publishes its **component BOM, historical CPL, datasheets, evaluated
+alternates, procurement information and compliance evidence references**.
 
-Manufacturing-house-specific files may be derived from them.
+The **schematic source (`.kicad_sch`), PCB layout (`.kicad_pcb`) and fabrication
+outputs (Gerber, drill and other CAM data)** are deliberately maintained
+outside the public repository and are reserved for **exclusive delivery to
+Commodore**. They exist as part of the finished Rev1.5.2 hardware development;
+non-public distribution does not imply incomplete engineering.
 
-For example, a JLCPCB assembly BOM/CPL may intentionally exclude:
+For production control:
 
-* THT components
-* bottom-side manually assembled components
-* mechanical switches
-* external cables
-* DNP PCB features
-
-Such manufacturing subsets shall not replace or redefine the Master BOM.
-
----
-
-# 18. Production Validation
-
-Before production release, the Rev1.5.1 hardware shall satisfy the following checks:
-
-* schematic ERC passes
-* PCB DRC passes
-* Gerber output reviewed
-* drill files reviewed
-* component footprints verified
-* D4/D5 orientation and topology verified
-* D6 orientation and topology verified
-* D7 pinout verified
-* D8–D15 LED polarity verified
-* MMBT3904 symbol-to-footprint mapping verified
-* 2N7002 symbol-to-footprint mapping verified
-* U1 orientation verified
-* U2 orientation verified
-* DB9 cable pin mapping verified
-* +5 V and GND continuity verified
-* no VCC-GND short circuit
-* autofire OFF verified
-* autofire SLOW verified
-* autofire FAST verified
-* FIRE1 verified
-* FIRE2 verified
-* UP/DOWN/LEFT/RIGHT verified
-* red/green autofire indication verified
-* key backlight verified
-* backlight ON/OFF control verified
+* A public BOM or historical CPL is **not** a complete fabrication package.
+* Rev1.5.1 fabrication data shall not be reused as a Rev1.5.2 manufacturing
+  source without an explicit revision verification.
+* Actual Rev1.5.2 fabrication and assembly must use matching controlled
+  final-revision documentation, including the SPEED common-pin correction.
+* Assembly-house-specific BOM/CPL subsets may omit manually fitted THT items,
+  bottom-side components, mechanical switches, cables and DNP PCB features.
+  Such subsets do not change the identity of the approved components.
 
 ---
 
-# 19. Traceability
+## 18. Hardware Validation and Quality Checks
 
-Component identity should be traced in the following order:
+**Rev1.5.2 — Final Production Release.** The project owner confirmed a
+successful complete functional test of an **actually manufactured Rev1.5.2**
+controller in October 2026, including both FAST and SLOW autofire settings.
+An earlier Rev1.5.1 board was separately repaired and tested as part of
+historic corrective action.
+
+The following checklist remains relevant to production acceptance. It is not
+an assertion that every check's detailed test log or every future unit's QA
+record is published on GitHub:
+
+* final schematic ERC, PCB DRC, Gerber and drill release reviews
+* component footprint, mounting orientation and board-revision checks
+* D4/D5 signal ESD topology and orientation
+* D6 rail-protection topology and orientation
+* D7 common-cathode LED pinout and D8–D15 backlight polarity
+* MMBT3904/2N7002 pin mappings and U1/U2 orientations
+* physical SPEED switch **pad 2 COMMON**, pad 1 FAST, pad 3 SLOW mapping
+* cable-to-DB9 continuity testing independent of insulation colour
+* +5 V/GND continuity and absence of supply short circuits
+* autofire OFF, FAST, SLOW, FIRE1, FIRE2, UP/DOWN/LEFT/RIGHT
+* red/green autofire status and backlight ON/OFF control
+
+Future production batches and individual controllers still require routine
+incoming, assembly and end-of-line acceptance. Regulatory documentation
+verification is a **separate activity** from completed hardware functional
+validation, and does not change the Final Production Release designation.
+
+Supporting documents:
+
+* [Rev1.5.2 Manufacturing Release Notes](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+* [SPEED Selector Erratum](../REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+* [Assembly and Manufacturing Procedure](../../../docs/assembly/ASSEMBLY.md)
+
+---
+
+## 19. Component and Regulatory Evidence Traceability
 
 ```text
 Reference Designator
-        ↓
-Master BOM
-        ↓
-Manufacturer Part Number (MPN)
-        ↓
-WASDPad_Rev1.5.1_DATASHEET_INDEX.md
-        ↓
-Manufacturer Datasheet
+        |
+        v
+Rev1.5.2 BOM Excel (unchanged Rev1.5.1 component baseline)
+        |
+        v
+Manufacturer Part Number / approved procurement item
+        |
+        +--> Datasheet Index --> technical specification
+        |
+        +--> RoHS/REACH Evidence Index --> source URL / evidence class / status
 ```
 
-Where a JLCPCB/LCSC component is used for production assembly, its corresponding part number is additionally recorded in the Master BOM.
+Do not treat a manufacturer product-status page, distributor "RoHS" label or
+family-wide policy as an exact-MPN signed declaration without verification.
+Where only limited evidence is available, its status remains **pending** or
+**provisional** until valid current supplier documentation is obtained.
 
-The **manufacturer part number remains the primary component identity**.
+**Specific caveat:** The E-Switch 100 series regulatory source identifies a
+RoHS **6(c)** exemption and reports **lead as REACH SVHC above 0.1%** within
+its stated scope. It must not be presented as unconditionally lead-free or
+SVHC-free. Confirm the applicable version, scope and market requirements
+before making a finished-product compliance claim.
 
----
+Generic descriptions without a fixed supplier/MPN (such as the 1N4148 diode
+and DB9 cable) require supplier-specific verification. J1 is a PCB copper
+feature, not a purchased component; PCB materials and finishes are covered by
+fabrication-process controls rather than an independent J1 part certificate.
 
-# 20. Document Authority
-
-For Rev1.5.1:
-
-**Component identity and procurement data**
-
-→ `WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
-
-**Component placement data**
-
-→ `WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
-
-**Datasheet references**
-
-→ `WASDPad_Rev1.5.1_DATASHEET_INDEX.md`
-
-**Approved/evaluated substitutions**
-
-→ `ALTERNATE_PARTS.md`
-
-**Supplier and procurement guidance**
-
-→ `PROCUREMENT_NOTES.md`
-
-This README provides the human-readable overview of those engineering records.
+**Neither the BOM workbook nor this README is a signed declaration of
+conformity or a CE certificate for the finished controller.**
 
 ---
 
-# 21. Release Status
+## 20. Document Authority
 
-**Hardware Revision:** WASDPad+ Rev1.5.1
-**BOM Documentation Version:** 1.0
-**Status:** Production Release Candidate
+| Subject | Document / disposition |
+| --- | --- |
+| Final hardware revision | **Rev1.5.2 — Final Production Release**; [manufacturing release notes](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) |
+| Current public component reference | [Rev1.5.2 BOM + Compliance Excel](WASDPad_Rev1.5.2_BOM_Compliance_Links.xlsx); unchanged component list |
+| Historical component baseline | [Rev1.5.1 Master BOM CSV](WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) |
+| Historical placement data | [Rev1.5.1 Master CPL CSV](WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv) |
+| Technical datasheets | [Rev1.5.1 Datasheet Index](../datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md); retained component MPNs |
+| RoHS/REACH references | [Rev1.5.2 Declaration URL Index](../datasheets/WASDPad_Rev1.5.2_Regulatory_Declaration_URL_Index.md); evidence register, not a certificate |
+| Component substitutions | [ALTERNATE_PARTS.md](ALTERNATE_PARTS.md) |
+| Supplier and procurement rules | [PROCUREMENT_NOTES.md](PROCUREMENT_NOTES.md) |
+| Controlled schematic, PCB, Gerber and drill data | **Private; exclusive handoff to Commodore** |
 
-The Rev1.5.1 component selection and PCB manufacturing dataset are complete.
-
-Final promotion to **Production Approved** should follow successful assembly and full functional validation of the Rev1.5.1 production hardware.
+The project owner's **controlled, final Rev1.5.2 design and matching production
+handoff package** is authoritative for PCB fabrication, net connectivity and
+revision-specific assembly. Public component records support technical
+transparency and sourcing traceability; they do not override the final design.
 
 ---
 
-# 22. Version History
+## 21. Release and Compliance Status
 
-| Document Version | Date           | Status                           | Changes                                                                                                                                                                                                                          |
-| ---------------- | -------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0.1              | Not recorded   | Draft                            | Initial Revision 1.5 BOM structure                                                                                                                                                                                               |
-| 0.5              | Not recorded   | Draft                            | Initial component grouping and candidate selection                                                                                                                                                                               |
-| 0.8              | Not recorded   | Engineering Review               | Protection, timer, logic, hot-swap and LED component selection                                                                                                                                                                   |
-| 0.9              | 2026-08-18     | Pre-Release Validated            | Consolidated pre-production component selections                                                                                                                                                                                 |
-| **1.0**          | **2026-08-29** | **Production Release Candidate** | Updated to Rev1.5.1 Master BOM/CPL; production-selected TLC555, ESD/TVS devices and capacitors; added key backlight system and U3; corrected autofire switch MPNs; added manufacturing classification and datasheet traceability |
+**Hardware Revision:** WASDPad+ Rev1.5.2  
+**BOM Documentation Version:** 2.0  
+**Hardware Status:** **FINAL PRODUCTION RELEASE — manufactured functional validation PASS** (project-owner report, October 2026)  
+**BOM Changes from Rev1.5.1:** **None** (project-owner confirmation)  
+**Regulatory Evidence Status:** Some exact-MPN declarations remain pending or provisional
+
+Rev1.5.2 implements the verified SPEED switch common-pad correction in the
+schematic, PCB and final fabrication outputs. The manufactured controller
+has passed the reported complete functional test. The design files and
+Gerbers remain private, while BOM and regulatory-document references are
+publicly accessible.
+
+---
+
+## 22. Version History
+
+| Document Version | Date | Status | Changes |
+| --- | --- | --- | --- |
+| 0.1 | Not recorded | Draft | Initial Rev1.5 BOM structure |
+| 0.5 | Not recorded | Draft | Candidate component groupings and early selection |
+| 0.8 | Not recorded | Engineering Review | Protection, timer, logic, hot-swap and LED part selection |
+| 0.9 | 2026-08-18 | Pre-Release Validated | Consolidated pre-production parts |
+| **1.0** | **2026-08-29** | **Rev1.5.1 Production Release Candidate (historical)** | Established Rev1.5.1 Master BOM/CPL; selected TLC555, protection parts and capacitors; backlighting/U3, corrected autofire switch MPNs, manufacturing classification and datasheet traceability |
+| **2.0** | **2026-10-19** | **Rev1.5.2 Final Production Release** | Updated entire README to manufactured and validated Rev1.5.2 status; linked public BOM/compliance Excel and RoHS/REACH index; clarified historic BOM/CPL provenance and the private schematic/PCB/Gerber distribution policy |
