@@ -1,5 +1,17 @@
 # WASDPad+ Development Roadmap
 
+<!-- speed-selector-erratum-2026-10-16 -->
+> **2026-10-16 completed corrective action:** Rev1.5.1 physical testing found the
+> SPEED common-pin mapping defect. The first patched Rev1.5.1 controller passed
+> all reported functions during Amiga 1200 gameplay. The fix was incorporated
+> into the final **Rev1.5.2 schematic and PCB layout**, and **Rev1.5.2 Gerbers
+> were regenerated/updated for series production** (project-owner confirmed).
+> Remaining work concerns individual rework acceptance for legacy stock, QA
+> disposition of recorded custom-footprint/J1 warnings, and first-article
+> acceptance of newly manufactured Rev1.5.2 boards—not re-design of the known
+> SPEED-selector fault. [Details](../../hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md).
+
+
 **Document Version:** 2.0
 **Current Hardware Revision:** Rev1.5.1
 **Current Status:** Production Release Candidate
