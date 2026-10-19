@@ -1,5 +1,15 @@
 # WASDPad+ Revision 1.5.1
 
+> **HISTORICAL REV1.5.1 REFERENCE — NOT THE CURRENT PRODUCTION FILE SET.** The current
+> WASDPad+ hardware is **Rev1.5.2 — Final Production Release**. A newly
+> fabricated Rev1.5.2 controller has passed full reported functionality (project-owner
+> confirmation, October 2026). This Rev1.5.1 document and its BOM/CPL naming
+> remain unchanged for engineering traceability; equivalence to the actual Rev1.5.2
+> production BOM/CPL has not been independently established from the GitHub ZIP.
+> For current release decisions use the [Rev1.5.2 production release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+> Actual historical datasheet index: [WASDPad Rev1.5.1 datasheets](../datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md).
+
+
 ## Approved Alternate Parts
 
 **Document Version:** 1.0
@@ -980,7 +990,7 @@ Before a new alternate MPN is added to this document:
 8. Verify internal topology for protection devices.
 9. Verify mechanical fit for switches, sockets and LEDs.
 10. Update the Master BOM only if the alternate becomes the new production-selected component.
-11. Update `DATASHEET_INDEX.md`.
+11. Update `WASDPad_Rev1.5.1_DATASHEET_INDEX.md`.
 12. Perform functional testing where the component can influence timing, latency, protection or user interaction.
 13. Record the approval status in this document.
 
@@ -1030,7 +1040,7 @@ WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
 
 Datasheets
         ↓
-DATASHEET_INDEX.md
+WASDPad_Rev1.5.1_DATASHEET_INDEX.md
 
 Approved substitutions
         ↓

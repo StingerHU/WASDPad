@@ -1,5 +1,15 @@
 # WASDPad+ Revision 1.5.1
 
+> **HISTORICAL REV1.5.1 REFERENCE — NOT THE CURRENT PRODUCTION FILE SET.** The current
+> WASDPad+ hardware is **Rev1.5.2 — Final Production Release**. A newly
+> fabricated Rev1.5.2 controller has passed full reported functionality (project-owner
+> confirmation, October 2026). This Rev1.5.1 document and its BOM/CPL naming
+> remain unchanged for engineering traceability; equivalence to the actual Rev1.5.2
+> production BOM/CPL has not been independently established from the GitHub ZIP.
+> For current release decisions use the [Rev1.5.2 production release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+> Actual historical datasheet index: [WASDPad Rev1.5.1 datasheets](../datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md).
+
+
 ## Procurement and Component Sourcing Notes
 
 **Document Version:** 1.0
@@ -32,7 +42,7 @@ The Rev1.5.1 procurement documentation consists of:
 ```text
 WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
 WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
-DATASHEET_INDEX.md
+WASDPad_Rev1.5.1_DATASHEET_INDEX.md
 ALTERNATE_PARTS.md
 PROCUREMENT_NOTES.md
 ```
@@ -43,7 +53,7 @@ Document responsibilities:
 | -------------------- | ------------------------------------------------ |
 | Master BOM           | Authoritative component identity and MPN         |
 | Master CPL           | Component placement and assembly information     |
-| DATASHEET_INDEX.md   | Manufacturer datasheets and technical references |
+| WASDPad_Rev1.5.1_DATASHEET_INDEX.md   | Manufacturer datasheets and technical references |
 | ALTERNATE_PARTS.md   | Approved, validated and candidate substitutions  |
 | PROCUREMENT_NOTES.md | Supplier, sourcing and lifecycle policy          |
 
@@ -805,7 +815,7 @@ Product-level regulatory requirements shall be evaluated separately where applic
 
 Datasheet references are maintained in:
 
-`DATASHEET_INDEX.md`
+`WASDPad_Rev1.5.1_DATASHEET_INDEX.md`
 
 For critical components, the preferred documentation source is:
 
@@ -840,7 +850,7 @@ Where replacement becomes necessary:
 3. evaluate it according to `ALTERNATE_PARTS.md`
 4. perform functional validation where required
 5. update the Master BOM if selected for production
-6. update `DATASHEET_INDEX.md`
+6. update `WASDPad_Rev1.5.1_DATASHEET_INDEX.md`
 7. update `ALTERNATE_PARTS.md`
 8. record the change in the hardware revision/release documentation
 
@@ -920,7 +930,7 @@ WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
 
 Technical Specification
         ↓
-DATASHEET_INDEX.md
+WASDPad_Rev1.5.1_DATASHEET_INDEX.md
         ↓
 Manufacturer Datasheet
 

@@ -1,17 +1,17 @@
-# WASDPad+ Rev1.5.1 — Feature Specification
+# WASDPad+ Rev1.5.2 — Feature Specification
 
-**Document Version:** 2.0  
-**Hardware Revision:** Rev1.5.1  
-**Status:** Production Release Candidate  
-**Last Updated:** 2026-08-29
+**Document Version:** 3.0  
+**Hardware Revision:** Rev1.5.2  
+**Status:** Final Production Release — manufactured Rev1.5.2 functional PASS  
+**Last Updated:** 2026-10-19
 
 ---
 
 ## 1. Purpose
 
-This document defines the functional features and expected user-visible behaviour of **WASDPad+ Rev1.5.1**.
+This document defines the functional features and expected user-visible behaviour of **WASDPad+ Rev1.5.2**.
 
-Rev1.5.1 is a fully hardware-based controller.
+Rev1.5.2 is a fully hardware-based controller.
 
 It requires:
 
@@ -22,12 +22,12 @@ It requires:
 - no operating-system support
 - no digital protocol conversion
 
-The controller is designed around direct digital joystick signalling for retro-computer platforms.
+The controller is designed around direct digital joystick signalling for retro-computer platforms. A newly fabricated Rev1.5.2 example passed all reported functionality, including corrected FAST/SLOW autofire (project-owner report, October 2026).
 
 Detailed implementation information is maintained separately in:
 
 - `hardware/rev1.5/README.md`
-- `hardware/rev1.5/Review_Record.MD`
+- `hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD`
 - `docs/architecture/System_architecture.md`
 - `hardware/rev1.5/bom/`
 
@@ -35,7 +35,7 @@ Detailed implementation information is maintained separately in:
 
 ## 2. Feature Summary
 
-Rev1.5.1 provides:
+Rev1.5.2 provides:
 
 - four independent digital direction inputs
 - FIRE1
@@ -76,7 +76,7 @@ Each direction uses:
 - its own electrical signal path
 - direct hardware signalling
 
-Rev1.5.1 does not implement:
+Rev1.5.2 does not implement:
 
 - software scanning
 - firmware debounce
@@ -145,7 +145,7 @@ FIRE2:
 
 - is manually controlled
 - is independent from FIRE1
-- does not use autofire in Rev1.5.1
+- does not use autofire in Rev1.5.2
 
 FIRE2 functionality depends on host-system and software support.
 
@@ -153,7 +153,7 @@ FIRE2 functionality depends on host-system and software support.
 
 ## 5. Gameplay Switch Layout
 
-Rev1.5.1 provides eight gameplay switch positions:
+Rev1.5.2 provides eight gameplay switch positions:
 
 ```text
 UP
@@ -201,7 +201,7 @@ This allows:
 
 ## 7. Hardware Autofire
 
-Rev1.5.1 provides hardware-generated autofire for FIRE1.
+Rev1.5.2 provides hardware-generated autofire for FIRE1.
 
 The autofire system uses a CMOS 555 timer.
 
@@ -242,7 +242,7 @@ Autofire applies only to FIRE1.
 
 ## 8. Autofire Speed
 
-Rev1.5.1 provides two fixed autofire speeds.
+Rev1.5.2 provides two fixed autofire speeds.
 
 | Mode | Timing Resistor |
 |---|---:|
@@ -265,7 +265,7 @@ LEFT  -> SLOW
 RIGHT -> FAST
 ```
 
-The autofire rate is not continuously adjustable in Rev1.5.1.
+The autofire rate is not continuously adjustable in Rev1.5.2.
 
 This is intentional.
 
@@ -294,7 +294,7 @@ No programmable logic is involved.
 
 ## 10. Autofire Status Indication
 
-Rev1.5.1 uses a dedicated red/green dual-colour LED.
+Rev1.5.2 uses a dedicated red/green dual-colour LED.
 
 Reference:
 
@@ -374,7 +374,7 @@ Power indication is functionally independent from the autofire status LED.
 
 ## 12. Key Backlighting
 
-Rev1.5.1 adds backlighting beneath all eight gameplay switches.
+Rev1.5.2 adds backlighting beneath all eight gameplay switches.
 
 References:
 
@@ -466,7 +466,7 @@ Disabling the backlight does not affect gameplay functionality.
 
 ## 14. Electrical Protection
 
-Rev1.5.1 includes several protection stages for the controller and connected retro-computer hardware.
+Rev1.5.2 includes several protection stages for the controller and connected retro-computer hardware.
 
 The protection architecture includes:
 
@@ -540,7 +540,7 @@ Production device:
 
 The device protects the +5 V supply path against transient events.
 
-Validated Rev1.5.1 connection:
+Validated Rev1.5.2 connection:
 
 ```text
 Pin 1 -> protected +5 V
@@ -560,7 +560,7 @@ The production-selected device was explicitly reviewed for:
 
 ## 18. Power Distribution and Decoupling
 
-Rev1.5.1 includes local ceramic decoupling and PCB ground planes.
+Rev1.5.2 includes local ceramic decoupling and PCB ground planes.
 
 Key functions include:
 
@@ -577,7 +577,7 @@ The planes are connected using stitching vias.
 
 ## 19. DE-9 Interface
 
-Rev1.5.1 uses the classic DE-9 digital joystick interface.
+Rev1.5.2 uses the classic DE-9 digital joystick interface.
 
 | Pin | Function |
 |---|---|
@@ -585,7 +585,7 @@ Rev1.5.1 uses the classic DE-9 digital joystick interface.
 | 2 | DOWN |
 | 3 | LEFT |
 | 4 | RIGHT |
-| 5 | Auxiliary / unused by current Rev1.5.1 cable assembly |
+| 5 | Auxiliary / unused by current Rev1.5.2 cable assembly |
 | 6 | FIRE1 |
 | 7 | +5 V |
 | 8 | GND |
@@ -617,7 +617,7 @@ A cable from a new supplier or production batch should be continuity-tested befo
 
 ## 21. Target Platforms
 
-Primary Rev1.5.1 targets include:
+Primary Rev1.5.2 targets include:
 
 - Commodore 64
 - Commodore 128
@@ -662,7 +662,7 @@ No protocol conversion or firmware is required.
 
 ## 24. Startup Behaviour
 
-Rev1.5.1 has no software startup process.
+Rev1.5.2 has no software startup process.
 
 After valid power is applied, the controller is immediately operational.
 
@@ -698,7 +698,7 @@ Electronic propagation delay inside the controller is negligible relative to:
 
 ## 26. Serviceability
 
-Rev1.5.1 emphasizes practical serviceability.
+Rev1.5.2 emphasizes practical serviceability.
 
 The gameplay switches are hot-swappable and can be replaced without soldering.
 
@@ -717,7 +717,7 @@ No programmed component is required for basic controller operation.
 
 ## 27. Assembly Model
 
-Rev1.5.1 uses a mixed assembly process.
+Rev1.5.2 uses a mixed assembly process.
 
 ### Top SMD
 
@@ -764,117 +764,67 @@ Includes:
 
 ## 28. Manufacturing Documentation
 
-The authoritative Rev1.5.1 manufacturing documentation is located under:
+The current **Rev1.5.2** circuit and fabricated board were confirmed functional by the project owner. The manufacturing source files used to produce the tested Rev1.5.2 hardware are not supplied in this GitHub ZIP. Existing `WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`, `WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv` and associated datasheets/procurement documents refer to an earlier revision and remain archival unless individually reconciled with the Rev1.5.2 release data.
 
-```text
-hardware/rev1.5/bom/
-```
-
-Primary files:
-
-```text
-WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
-WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
-DATASHEET_INDEX.md
-ALTERNATE_PARTS.md
-PROCUREMENT_NOTES.md
-```
-
-The Master BOM is authoritative for component identity.
-
-The Master CPL is authoritative for placement data.
+For the current design, consult the [Rev1.5.2 manufacturing release record](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md), then obtain the matching actual Rev1.5.2 fab/BOM/CPL dataset before placing additional orders.
 
 ---
 
 ## 29. Feature Validation Status
 
-The Rev1.5.1 feature set has completed pre-production engineering review.
+| Feature / subsystem | Release result |
+| --- | --- |
+| Directional controls, dual FIRE1 and dual FIRE2 | **PASS — complete functional test of manufactured Rev1.5.2, project-owner confirmed** |
+| AUTO OFF/ON and FAST/SLOW speed selector | **PASS — corrected selector confirmed functional on manufactured Rev1.5.2** |
+| Discrete timer and CD4066 switching | **PASS — observed full controller functionality** |
+| Power and red/green status indication | Included in project-owner's complete-functionality confirmation |
+| MX hot-swap and backlighting | Included in complete-functionality confirmation |
+| Schematic / PCB design correction | Complete — `Switch:SW_SPDT` and physical pad 2 common |
+| Rev1.5.2 manufactured functional first article | **PASS — October 2026, owner confirmed** |
+| Rev1.5.2 final production release | **APPROVED** |
 
-| Feature | Status |
-|---|---|
-| Direction controls | Engineering PASS |
-| FIRE1 | Engineering PASS |
-| FIRE2 | Engineering PASS |
-| Hardware autofire | Engineering PASS |
-| SLOW / FAST selection | Engineering PASS |
-| Power indication | Engineering PASS |
-| Dual-colour autofire indication | Engineering PASS |
-| Hot-swap switch architecture | Engineering PASS |
-| Signal ESD protection | Engineering PASS |
-| +5 V overcurrent protection | Engineering PASS |
-| +5 V ESD / TVS protection | Engineering PASS |
-| Key backlighting | Engineering PASS |
-| Backlight control | Engineering PASS |
-| PCB layout | PASS |
-| ERC | PASS |
-| DRC | PASS |
-| Gerber generation | PASS |
-| Master BOM | Complete |
-| Master CPL | Complete |
-| Physical Rev1.5.1 validation | Pending |
-
-The hardware is therefore classified as:
-
-**Production Release Candidate**
+Formal electrical readings, measured autofire frequency, environmental testing and external compliance certificates are **not included** in this repository archive. Those are not asserted as independent test results.
 
 ---
 
 ## 30. Physical Functional Validation
 
-Before Rev1.5.1 is considered **Production Approved**, the completed production-candidate controller shall demonstrate correct operation of:
+The **Rev1.5.2 first-manufactured unit has passed complete functional validation**, as confirmed by the project owner in October 2026. The underlying repeatable verification checklist is retained for all later production samples:
 
-```text
-Power indication
+- Input controls: UP, DOWN, LEFT, RIGHT; both FIRE1 buttons; both FIRE2 buttons
+- Autofire: OFF, ON, SLOW and FAST; physical switch maps 1–2 to FAST and 2–3 to SLOW
+- Indicators: power LED and red/green autofire status indication
+- Illumination: D8–D15 and backlight ON/OFF
+- Host/cable: correct DE-9 pin assignment, no +5 V/GND short, representative target-computer gameplay
+- Mechanical: hot-swap sockets, switch replacement, enclosure fit and inspection
 
-UP
-DOWN
-LEFT
-RIGHT
-
-FIRE1 LEFT
-FIRE1 RIGHT
-
-FIRE2 LEFT
-FIRE2 RIGHT
-
-Autofire OFF
-Autofire SLOW
-Autofire FAST
-
-Dual-colour autofire indication
-
-D8–D15 key backlighting
-Backlight ON / OFF
-```
-
-Additional checks include:
-
-- correct LEFT = SLOW / RIGHT = FAST behaviour
-- FIRE1 release stops autofire
-- FIRE2 remains independent
-- all gameplay switches operate correctly
-- no unintended joystick input activation occurs
-- no +5 V / GND short circuit
-- no abnormal heating
-- hot-swap sockets retain switches correctly
-- mechanical switches can be replaced
-- cable mapping is correct
-
-Successful physical operation is the final Rev1.5.1 acceptance criterion.
+A single confirmed PASS does not automatically certify every subsequently assembled board.
 
 ---
 
+### Detailed per-unit functional acceptance checks
+
+In addition to the confirmed functional PASS of the first manufactured Rev1.5.2 unit, each subsequent assembled controller should be checked for:
+
+- **FIRE1 release:** releasing FIRE1 stops autofire and does not leave an unintended fire assertion.
+- **FIRE2 independence:** FIRE2 operates independently of the FIRE1 autofire timing circuit.
+- **Selector orientation:** FAST and SLOW agree with the physical switch/contact mapping; both modes cause distinct operating behavior.
+- **Input integrity:** no unrequested joystick direction or fire input is asserted.
+- **Power safety:** no +5 V / GND short, abnormal supply behavior or unexpected heating.
+- **Mechanical reliability:** hot-swap sockets retain the switches; switch removal/replacement does not damage PCB pads or socket connections.
+- **Cable/host:** confirm the DE-9 wiring and representative actual host behavior before batch acceptance.
+
+The complete Rev1.5.1 acceptance checklist is also retained in the [historical feature specification](FEATURE_SPECIFICATION_REV1.5.1_HISTORICAL.md). These are repeatable production QA criteria, **not** a claim that the current Rev1.5.2 release remains untested.
+
 ## 31. Real-System Validation
 
-The production-candidate controller should be validated on representative original hardware.
-
-Planned targets include:
+A manufactured Rev1.5.2 sample has passed complete reported functionality (owner confirmed). The exact host and game list for that new sample were not included in this ZIP. Representative platforms for ongoing compatibility verification and subsequent production QA include:
 
 - Commodore 64
 - Commodore 128 where applicable
 - Commodore Amiga
 
-Validation should include:
+Per-platform validation should include:
 
 - basic joystick operation
 - FIRE1
@@ -887,9 +837,9 @@ Validation should include:
 
 ---
 
-## 32. Rev1.5.1 Scope
+## 32. Rev1.5.2 Scope
 
-Rev1.5.1 intentionally does not include:
+Rev1.5.2 intentionally does not include:
 
 - microcontroller control
 - firmware
@@ -904,7 +854,7 @@ Rev1.5.1 intentionally does not include:
 - programmable RGB effects
 - game-specific programmable logic
 
-These are not missing Rev1.5.1 features.
+These are not missing Rev1.5.2 features.
 
 They belong to possible future programmable hardware revisions.
 
@@ -929,132 +879,43 @@ Potential future functionality may include:
 
 An MCU platform such as the RP2040 family may be evaluated.
 
-Rev2.0 functionality shall remain separate from Rev1.5.1 requirements.
+Rev2.0 functionality shall remain separate from Rev1.5.2 requirements.
 
 ---
 
 ## 34. Feature Freeze
 
-The Rev1.5.1 feature set is frozen for the production candidate.
-
-No additional Rev1.5.1 features should be introduced before physical production validation.
-
-Changes affecting:
-
-- functionality
-- timing
-- PCB topology
-- connector behaviour
-- protection architecture
-- mechanical compatibility
-- assembly process
-
-require explicit engineering review.
+The Rev1.5.2 hardware feature set is **final and physically functionally validated**. No further revisions are required to resolve the known Rev1.5.1 SPEED defect. Future new features belong to a separately controlled hardware revision or future programmable Rev2.0 platform.
 
 ---
 
 ## 35. Related Documentation
 
-Current supporting documentation:
+- [Rev1.5.2 hardware overview](../../hardware/rev1.5/README.md)
+- [Current manufacturing release and functional validation](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+- [Rev1.5.1 → Rev1.5.2 engineering erratum](../../hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
+- [System architecture](../architecture/System_architecture.md)
+- [Assembly and cable verification](../assembly/ASSEMBLY.md)
+- [Historical Rev1.5.1 engineering review](../../hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD)
+- [Archived Rev1.5.1 BOM](../../hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv) and [CPL](../../hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv)
 
-```text
-hardware/
-├── README.md
-└── rev1.5/
-    ├── README.md
-    ├── Review_Record.MD
-    └── bom/
-        ├── README.md
-        ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
-        ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
-        ├── DATASHEET_INDEX.md
-        ├── ALTERNATE_PARTS.md
-        └── PROCUREMENT_NOTES.md
-
-docs/
-├── architecture/
-│   └── System_architecture.md
-├── assembly/
-│   └── CABLE_ASSEMBLY.md
-├── roadmap/
-│   └── ROADMAP.md
-└── specification/
-    └── FEATURE_SPECIFICATION.md
-```
-
-Authoritative production component list:
-
-```text
-hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
-```
-
-Authoritative placement data:
-
-```text
-hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
-```
-
-Engineering review:
-
-```text
-hardware/rev1.5/Review_Record.MD
-```
+The actual corresponding Rev1.5.2 manufacturing data, held by the project owner, take precedence for new production.
 
 ---
 
 ## 36. Documentation Authority
 
-For Rev1.5.1:
-
-**Feature behaviour**
-
-→ `FEATURE_SPECIFICATION.md`
-
-**System architecture**
-
-→ `System_architecture.md`
-
-**Production component identity**
-
-→ `WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
-
-**Placement data**
-
-→ `WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
-
-**Datasheets**
-
-→ `DATASHEET_INDEX.md`
-
-**Component substitutions**
-
-→ `ALTERNATE_PARTS.md`
-
-**Procurement**
-
-→ `PROCUREMENT_NOTES.md`
-
-**Engineering release status**
-
-→ `Review_Record.MD`
+Feature behaviour: this specification; architecture: [System architecture](../architecture/System_architecture.md); release/validation: [Rev1.5.2 manufacturing notes](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md). The `Rev1.5.1`-labelled BOM/CPL files currently present in this ZIP are historical reference files, not a self-contained Rev1.5.2 fabrication archive.
 
 ---
 
 ## 37. Release Status
 
-**Hardware Revision:** WASDPad+ Rev1.5.1  
-**Feature Specification Version:** 2.0  
-**Status:** Production Release Candidate
+**Hardware Revision:** WASDPad+ **Rev1.5.2**  
+**Feature Specification Version:** 3.0  
+**Status:** **FINAL PRODUCTION RELEASE — manufactured Rev1.5.2 functional validation PASS**
 
-The Rev1.5.1 feature set is complete and frozen.
-
-Engineering validation of the design and manufacturing dataset is complete.
-
-Final promotion to:
-
-**Production Approved**
-
-requires successful physical validation of manufactured Rev1.5.1 hardware.
+The physical Rev1.5.2 release PCB was built and the complete reported controller functionality passed in October 2026 (owner confirmation). This supersedes the historical Rev1.5.1 Production Release Candidate classification.
 
 ---
 
@@ -1066,8 +927,9 @@ requires successful physical validation of manufactured Rev1.5.1 hardware.
 | 1.1 | 2026-08-18 | Expanded feature definitions, validation criteria and Rev1.5 / Rev2.0 separation |
 | 1.2 | 2026-08-19 | Simplified and consolidated specification; removed obsolete Project Specification and duplicated hardware information |
 | **2.0** | **2026-08-29** | Updated to Rev1.5.1 Production Release Candidate; added final production autofire architecture, hot-swap system, ESD/PTC protection, dual-colour status indication, key backlighting, U3 backlight control, manufacturing structure, Master BOM/CPL references, physical validation gate and feature freeze |
+| **3.0** | **2026-10-19** | Finalized Rev1.5.2 feature baseline and newly manufactured board functional PASS (project-owner confirmed); previous Rev1.5.1 review remains historical. |
 
 ---
 
-**WASDPad+ Rev1.5.1 — Feature Specification**  
-**Status: Production Release Candidate**
+**WASDPad+ Rev1.5.2 — Feature Specification**  
+**Status: FINAL PRODUCTION RELEASE — manufactured hardware functional PASS**

@@ -1,11 +1,11 @@
 # WASDPad+ Rev1.5.1 to Rev1.5.2 — SPEED Selector Engineering Erratum
 
-**Document revision:** 1.1  
+**Document revision:** 1.2  
 **Date:** 2026-10-16  
 **Affected design:** WASDPad+ Rev1.5.1, original fabricated PCBs requiring correction  
 **Corrected design:** WASDPad+ Rev1.5.2 (`wasdpad+v1.5.2-fixed`)  
 **Classification:** Functional design defect / incorrect schematic-symbol-to-physical-switch pin mapping  
-**Status:** **Root cause measured and confirmed; Rev1.5.1 rework validated; Rev1.5.2 schematic, final PCB layout and corresponding series-production Gerber outputs corrected/updated.** One physically reworked Rev1.5.1 board passed full reported Amiga 1200 gameplay testing. The Gerber regeneration is reported by the project owner; no Gerber archive was supplied for independent review in this documentation update. A newly fabricated Rev1.5.2 unit has not yet been first-article tested.
+**Status:** **Root cause measured and confirmed; Rev1.5.1 rework validated; Rev1.5.2 schematic, final PCB layout and corresponding series-production Gerber outputs corrected/updated; newly manufactured Rev1.5.2 hardware fully functionally validated (owner confirmed).** One physically reworked Rev1.5.1 board passed full reported Amiga 1200 gameplay testing. The Gerber regeneration is reported by the project owner; no Gerber archive was supplied for independent review in this documentation update. A **newly manufactured Rev1.5.2 PCB has since passed full reported controller functionality testing**, as confirmed by the project owner in October 2026.
 
 > **Manufacturing release notice:** **Rev1.5.2 is the corrected series-production design baseline, with the final PCB model and fabrication Gerbers updated to include the SPEED selector fix (project-owner confirmation).** Do **not** manufacture unmodified Rev1.5.1 Gerbers. Existing Rev1.5.1 boards can be retained following the documented three-cut/three-jumper patch and individual electrical/functional tests. The historical Rev1.5.1 PASS review remains a record of the earlier review, not approval of unmodified Rev1.5.1 stock. See the [rework guide](../../docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md) and [Rev1.5.2 production release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
@@ -54,7 +54,7 @@ The corrected schematic passed KiCad ERC with **0 errors / 0 warnings**. After s
 
 This documentation review did **not** receive or independently parse the regenerated Gerber archive. Manufacturing handoff must use Gerbers exported from the corrected Rev1.5.2 PCB, never archived Rev1.5.1 fabrication files. Gerber-level plot and drill verification remains a normal release check, not a claim that the design fix is unfinished. See [Rev1.5.2 manufacturing release notes](REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
-**Validation boundary:** the actual Rev1.5.1 hardware patch is proven by physical measurements and Amiga 1200 gameplay. The corrected Rev1.5.2 design and Gerber update remove the known layout defect, but a newly fabricated Rev1.5.2 unit still requires first-article acceptance; no unperformed production-board test is implied.
+**Validation boundary:** the actual Rev1.5.1 hardware patch is proven by physical measurements and Amiga 1200 gameplay. The corrected Rev1.5.2 design and Gerber update remove the known layout defect, and **a newly manufactured Rev1.5.2 unit has now passed full reported functional acceptance** (project-owner confirmation, October 2026). Instrumented per-pin logs were not supplied for independent review.
 
 ## 4. Rev1.5.1 physical rework and verification
 
@@ -102,11 +102,11 @@ The corrective action was carried through **both branches of the project**:
 | Rev1.5.2 schematic | **Corrected:** `Switch:SW_SPDT`, common pin/pad 2; ERC 0 errors / 0 warnings. |
 | Rev1.5.2 PCB layout | **Corrected and saved:** pad 1 FAST, pad 2 ENABLE, pad 3 SLOW; DRC 0 errors / 0 unconnected pads (46 existing warnings require release awareness). |
 | Rev1.5.2 manufacturing Gerbers | **Updated for series production, project-owner confirmed:** regenerated from the corrected board. Archive not independently supplied/inspected in this documentation pass. |
-| Newly fabricated Rev1.5.2 board acceptance | **Pending first-article testing:** do not substitute the reworked Rev1.5.1 test for a production-lot acceptance record. |
+| **Newly fabricated Rev1.5.2 board acceptance** | **PASS:** a newly manufactured Rev1.5.2 unit passed full reported controller functionality, including SPEED selection (project-owner confirmed, October 2026). |
 
 At discovery there were **four assembled Rev1.5.1 boards and six additional fabricated bare boards**. As of this report **one** patched unit has a recorded full Amiga 1200 functional test. The patch is repeatable, but this document does not claim that the other nine have already been reworked or verified.
 
-**Manufacturing baseline:** **use the corrected Rev1.5.2 PCB and its updated Rev1.5.2 Gerbers** for series production. Do not release unmodified Rev1.5.1 fabrication outputs. The known SPEED-selector failure has been fixed in the source design and should therefore not recur on boards made from the matching corrected artwork. Confirm that the fabrication output set matches the final PCB, perform standard fabrication-output/J1-footprint review, and record first-article electrical and real-host functional acceptance on newly produced units.
+**Manufacturing baseline:** **use the corrected Rev1.5.2 PCB and its updated Rev1.5.2 Gerbers** for series production. Do not release unmodified Rev1.5.1 fabrication outputs. The SPEED-selector correction is now also **confirmed functional on an actually manufactured Rev1.5.2 board**, not just expected from the artwork. Confirm that the fabrication output set matches the final PCB, perform standard fabrication-output/J1-footprint review, and retain the now-confirmed first-article functional PASS together with the standard acceptance records for subsequent produced units.
 
 The 46 recorded DRC warnings concern custom/auxiliary footprints and J1 mapping; they are not evidence of a remaining SPEED-selector failure. Their disposition must nevertheless be recorded separately before an unconditional fabrication QA sign-off. Preserve the historical Rev1.5.1 engineering review together with this post-validation erratum.
 

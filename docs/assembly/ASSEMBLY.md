@@ -1,17 +1,17 @@
-# WASDPad+ Rev1.5.1 — Assembly and Manufacturing Procedure
+# WASDPad+ Rev1.5.2 — Assembly and Manufacturing Procedure
 
-**Document Version:** 1.0  
-**Hardware Revision:** Rev1.5.1  
-**Status:** Production Release Candidate  
-**Last Updated:** 2026-08-29
+**Document Version:** 2.0  
+**Hardware Revision:** Rev1.5.2  
+**Status:** Final Production Release — manufactured Rev1.5.2 functionally validated  
+**Last Updated:** 2026-10-19
 
 ---
 
 ## 1. Purpose
 
-This document defines the manufacturing, PCB assembly, manual soldering, cable assembly and final verification procedure for **WASDPad+ Rev1.5.1**.
+This document defines the manufacturing, PCB assembly, manual soldering, cable assembly and final verification procedure for **WASDPad+ Rev1.5.2**.
 
-It replaces the earlier cable-only assembly document and expands the scope to the complete production-candidate assembly process.
+It replaces the earlier cable-only assembly document and expands the scope to the complete released-hardware assembly and acceptance process.
 
 The document covers:
 
@@ -33,13 +33,13 @@ The authoritative component and placement records are:
 - `hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
 - `hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
 
-If this document conflicts with the Master BOM or Master CPL, the Master BOM/CPL shall take precedence for component identity and placement.
+The CSV files currently in this repository are **Rev1.5.1-labelled historical BOM/CPL references**, not independently verified Rev1.5.2 release exports. For Rev1.5.2 manufacturing, the matching final-revision BOM/CPL and Gerber package used for the successful production build take precedence. See the [release record](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
 ---
 
 # 2. Current Manufacturing Model
 
-The current Rev1.5.1 production-candidate manufacturing model uses a mixed automated/manual assembly process.
+The released Rev1.5.2 manufacturing model uses a mixed automated/manual assembly process.
 
 ```text
 PCB fabrication
@@ -72,13 +72,13 @@ Functional validation
 Final enclosure assembly
 ```
 
-The first Rev1.5.1 production-candidate PCBs are manufactured and partially assembled by **JLCPCB**.
+The earlier Rev1.5.1 production-candidate fabrication/SMT work was documented with **JLCPCB**. For subsequent Rev1.5.2 production lots, record the actual fabricator, SMT population scope and revision-matched production data for that lot.
 
 ---
 
 # 3. Assembly Classification
 
-Rev1.5.1 components are divided into the following manufacturing classes.
+Rev1.5.2 components are divided into the following manufacturing classes.
 
 ## 3.1 Factory-Assembled Top-Side SMD
 
@@ -157,7 +157,7 @@ The cable assembly is considered part of final controller assembly, not automate
 
 # 4. PCB Manufacturing
 
-The Rev1.5.1 PCB manufacturing package is generated from the frozen production-candidate PCB design.
+The Rev1.5.2 PCB manufacturing package is generated from the frozen Rev1.5.2 final-release PCB design.
 
 Required manufacturing outputs include:
 
@@ -174,11 +174,11 @@ Required manufacturing outputs include:
 - non-plated-through-hole drill data
 - Gerber job information where applicable
 
-The production-candidate Gerbers and drill data shall be generated only from the approved Rev1.5.1 PCB design.
+The production Gerbers and drill data shall be generated only from the approved Rev1.5.2 final-release PCB design.
 
 Before placing a manufacturing order:
 
-- confirm Rev1.5.1 PCB revision
+- confirm Rev1.5.2 PCB revision
 - run final DRC
 - refill all copper zones
 - confirm board outline
@@ -194,7 +194,7 @@ Before placing a manufacturing order:
 
 # 5. PCB Surface Finish and Lead-Free Requirement
 
-Rev1.5.1 production is intended to use a **lead-free manufacturing process**.
+Rev1.5.2 production is intended to use a **lead-free manufacturing process**.
 
 The PCB manufacturing order shall therefore use a lead-free-compatible surface finish.
 
@@ -205,15 +205,15 @@ Acceptable lead-free production finishes may include, depending on the manufactu
 
 The actual surface finish used for a production batch shall be recorded with the manufacturing order.
 
-Lead-containing HASL shall not be selected for normal Rev1.5.1 production unless explicitly approved as a controlled exception.
+Lead-containing HASL shall not be selected for normal Rev1.5.2 production unless explicitly approved as a controlled exception.
 
 ---
 
 # 6. SMT Soldering Material
 
-All automated SMT assembly for Rev1.5.1 shall use **lead-free solder paste**.
+All automated SMT assembly for Rev1.5.2 shall use **lead-free solder paste**.
 
-For the current JLCPCB prototype/production-candidate assembly:
+For a JLCPCB production order (if applicable to the actual released manufacturing order):
 
 - solder paste is applied as part of the factory SMT process
 - components are machine-placed
@@ -230,7 +230,7 @@ The project does not depend on a proprietary solder-paste alloy, but the process
 
 # 7. Manual Soldering Material
 
-All manual Rev1.5.1 soldering shall also use **lead-free solder material**.
+All manual Rev1.5.2 soldering shall also use **lead-free solder material**.
 
 This includes:
 
@@ -256,7 +256,7 @@ The exact solder-wire manufacturer, alloy and flux type used for a production ba
 
 # 8. JLCPCB Automated SMT Assembly
 
-The current Rev1.5.1 prototype/production-candidate top-side SMT population is performed by **JLCPCB**.
+The original Rev1.5.1 production-candidate top-side SMT population was documented with **JLCPCB**. The actual Rev1.5.2 production order determines the applicable assembly-house details.
 
 Assembly data is derived from:
 
@@ -273,7 +273,7 @@ The JLCPCB BOM/CPL may intentionally exclude:
 - external DE-9 cable
 - PCB features / DNP items
 
-This does not mean those components are absent from the full Rev1.5.1 Master BOM.
+This does not mean the omitted components are absent from the current released Rev1.5.2 assembly dataset.
 
 ---
 
@@ -291,7 +291,7 @@ Critical orientation-sensitive components include:
 - Q1–Q9
 - D8–D15
 
-Previously validated Rev1.5.1 assembly orientation corrections shall be retained in the production assembly CPL.
+The final Rev1.5.2 assembly CPL shall retain all orientation corrections confirmed applicable to the released design, including those carried forward from earlier Rev1.5.1 engineering.
 
 Particular attention shall be paid to:
 
@@ -319,7 +319,7 @@ In particular:
 - boards must be inspected after receipt
 - a power-on test shall not be assumed to have been performed by the assembly manufacturer
 
-The Rev1.5.1 project performs its own electrical bring-up and functional validation after assembly.
+The Rev1.5.2 project performs its own electrical bring-up and functional validation after assembly.
 
 ---
 
@@ -382,7 +382,7 @@ PCB side:
 
 `Bottom`
 
-U3 shall be manually soldered in the final Rev1.5.1 assembly process.
+U3 shall be manually soldered in the final Rev1.5.2 assembly process.
 
 Assembly requirements:
 
@@ -568,7 +568,9 @@ Before soldering:
 - ensure body sits squarely against the intended mounting geometry
 - confirm enclosure clearance
 
-Do not interchange SW_AUTO1 and SW_SPEED1.
+**Rev1.5.2 SPEED selector pad mapping is mandatory:** the real selector's centre **pad 2 is common**; connect **pad 1 to `AF_FAST_SEL`**, **pad 2 to `AF_EN_P`**, and **pad 3 to `AF_SLOW_SEL`**. The switch closes **1–2 for FAST** and **2–3 for SLOW**. The schematic uses `Switch:SW_SPDT`; the old Rev1.5.1 `SW_SP3T` common mapping is incorrect and must not be used when preparing Gerbers.
+
+Do not interchange SW_AUTO1 and SW_SPEED1. Always verify actual pad continuity with a meter on an unpowered unit before accepting unfamiliar or substituted switch parts.
 
 ---
 
@@ -673,7 +675,7 @@ J1 pad 5 is intentionally unused.
 
 # 24. Unused Pin 5 Conductor
 
-DB9 pin 5 is not used by Rev1.5.1.
+DB9 pin 5 is not used by Rev1.5.2.
 
 The corresponding cable conductor shall:
 
@@ -843,7 +845,7 @@ After cable soldering, verify:
 
 # 32. Initial Power-Up
 
-The first power-up of a newly assembled production-candidate unit shall be controlled.
+The first power-up of any newly assembled unit shall be controlled.
 
 Recommended sequence:
 
@@ -862,7 +864,7 @@ Only after passing basic bring-up should the unit be connected to representative
 
 # 33. Functional Acceptance Test
 
-Every production-candidate unit shall verify:
+Every newly assembled production unit shall verify:
 
 - UP
 - DOWN
@@ -892,7 +894,7 @@ A unit failing any mandatory function shall not be classified as production-acce
 
 # 34. Real-System Validation
 
-Production-candidate units shall be validated on representative original hardware.
+Newly assembled production units shall be validated on representative original hardware.
 
 Primary targets include:
 
@@ -953,13 +955,13 @@ For each production batch, record where practical:
 - rework performed
 - final validation result
 
-For Rev1.5.1 production-candidate builds, JLCPCB is the current PCB manufacturer and top-side SMT assembly provider.
+JLCPCB was the documented Rev1.5.1 PCB and SMT provider. For Rev1.5.2 production builds, record the actual PCB fabricator and assembly provider from the applicable order; do not infer them from the Rev1.5.1 records.
 
 ---
 
 # 37. Lead-Free Production Policy
 
-Rev1.5.1 is intended to use a lead-free assembly process from PCB finish through final manual soldering.
+Rev1.5.2 is intended to use a lead-free assembly process from PCB finish through final manual soldering.
 
 Project requirement:
 
@@ -980,14 +982,12 @@ Component-level RoHS declarations and supplier certificates are maintained separ
 
 # 38. Manufacturing Documentation
 
-Relevant manufacturing documents include:
-
 ```text
 hardware/rev1.5/
 ├── README.md
-├── Review_Record.MD
-├── datasheets/
-│   └── WASDPad_Rev1.5.1_DATASHEET_INDEX.md
+├── REV1.5.2_MANUFACTURING_RELEASE_NOTES.md
+├── Rev1.5.1-Engineering-Manufacturing-Record.MD
+├── datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md
 └── bom/
     ├── README.md
     ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
@@ -996,15 +996,17 @@ hardware/rev1.5/
     └── PROCUREMENT_NOTES.md
 ```
 
-This assembly document defines how those engineering records are translated into a physical controller.
+All `Rev1.5.1`-named files are historical references. The current **Rev1.5.2** release is functionally validated on manufactured hardware, but its complete Gerber/drill/CAD/BOM/CPL output set is not attached to this repository snapshot. Obtain that revision-matched production dataset for a new manufacturing order.
 
 ---
 
 # 39. External Manufacturing References
 
-Current PCB and SMT production provider:
+Previously documented PCB and SMT provider for the Rev1.5.1 production-candidate build:
 
 **JLCPCB**
+
+The actual manufacturer/SMT scope for the completed Rev1.5.2 build is not independently established by the public repository export. Record it from the project owner’s production order.
 
 Relevant public manufacturing references:
 
@@ -1015,21 +1017,15 @@ Relevant public manufacturing references:
 
 These references describe the manufacturer's general capabilities and process information.
 
-The Rev1.5.1 Master BOM/CPL and production order remain authoritative for the actual WASDPad+ manufacturing configuration.
+For Rev1.5.2 production, use the *actual matching Rev1.5.2* BOM/CPL and fabrication order. The archived `Rev1.5.1`-named CSV files in this ZIP are not self-certifying as Rev1.5.2 outputs.
 
 ---
 
 # 40. Production Approval Boundary
 
-This document defines the assembly process for the **Production Release Candidate**.
+**The manufactured Rev1.5.2 controller has passed its complete reported functional test**, per project-owner confirmation (October 2026). It is the **Final Production Release** revision. This procedure remains applicable for **routine quality assurance of subsequent production lots**; those units must not be assumed tested merely because the first article passed.
 
-Following successful assembly and validation, the hardware may be promoted to:
-
-**Production Approved**
-
-only after completion of the formal physical validation gate documented in:
-
-`hardware/rev1.5/Review_Record.MD`
+The historical Rev1.5.1 preliminary review is [preserved separately](../../hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD). The [Rev1.5.2 manufacturing record](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) is the current release authority.
 
 ---
 
@@ -1038,16 +1034,17 @@ only after completion of the formal physical validation gate documented in:
 | Version | Date | Status | Changes |
 |---|---|---|---|
 | 0.x | Earlier Rev1.5 development | Draft | Cable-only assembly documentation and validated DE-9 cable mapping |
-| **1.0** | **2026-08-29** | **Production Release Candidate** | Expanded to complete Rev1.5.1 manufacturing and assembly procedure; added JLCPCB factory SMT process, lead-free soldering policy, manual bottom-side SMD assembly, THT assembly, Kailh socket installation, cable assembly, incoming inspection, bring-up, functional acceptance, enclosure assembly and production traceability |
+| **1.0** | **2026-08-29** | **Historical Production Release Candidate** | Expanded to complete Rev1.5.1 manufacturing and assembly procedure; added JLCPCB factory SMT process, lead-free soldering policy, manual bottom-side SMD assembly, THT assembly, Kailh socket installation, cable assembly, incoming inspection, bring-up, functional acceptance, enclosure assembly and production traceability |
+| **2.0** | **2026-10-19** | **Final Production Release — fabricated unit functional PASS** | Correct Rev1.5.2 selector mapping and first-article result; previous revision records are historical. |
 
 ---
 
 # 42. Document Status
 
 **Project:** WASDPad+  
-**Hardware Revision:** Rev1.5.1  
+**Hardware Revision:** **Rev1.5.2**  
 **Document:** Assembly and Manufacturing Procedure  
-**Document Version:** 1.0  
-**Status:** Production Release Candidate
+**Document Version:** **2.0**  
+**Status:** **FINAL PRODUCTION RELEASE — newly fabricated Rev1.5.2 functional PASS**
 
-This document supersedes the earlier cable-only Rev1.5 assembly procedure.
+The earlier Rev1.5.1 production-candidate procedure remains represented in the version history; its incomplete physical validation is no longer the release status of the current Rev1.5.2 design.

@@ -1,5 +1,14 @@
 # WASDPad+ Rev1.5.1 --- Datasheet Index
 
+> **HISTORICAL REV1.5.1 REFERENCE — NOT THE CURRENT PRODUCTION FILE SET.** The current
+> WASDPad+ hardware is **Rev1.5.2 — Final Production Release**. A newly
+> fabricated Rev1.5.2 controller has passed full reported functionality (project-owner
+> confirmation, October 2026). This Rev1.5.1 document and its BOM/CPL naming
+> remain unchanged for engineering traceability; equivalence to the actual Rev1.5.2
+> production BOM/CPL has not been independently established from the GitHub ZIP.
+> For current release decisions use the [Rev1.5.2 production release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+
+
 Central datasheet and manufacturer-reference index for the WASDPad+
 Rev1.5.1 hardware release.
 
