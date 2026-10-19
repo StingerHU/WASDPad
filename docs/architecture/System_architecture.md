@@ -970,6 +970,37 @@ The hardware is therefore classified as:
 
 **Production Release Candidate**
 
+Post-Validation Engineering Erratum — Rev1.5.1 / Rev1.5.2 (2026-10-16)
+
+The original Rev1.5.1 engineering review was completed before physical validation identified an incorrect SPEED selector common-pin mapping.
+
+Electrical measurements confirmed that the physical toggle switch uses pin 2 as its common contact, whereas the original schematic symbol (Switch:SW_SP3T) incorrectly assigned the common function to pin 3.
+
+The defect was successfully corrected on an assembled Rev1.5.1 PCB using three copper trace cuts and three insulated jumper wires. Continuity, isolation, power-on and full functional testing were completed successfully. All controller functions, including both autofire speed settings, were validated during real gameplay on a Commodore Amiga 1200.
+
+The corrected Rev1.5.2 design incorporates:
+
+The proper Switch:SW_SPDT schematic symbol with pin 2 as common.
+
+Corrected AF_FAST_SEL, AF_EN_P and AF_SLOW_SEL assignments.
+
+Updated PCB routing while retaining the original mechanical switch footprint.
+
+Updated Gerber manufacturing outputs for the series-production design, as confirmed by the project owner.
+
+The known SPEED selector defect has therefore been corrected both on the validated Rev1.5.1 prototype and in the definitive Rev1.5.2 manufacturing design.
+
+The historical Rev1.5.1 review results remain preserved as originally recorded. Newly manufactured Rev1.5.2 boards still require standard first-article acceptance testing.
+
+Related documentation:
+
+SPEED Selector Engineering Erratum
+
+Rev1.5.1 Rework Guide
+
+Rev1.5.2 Manufacturing Release Notes
+
+
 ---
 
 # 39. Production Validation Boundary
