@@ -82,7 +82,7 @@ Its rounded upper face carries subtle WASDPad branding. The model is **mechanica
 
 ### Small rubber pad
 
-A separate small circular pad geometry was supplied along with the housing and wrist-rest models. Its nominal maximum dimensions are approximately **7.97 x 7.99 x 2.50 mm**. Exact material, intended quantity, and final fitted location have **not** been confirmed from the supplied information and are not asserted as verified here.
+A separate small circular pad geometry was supplied along with the housing and wrist-rest models. Its nominal maximum dimensions are approximately **7.97 x 7.99 x 2.50 mm**. Exact material could be any type of TPU, intended quantity: 5 pcs.
 
 ## 3D printing overview
 
