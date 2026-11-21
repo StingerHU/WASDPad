@@ -516,12 +516,12 @@ The Rev1.5.2 platform is now a completed and physically validated discrete-hardw
 
 WASDPad+ is the result of collaborative electronics, mechanical and testing work.
 
-**Original WASDPad concept:** Tibor Puskás  
-**PCB design & engineering :** STINGER / Krisztián Csere  
+**Original WASDPad idea:** Tibor Puskás  
+**Concept, PCB design & engineering :** STINGER / Krisztián Csere  
 **3D modelling - enclosure:** Dester3D / Sándor Sebesi  
 **Testing:** Megott / Norbert Krisztián
 
-The Rev1.5.1 PCB also carries a small tribute to the Commodore 64 and the retro-computing community that inspired the project.
+The Rev1.5.2 PCB also carries a small tribute to the Commodore 64 and the retro-computing community that inspired the project.
 
 ---
 
