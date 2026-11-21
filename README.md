@@ -156,10 +156,10 @@ A dedicated hardware switch allows the entire backlight system to be turned on o
 Rev1.5.1 introduced the production-oriented hardware architecture; Rev1.5.2 corrected the SPEED-selector common contact mapping. The later **C64/Amiga FIRE2 selector** was added to the same **Rev1.5.2** design and is reported physically working by the project owner.
 
 <p align="center">
-  <img src="docs/images/wasdpad_rev1.5.1_pcb_front.png"
+  <img src="docs/images/wasdpad_rev1.5.2_pcb_front.png"
        width="49%"
        alt="WASDPad+ Rev1.5.1 PCB front view">
-  <img src="docs/images/wasdpad_rev1.5.1_pcb_back.png"
+  <img src="docs/images/wasdpad_rev1.5.2_pcb_back.png"
        width="49%"
        alt="WASDPad+ Rev1.5.1 PCB rear view">
 </p>
