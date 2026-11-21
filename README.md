@@ -165,7 +165,7 @@ Rev1.5.1 introduced the production-oriented hardware architecture; Rev1.5.2 corr
 </p>
 
 <p align="center">
-  <em>Historical Rev1.5.1 PCB artwork — front and rear views. These images are not presented as photographs of the new Rev1.5.2 board.</em>
+  <em>Rev1.5.2 PCB artwork — front and rear views. These images are presented as render photos of the actual Rev1.5.2 board.</em>
 </p>
 
 The PCB combines the gameplay interface, autofire generator, output switching, status indication, power protection and backlight control in a single two-layer design.
