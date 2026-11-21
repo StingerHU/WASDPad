@@ -102,6 +102,10 @@ The documented non-default Bambu Studio settings (for the **rigid housing**, not
 - [Rev1.5.2 electrical hardware release record](../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) - independent of the mechanical enclosure design.
 - [Controller assembly and functional testing](../docs/assembly/ASSEMBLY.md) - electrical and cable verification.
 
+### C64/Amiga FIRE2 switch clearance
+
+The current selector-equipped **Rev1.5.2** PCB also has a second, small underside slide switch (**U4**) close to the existing key-backlight switch (**U3**). During final enclosure inspection, verify **both actuator positions are physically accessible**, neither actuator collides with the lower shell, and the board can seat without stressing either switch. The current electronics remain **Rev1.5.2**. Refer to [the electrical mode-selection guide](../hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md); choose the mode with the controller unplugged.
+
 ## Validation and publication boundary
 
 **Confirmed by the project owner:** six enclosure iterations; finalized rigid housing; physically accepted PCB positioning; secure snap-fit concept; five M3 positions; integrated cable retainer; stable and comfortable three-point wrist-rest fit.

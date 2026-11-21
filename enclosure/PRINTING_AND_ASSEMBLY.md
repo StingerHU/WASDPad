@@ -91,6 +91,7 @@ For the optional TPU component, inspect all three attachment features and the wr
 2. Place the PCB in the base against its dedicated locating and support geometry.
 3. Confirm a full, stable seating without improvised shims or forcing the board.
 4. Confirm mechanical switches can enter the upper-shell openings without side loading.
+5. On the selector-equipped Rev1.5.2, verify underside **U4 (C64/Amiga FIRE2)** and the existing U3 backlight switch both clear the lower shell and remain reachable; neither may be forced against the enclosure.
 
 Electrical soldering, DE-9 pinout verification and functional checks are specified separately in the [controller assembly document](../docs/assembly/ASSEMBLY.md).
 

@@ -2,10 +2,10 @@
 
 ## Hardware Revision 1.5.2
 
-**Document Version:** 3.0
-**Hardware Revision:** Rev1.5.2
-**Status:** Final Production Release — fabricated Rev1.5.2 functional PASS
-**Last Updated:** 2026-10-19
+**Document Version:** 3.1
+**Hardware Revision:** Rev1.5.2 (unchanged)
+**Status:** Final Production Release — selector-equipped build also working
+**Last Updated:** 2026-11-21
 
 ---
 
@@ -80,6 +80,7 @@ WASDPad+ Rev1.5.2 consists of the following principal functional blocks:
 * ESD Protection
 * Mechanical User Inputs
 * FIRE1 / FIRE2 Signal Logic
+* User-selectable C64/Amiga FIRE2 polarity (U4/R32)
 * Autofire Timing Generator
 * Autofire Mode Selection
 * Output Switching
@@ -282,21 +283,34 @@ When autofire is disabled, FIRE1 operates as a conventional manual fire signal.
 
 # 10. FIRE2 Architecture
 
-FIRE2 is an independent secondary fire signal.
+FIRE2 is an independent manual secondary action on **DE-9 pin 9 / POTX**. Both mechanical buttons (SW7/SW8) are normally open and work in parallel. FIRE2 does **not** pass through the FIRE1 autofire timing system.
 
-Two physical switches provide the FIRE2 input:
+## Why the C64/Amiga selector is needed
+
+The two platforms expect different electrical signals for the second button. **Amiga** expects an **active-low** contact to GND on pin 9. The **C64** uses the SID's analogue **POTX** measuring circuit; a GND-only contact cannot provide the required positive charging path, so the traditional C64GS-compatible FIRE2 convention applies **+5 V through a current-limiting resistance** when pressed. C64 software must read SID POTX (`$D419`) and select the correct joystick port. A mechanical DE-9 match alone does not ensure a second button will work.
+
+## Implemented Rev1.5.2 circuit
+
+The selector is built into the **Rev1.5.2** PCB; it is **not** a new hardware revision.
 
 ```text
-FIRE2 LEFT ──┐
-             ├──► FIRE2 Logic ──► FIRE2 Output
-FIRE2 RIGHT ─┘
+Protected +5 V ─ R32 (2k2) ─ U4 pin 3 [C64] ─┐
+                                              ├─ U4 pin 2 ─ FIRE2_COMMON ─ SW7/SW8 ─ R7 (330R) ─ DE-9 pin 9
+GND ───────────────── U4 pin 1 [AMIGA] ───────┘
 ```
 
-FIRE2 does not pass through the autofire timing system.
+U4 is the **C&K PCM12SMTR** SPDT slide switch, located underneath near the separate U3 backlight switch. Its **pin 2 is common**; it joins **1–2 for Amiga** or **2–3 for C64**. R32 is a **YAGEO `RC1206JR-072K2L` 2.2 kΩ ±5%, 1206** resistor (nominal SMD code **222**) in the protected +5 V branch. The existing R7 **330 Ω** resistor stays in series with FIRE2 pin 9 in both modes. SW7 and SW8's formerly grounded side has been isolated from the GND fill and renamed **`FIRE2_COMMON`**; the other side remains on the R7/POTX output path. The button release state is **Hi-Z** in either mode.
 
-There is no FIRE2 autofire in Rev1.5.2.
+| Mode | FIRE2 pressed electrical path | Series resistance |
+| --- | --- | --- |
+| **AMIGA** | pin 9 → R7 → pressed SW7/SW8 → U4 → GND | **330 Ω** |
+| **C64** | +5 V → R32 → U4 → pressed SW7/SW8 → R7 → pin 9 | **2.53 kΩ** |
 
-Host-system and software support is required for meaningful use of the second fire signal.
+At an ideal 5 V, the C64 path limits short-circuit current to approximately **1.98 mA**; this is calculated, **not** a measured SID transistor rating. The actual POTX reading depends on SID timing and host software. The selector does not change FIRE1, autofire, LED backlight control, other joystick pins or firmware requirements (none).
+
+Select the correct mode **while disconnected from the host**. The standard Protovision user-port 4-player adapter does not pass POTX/FIRE2; an explicitly extended active-low 4P+ design would use the Amiga/GND setting and require its own software support.
+
+**Documented implementation and validation:** [Rev1.5.2 C64/Amiga FIRE2 selector engineering update](../../hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md). The project owner reports a finished, working selector-equipped Rev1.5.2 controller; this report is separate from the pre-selector Rev1.5.2 manufactured sample's October 2026 PASS.
 
 ---
 
@@ -844,7 +858,7 @@ FIRE2
 GND
 ```
 
-The exact availability and interpretation of FIRE2 varies between host platforms and software.
+The interpretation of FIRE2 varies by host: set the underside **U4** selector to **C64** (positive POTX charging path) or **AMIGA** (active-low/GND). C64 games must specifically support SID POTX; standard user-port 4-player adapters do not forward this signal.
 
 ---
 
@@ -966,6 +980,7 @@ The Rev1.5.1 engineering review initially recorded PASS before its physical SPEE
 | Rev1.5.2 pre-fabrication ERC / DRC | Previously reported: ERC 0 errors/0 warnings; DRC 0 errors/0 unconnected, 46 custom/J1 warnings noted |
 | Rev1.5.2 fabrication Gerbers | Regenerated and used for production (owner confirmed) |
 | **Manufactured Rev1.5.2 board — all reported functions** | **PASS (owner confirmed, October 2026)** |
+| Rev1.5.2 integrated C64/Amiga FIRE2 selector | **Manufactured, working example confirmed by owner (November 2026)**; same hardware revision; per-host measurement logs not in repository |
 | **Current release** | **FINAL PRODUCTION RELEASE** |
 
 This section records user-reported first-article functional acceptance, not independently supplied electrical logs, regulatory compliance or acceptance of future untested batches. [Manufacturing/validation detail](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
@@ -1003,7 +1018,7 @@ The protection philosophy, hot-swap controls, low-latency signalling and service
 
 # 41. Architectural Summary
 
-**WASDPad+ Rev1.5.2** is a functionally validated, production-released, hardware-only digital retro-computer controller with a protected host interface, replaceable MX-compatible switches, independent FIRE1/FIRE2 buttons, hardware FAST/SLOW autofire, power/status LEDs and optional independent key backlighting.
+**WASDPad+ Rev1.5.2** is a production-released, hardware-only digital retro-computer controller with a protected host interface, replaceable MX-compatible switches, independent FIRE1/FIRE2 buttons, an integrated C64/Amiga FIRE2 polarity selector, hardware FAST/SLOW autofire, power/status LEDs and optional independent key backlighting.
 
 The physical SPEED selector has **pad 2 as common**; the final Rev1.5.2 schematic/PCB correctly implements the observed contact mapping. Full functionality of a newly manufactured Rev1.5.2 board was confirmed by the project owner in October 2026. There is no firmware or software layer between the player and the host interface.
 
@@ -1015,7 +1030,7 @@ The physical SPEED selector has **pad 2 as common**; the final Rev1.5.2 schemati
 **Final manufacturing design:** corrected schematic/PCB and updated Gerbers (owner confirmed)  
 **Newly manufactured Rev1.5.2 hardware validation:** **PASS — full reported functionality**  
 **Production release:** **FINAL PRODUCTION RELEASE**  
-**Document version:** 3.0 (2026-10-19)
+**Document version:** 3.1 (2026-11-21); hardware stays Rev1.5.2
 
 The Rev1.5.1 review record remains in the repository as a historical artifact, not as the present release status.
 
@@ -1034,3 +1049,4 @@ The earlier complete Rev1.5.1 system architecture, including its original archit
 | 1.0 | Earlier | Rev1.5 | Draft | Initial protected discrete-controller architecture |
 | 2.0 | 2026-08-29 | Rev1.5.1 | Historical Production Release Candidate | Production-oriented architecture, hot-swap, protection, key backlight, BOM/CPL, etc.; later SPEED mapping defect discovered on a physical board |
 | **3.0** | **2026-10-19** | **Rev1.5.2** | **FINAL PRODUCTION RELEASE — manufactured functional PASS** | Corrected SPEED-switch common pin mapping and revised production artwork; new fabricated board fully function-tested, per project owner |
+| **3.1** | **2026-11-21** | **Rev1.5.2 (unchanged)** | **Integrated FIRE2 mode selector validated** | Documented C64/Amiga polarity rationale, U4/R32/R7 path, host usage and project-owner-reported working selector-equipped build |

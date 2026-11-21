@@ -2,15 +2,15 @@
 
 **Hardware revision:** **Rev1.5.2** (`wasdpad+v1.5.2-fixed` design baseline)  
 **Document revision:** 2.0  
-**Release documentation updated:** 2026-10-19  
-**Release classification:** **FINAL PRODUCTION RELEASE**  
+**Release documentation updated:** 2026-11-21  
+**Release classification:** **FINAL PRODUCTION RELEASE** (selector-equipped Rev1.5.2 also manufactured and reported working)  
 **Manufactured Rev1.5.2 functional acceptance:** **PASS — project-owner confirmation, October 2026**
 
 ## 1. Production release outcome
 
 **WASDPad+ Rev1.5.2 is the final, functionally validated discrete-hardware production revision.** The owner reports receiving a newly manufactured Rev1.5.2 PCB in October 2026 and completing a **successful full-function controller test**. In particular, the FAST/SLOW SPEED-selector mapping corrected after the Rev1.5.1 investigation operates as designed. This is **a real manufactured Rev1.5.2 sample**, not solely a patched earlier board or an untested Gerber export.
 
-The owner also confirms that the corrected final PCB design and its matching Gerber fabrication outputs were updated and used for the manufactured revision. The release completes the known Rev1.5.1 fault corrective action.
+The owner also confirms that the corrected final PCB design and its matching Gerber fabrication outputs were updated and used for the manufactured revision. The subsequently added C64/Amiga FIRE2 selector is separately recorded in §3.1 below, under the same Rev1.5.2 number. The release completes the known Rev1.5.1 fault corrective action.
 
 **Validation attribution:** These physical-first-article results are reported by the project owner. This repository export contains neither the final physical test log, the release Gerber archive nor a Rev1.5.2-labelled BOM/CPL. This document records the reported result; it does not claim independent inspection of unavailable artifacts or certify every untested subsequent unit.
 
@@ -43,6 +43,20 @@ The separate AUTO OFF/ON control, mechanical gameplay inputs and FIRE1/FIRE2 arc
 | **Current release** | **FINAL PRODUCTION RELEASE** |
 
 The owner's report of *complete controller functionality* encompasses the design's intended control modes (directions, FIRE1/FIRE2, manual/autofire mode, FAST/SLOW selection, status indication and backlight functionality). It is a global outcome report: per-pin test logs, instrumented frequency and current readings, photographs of the new sample and details of the test host were not included with this repository ZIP and must not be inferred.
+
+## 3.1 November 2026 — integrated C64/Amiga FIRE2 selector (no revision bump)
+
+The project owner confirms a **further manufactured, working Rev1.5.2 configuration** in which the second fire output is switchable between C64 and Amiga electrical modes. The hardware **remains Rev1.5.2**; this is a documented same-revision engineering/production update, **not Rev1.6** and not a claim that the earlier October 2026 unit already had this feature.
+
+**Reason:** FIRE2 uses DE-9 pin 9 (POTX). Amiga expects a pressed FIRE2 contact to GND; a C64 SID POTX reader needs a positive +5 V charging path. The selector eliminates the external polarity-adapter requirement for normal C64 joystick-port use.
+
+**Implementation:** underside **U4 = C&K PCM12SMTR** SPDT (pin 2 common), with SW7/SW8 on the isolated `FIRE2_COMMON` network; U4 pin 1 = GND (Amiga), U4 pin 3 = protected +5 V through **R32 = 2.2 kΩ** (C64). The existing **R7 = 330 Ω** is series-connected between the FIRE2 pushbuttons and DE-9 pin 9. Total C64 pressed-state resistance is **2.53 kΩ**; Amiga pressed-state resistance is **330 Ω**. Releasing FIRE2 leaves pin 9 high impedance in either mode. FIRE1, autofire and U3 backlight switching remain unchanged.
+
+**Verification:** the project owner reports a completed, fully working physical example with the selector and both host modes tested. This documentation does **not** imply possession of instrument logs, per-host SID readout screenshots or other unprovided evidence. The **October 2026 pre-selector Rev1.5.2 PASS** remains a distinct earlier acceptance outcome.
+
+**Production traceability:** the current switch-equipped BOM adds **U4 and R32** to the pre-selector component list. The legacy Rev1.5.1 BOM/CPL are historical; the October 2026 "unchanged component list" wording applies only to the pre-selector configuration. Use **post-selector matching Gerber, BOM, CPL and assembly outputs**. The public BOM/compliance workbook documents both additions and specifies **R32 as YAGEO `RC1206JR-072K2L`, 2.2 kΩ ±5%, 1206 (JLCPCB `C137167`)**, consistent with the project's existing YAGEO resistor series. Manufacturer family RoHS references are recorded; signed lot-specific declarations and the latest REACH evidence remain procurement checks.
+
+[Full electrical explanation and platform-usage instructions](REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md).
 
 ## 4. Engineering QA notes and revision control
 

@@ -3,7 +3,7 @@
 **Document Version:** 3.0  
 **Hardware Revision:** Rev1.5.2  
 **Status:** Final Production Release — manufactured Rev1.5.2 functional PASS  
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-11-21
 
 ---
 
@@ -39,7 +39,7 @@ Rev1.5.2 provides:
 
 - four independent digital direction inputs
 - FIRE1
-- FIRE2
+- FIRE2 with underside C64/Amiga polarity selector (U4/R32)
 - hardware autofire for FIRE1
 - dedicated autofire OFF / ON control
 - fixed SLOW / FAST autofire selection
@@ -147,7 +147,17 @@ FIRE2:
 - is independent from FIRE1
 - does not use autofire in Rev1.5.2
 
-FIRE2 functionality depends on host-system and software support.
+FIRE2 requires compatible host hardware **and software**, and the mode selector must be set for that host.
+
+### 4.3 C64 / Amiga FIRE2 Mode Selector (integrated Rev1.5.2)
+
+**Why:** a C64 SID POTX second-fire input must be charged towards **+5 V**, whereas the Amiga expects the second-fire contact to pull **GND**. A fixed GND-only FIRE2 connection cannot provide both electrical behaviours. Both buttons still use **DE-9 pin 9**.
+
+**How:** **U4 (`PCM12SMTR`)** is an underside SPDT slide switch: pin 2 is the common **`FIRE2_COMMON`** line from SW7/SW8; pin 1 selects GND (AMIGA); pin 3 selects protected +5 V through **R32 = 2.2 kΩ** (C64). The existing **R7 = 330 Ω** stays between the FIRE2 pushbuttons and pin 9. Thus a pressed button connects pin 9 to **GND through 330 Ω** (Amiga) or **+5 V through 2.53 kΩ total** (C64). Releasing either button leaves pin 9 high impedance. The LED backlight's U3 switch is separate.
+
+Set the mode **before plugging the controller into the host**. In C64 mode, games must support SID **POTX `$D419`** and normal joystick-port selection; **the standard Protovision four-player user-port interface does not carry POTX/FIRE2**. A future custom active-low 4P+ interface would instead use the AMIGA/GND setting if explicitly supported in its design and game software.
+
+The project owner has confirmed a **manufactured and working selector-equipped Rev1.5.2**; no hardware revision increase is assigned. Full circuit, validation scope and wiring table: [C64/Amiga FIRE2 engineering update](../../hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md).
 
 ---
 
@@ -735,7 +745,9 @@ Includes most:
 
 Includes:
 
-- U3
+- U3 backlight selector
+- U4 C64/Amiga FIRE2 selector
+- R32 YAGEO 2.2 kΩ ±5% (`RC1206JR-072K2L`) 1206 FIRE2 series resistor
 - SW1–SW8 Kailh hot-swap sockets
 
 ### THT
@@ -781,6 +793,7 @@ For the current design, consult the [Rev1.5.2 manufacturing release record](../.
 | MX hot-swap and backlighting | Included in complete-functionality confirmation |
 | Schematic / PCB design correction | Complete — `Switch:SW_SPDT` and physical pad 2 common |
 | Rev1.5.2 manufactured functional first article | **PASS — October 2026, owner confirmed** |
+| Rev1.5.2 integrated FIRE2 selector | **PASS — completed hardware, project-owner confirmed November 2026; original electrical logs not included** |
 | Rev1.5.2 final production release | **APPROVED** |
 
 Formal electrical readings, measured autofire frequency, environmental testing and external compliance certificates are **not included** in this repository archive. Those are not asserted as independent test results.
@@ -808,6 +821,8 @@ In addition to the confirmed functional PASS of the first manufactured Rev1.5.2 
 
 - **FIRE1 release:** releasing FIRE1 stops autofire and does not leave an unintended fire assertion.
 - **FIRE2 independence:** FIRE2 operates independently of the FIRE1 autofire timing circuit.
+- **Host mode selection:** with power disconnected, switch U4 to C64 and confirm pressed/released FIRE2 is detected by a game/test program that reads SID POTX on the normal joystick port. Repeat in Amiga/GND mode on a supported Amiga game/test program. Verify no false FIRE2 assertion in either release state.
+- **Selector isolation:** confirm U4 pin 2 and SW7/SW8 `FIRE2_COMMON` are not shorted to the permanent GND fill; U4 pin 3 is supplied from protected +5 V via R32 (2.2 kΩ), not `BACKLIGHT_5V`; R7 remains 330 Ω in series with pin 9.
 - **Selector orientation:** FAST and SLOW agree with the physical switch/contact mapping; both modes cause distinct operating behavior.
 - **Input integrity:** no unrequested joystick direction or fire input is asserted.
 - **Power safety:** no +5 V / GND short, abnormal supply behavior or unexpected heating.

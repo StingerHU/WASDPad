@@ -2,8 +2,8 @@
 
 **Current hardware:** **Rev1.5.2**  
 **Release:** **Final Production Release — manufactured board functionally validated**  
-**Document version:** 2.0  
-**Updated:** 2026-10-19
+**Document version:** 2.1  
+**Updated:** 2026-11-21
 
 WASDPad+ Rev1.5.2 is the final discrete-hardware release. The project owner confirms that a **newly manufactured Rev1.5.2 PCB** has been received and **all controller functions operate correctly**, including the corrected FAST/SLOW autofire selector. The previous Rev1.5.1 defect was identified, reworked on an existing board and then fixed in the final Rev1.5.2 schematic, PCB and Gerber fabrication outputs.
 
@@ -15,7 +15,8 @@ Rev1.5.1 records remain available to document engineering history; they are **no
 | --- | --- | --- |
 | Current release and validation | [Rev1.5.2 manufacturing release record](../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) | Final PCB revision, tested manufactured unit and scope of evidence |
 | Features | [Feature specification](specification/FEATURE_SPECIFICATION.md) | Current Rev1.5.2 operation and interfaces |
-| Design | [System architecture](architecture/System_architecture.md) | Discrete-hardware functional blocks and correct SPEED pin mapping |
+| Design | [System architecture](architecture/System_architecture.md) | Discrete-hardware functional blocks, SPEED mapping, C64/Amiga FIRE2 electrical mode |
+| FIRE2 selector engineering update | [C64/Amiga FIRE2 selector](../hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md) | Why polarity switching is required, circuit implementation, operating modes and validation |
 | Hardware | [Rev1.5 hardware overview](../hardware/rev1.5/README.md) | Rev1.5.2 release, design history and manufacturing references |
 | Assembly and cable wiring | [Assembly procedure](assembly/ASSEMBLY.md) | Manufacturing, DE-9 cable assembly, inspection and functional checks |
 | Next developments | [Roadmap](roadmap/ROADMAP.md) | Completed Rev1.5.2 milestone and future Rev2.0 |
@@ -38,20 +39,21 @@ The original detailed Rev1.5.1 development records are preserved as **historical
 - [Original Rev1.5.1 architecture and engineering history](architecture/System_architecture_REV1.5.1_HISTORICAL.md)
 - [Original Rev1.5.1 hardware directory and revision-control policy](../hardware/README_REV1.5.1_HISTORICAL.md)
 
-**Do not mistake historical “pending”, “candidate”, or pre-physical PASS entries for the current release.** Rev1.5.2 is the final, manufactured and functionally validated hardware release.
+**Do not mistake historical “pending”, “candidate”, or pre-physical PASS entries for the current release.** Rev1.5.2 remains the final hardware revision: the October 2026 pre-selector board was validated; a separate November 2026 selector-equipped Rev1.5.2 example is also reported manufactured and working. No Rev1.6 hardware revision was introduced.
 
 ## Manufacturing data and release traceability
 
-The owner confirms that Rev1.5.2 PCB artwork and Gerbers were updated, and a fabricated Rev1.5.2 sample passed full reported functionality. **This GitHub export does not include the matching Rev1.5.2 KiCad source, Gerber/drill set or Rev1.5.2-labelled BOM/CPL**; therefore the export cannot independently reproduce/verify the exact manufacturing dataset used for the tested sample.
+The owner confirms that Rev1.5.2 PCB artwork and Gerbers were updated, and a fabricated Rev1.5.2 sample passed full reported functionality. **This GitHub export does not include the matching Rev1.5.2 KiCad source, Gerber/drill set or controlled manufacturing BOM/CPL**; therefore the export cannot independently reproduce/verify the exact manufacturing dataset used for the tested sample.
 
 The following currently present CSV/Markdown records are **historical Rev1.5.1 baselines**. Do not silently relabel them Rev1.5.2 or use them to fabricate a Rev1.5.2 batch without confirming revision equivalence against the actual production release:
 
 - [Rev1.5.1 Master BOM](../hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv)
 - [Rev1.5.1 Master CPL](../hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv)
-- [Rev1.5.1 BOM documentation](../hardware/rev1.5/bom/README.md)
 - [Rev1.5.1 datasheet index](../hardware/rev1.5/datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md)
 - [Rev1.5.1 approved alternate parts](../hardware/rev1.5/bom/ALTERNATE_PARTS.md)
 - [Rev1.5.1 procurement notes](../hardware/rev1.5/bom/PROCUREMENT_NOTES.md)
+
+The [current Rev1.5.2 BOM/compliance documentation](../hardware/rev1.5/bom/README.md) includes the U4/R32 selector update; the legacy Rev1.5.1 BOM/CPL files above remain historical.
 
 **Current release authority:** [Rev1.5.2 manufacturing notes](../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md), the actual matching Rev1.5.2 fabrication data held by the project owner, and the recorded first-article functional result. Every future manufacturing lot requires normal revision control and per-unit/batch quality checks.
 
@@ -78,5 +80,6 @@ The finalized sixth-iteration Rev1.5.2 enclosure is documented separately from t
 | 2026-08-29 | Rev1.5.1 | Original engineering review and Production Release Candidate records completed; subsequently identified SPEED mapping error |
 | 2026-10-16 | Rev1.5.1 → Rev1.5.2 | Physical fault measured; legacy board repaired and tested; production schematic/PCB and Gerbers corrected |
 | 2026-10-19 | **Rev1.5.2** | Owner confirms **manufactured Rev1.5.2 sample PASSED full functional validation**; project documentation updated to **Final Production Release** |
+| 2026-11-21 | **Rev1.5.2 (unchanged)** | Integrated U4/R32 C64/Amiga FIRE2 selector recorded as a validated same-revision production update; reported finished working sample |
 
 **Scope of PASS:** The project-owner-reported complete controller functionality of the manufactured Rev1.5.2 example. This does not establish independent regulatory approval, an external laboratory test report or automatic acceptance of untested future units.

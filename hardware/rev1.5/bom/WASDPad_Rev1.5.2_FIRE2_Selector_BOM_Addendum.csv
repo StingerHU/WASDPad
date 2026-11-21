@@ -1,0 +1,3 @@
+﻿Reference,Quantity,Component,Value / MPN,Footprint,Side,Electrical function,Evidence status
+U4,1,SPDT slide switch,C&K PCM12SMTR,PCM12SMTR:PCM12SMTR_CNK,Bottom,"Mode selector: 1=GND/Amiga, 2=FIRE2_COMMON, 3=R32/+5V C64",Same manufacturer MPN as U3; existing product references apply
+R32,1,YAGEO SMD thick-film resistor,RC1206JR-072K2L / 2.2 kOhm +/-5% / JLCPCB C137167,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,Bottom,Series current limiting in C64 +5V FIRE2 branch,Exact orderable part confirmed at https://jlcpcb.com/partdetail/YAGEO-RC1206JR072K2L/C137167 ; manufacturer RC RoHS family reference; REACH family PDF current access not independently verified

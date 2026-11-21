@@ -3,7 +3,7 @@
 > **CURRENT RELEASE: Rev1.5.2 — FINAL PRODUCTION RELEASE.** A newly manufactured
 > Rev1.5.2 controller passed the project owner's reported functional testing
 > in October 2026, including the corrected FAST/SLOW selector. **The component
-> BOM is unchanged from Rev1.5.1** (project-owner confirmation).
+> initial BOM matched Rev1.5.1**, but the later switch-equipped Rev1.5.2 adds **U4 and R32**.
 >
 > **Publication policy:** The BOM, historical CPL, component datasheets,
 > sourcing and compliance references are public. The **KiCad schematic,
@@ -11,11 +11,11 @@
 > privately and reserved for exclusive delivery to **Commodore**. Their absence
 > from this public repository is intentional, not a missing engineering output.
 
-**Document Version:** 2.0  
-**Hardware Revision:** Rev1.5.2  
+**Document Version:** 2.1  
+**Hardware Revision:** Rev1.5.2 (unchanged; integrated selector-equipped build)  
 **Hardware Status:** Final Production Release — manufactured functional validation PASS  
 **Compliance Evidence:** Research register; outstanding declarations flagged  
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-11-21
 
 ---
 
@@ -23,9 +23,7 @@
 
 This directory documents the **public component, placement-history, sourcing,
 regulatory-reference and assembly-classification records** of WASDPad+
-Rev1.5.2. The component selection is identical to Rev1.5.1. Rev1.5.2 corrects
-the physical SPEED switch common-contact mapping in the schematic and PCB;
-it does **not** introduce a BOM/MPN change. See the [release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+Rev1.5.2. The **October 2026 pre-selector configuration** carried forward the Rev1.5.1 component list while correcting the SPEED switch common-contact mapping. The **November 2026 selector-equipped Rev1.5.2 configuration** introduces two BOM entries: **U4 = C&K `PCM12SMTR`** and **R32 = 2.2 kΩ, 1206 (code `222`)**. It does **not** change the hardware revision number. For the selected **R32** use **YAGEO `RC1206JR-072K2L`**, 2.2 kΩ **±5%**, 1206, JLCPCB **`C137167`**, matching the YAGEO resistor family already in the design. The workbook documents this orderable specification; do not infer physical lot identity or independent signed REACH/RoHS certificates from a marking alone. See the [release record](../REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
 and the [SPEED selector erratum](../REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md).
 
 The retained hardware platform includes:
@@ -56,6 +54,7 @@ hardware/rev1.5/
 └── bom/
     ├── README.md
     ├── WASDPad_Rev1.5.2_BOM_Compliance_Links.xlsx
+    ├── WASDPad_Rev1.5.2_FIRE2_Selector_BOM_Addendum.csv
     ├── WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv
     ├── WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv
     ├── ALTERNATE_PARTS.md
@@ -66,13 +65,11 @@ hardware/rev1.5/
 
 **[WASDPad+ Rev1.5.2 BOM with Compliance Links (XLSX)](WASDPad_Rev1.5.2_BOM_Compliance_Links.xlsx)**
 
-The workbook retains the **83 original BOM line items** and adds datasheet,
-RoHS, REACH and evidence-quality references. The project owner confirms no
-component-list changes between Rev1.5.1 and Rev1.5.2. It contains:
+The workbook retains all **83 original BOM line items** and adds the **two current selector BOM entries** (U4 and R32) for **85 lines**. Original RoHS/REACH evidence links remain attached to their existing MPNs; U4 reuses the existing PCM12SMTR manufacturer entry. R32 is specified as **YAGEO `RC1206JR-072K2L` (2.2 kΩ, ±5%, 1206, JLCPCB `C137167`)** with the same RC-family RoHS/REACH reference types used for the existing YAGEO resistor entries (signed/current documents remain subject to source verification). This is a documented change to the current Rev1.5.2 BOM, not a hardware revision increase. It contains:
 
 * **README** — purpose, provenance and evidence limitations
-* **MPN Compliance** — evidence-source register covering **29 unique MPN entries**
-* **BOM 83 rows** — designators, MPNs, quantities, footprints, assembly
+* **MPN Compliance** — evidence-source register for **30 sourced MPNs**: the original 29 plus specified YAGEO R32; U4 shares U3's PCM12SMTR MPN
+* **BOM 85 rows** — original 83 plus U4 and R32; designators, quantities, footprints, assembly
   classes and matching compliance-source columns
 
 **Scope:** The workbook is a **public BOM and compliance research register**,
@@ -89,7 +86,7 @@ It includes reference designators, MPNs, quantities, KiCad footprints,
 component descriptions, supplier part numbers, PCB layer and assembly
 classification, including SMD, THT, mechanical, cable and DNP/PCB-feature items.
 
-The component identity was carried into Rev1.5.2 without MPN changes.
+The **pre-selector** component identity was carried into the original Rev1.5.2 build without MPN changes; the **current switch-equipped build** adds U4 and R32 (see the addendum).
 The Rev1.5.1 CSV itself is **not** a replacement for the controlled Rev1.5.2
 fabrication and assembly handoff. If public documents disagree, reconcile
 against the owner's approved final-revision component list.
@@ -106,7 +103,7 @@ use the revision-matched, controlled production placement dataset.
 ### 2.5 Datasheets and regulatory evidence
 
 * [Rev1.5.1 Datasheet Index](../datasheets/WASDPad_Rev1.5.1_DATASHEET_INDEX.md) —
-  the technical references for the unchanged Rev1.5.2 component list.
+  the technical references for the original pre-selector component list; **U4** shares the documented U3 PCM12SMTR part, and **R32** is specified as YAGEO `RC1206JR-072K2L` (2.2 kΩ, ±5%, 1206) using the same RC-family compliance reference scheme as other YAGEO resistors.
 * [Rev1.5.2 RoHS/REACH Declaration URL Index](../datasheets/WASDPad_Rev1.5.2_Regulatory_Declaration_URL_Index.md) —
   official manufacturer declarations, product-status pages, distributor
   indicators and items that still require specific supplier evidence.
@@ -279,6 +276,7 @@ Values used in Rev1.5.2 include:
 
 * 270 Ω
 * 330 Ω
+* **2.2 kΩ (R32, new FIRE2 C64 branch)**
 * 3.3 kΩ
 * 4.7 kΩ
 * 10 kΩ
@@ -480,6 +478,20 @@ The component is located on the bottom side of the PCB and may be manually assem
 
 ---
 
+## 10.1 C64 / Amiga FIRE2 selector (post-selector Rev1.5.2)
+
+**Reference:** U4  
+**MPN:** C&K `PCM12SMTR` (same component as U3)  
+**Mounting:** PCB underside, SMD, manually assembled  
+**Series resistor:** R32, **YAGEO `RC1206JR-072K2L`**, **2.2 kΩ ±5% / 1206**, nominal marking **222**; **JLCPCB `C137167`**; [orderable part](https://jlcpcb.com/partdetail/YAGEO-RC1206JR072K2L/C137167)  
+**Existing resistor:** R7 **330 Ω**, unchanged
+
+U4 common **pin 2** drives the isolated SW7/SW8 `FIRE2_COMMON` net; pin 1 goes to GND (**AMIGA**), pin 3 goes to protected +5 V through R32 (**C64**). SW7/SW8 connect the selected path through R7 to DE-9 pin 9. Refer to [complete electrical and mode-selection notes](../REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md).
+
+See the [two-line BOM addendum](WASDPad_Rev1.5.2_FIRE2_Selector_BOM_Addendum.csv) and updated Excel for the current build. The `Rev1.5.1` CSV/CPL files remain intact as historical snapshots and must not be assumed to describe the selector-equipped PCB.
+
+---
+
 ## 11. Gameplay Switches
 
 Rev1.5.2 uses eight MX-compatible mechanical switches.
@@ -605,6 +617,8 @@ Components intended for top-side surface-mount assembly.
 Includes:
 
 * U3 backlight switch
+* **U4 C64/Amiga FIRE2 selector**
+* **R32 2.2 kΩ resistor (1206)**
 * SW1–SW8 Kailh hot-swap sockets
 
 These components may be manually installed depending on the manufacturing configuration.
@@ -700,7 +714,7 @@ Supporting documents:
 Reference Designator
         |
         v
-Rev1.5.2 BOM Excel (unchanged Rev1.5.1 component baseline)
+Rev1.5.2 BOM Excel (83 original lines + U4 and R32 for current selector build)
         |
         v
 Manufacturer Part Number / approved procurement item
@@ -757,7 +771,7 @@ transparency and sourcing traceability; they do not override the final design.
 **Hardware Revision:** WASDPad+ Rev1.5.2  
 **BOM Documentation Version:** 2.0  
 **Hardware Status:** **FINAL PRODUCTION RELEASE — manufactured functional validation PASS** (project-owner report, October 2026)  
-**BOM Changes from Rev1.5.1:** **None** (project-owner confirmation)  
+**BOM Changes from pre-selector Rev1.5.2:** **U4 and R32 added**; older `Rev1.5.1` BOM/CPL still historical  
 **Regulatory Evidence Status:** Some exact-MPN declarations remain pending or provisional
 
 Rev1.5.2 implements the verified SPEED switch common-pad correction in the

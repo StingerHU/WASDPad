@@ -4,7 +4,7 @@
 
 **Hardware Revision:** **Rev1.5.2**  
 **Status:** **FINAL PRODUCTION RELEASE — manufactured Rev1.5.2 functional PASS**  
-**Release updated:** 2026-10-19
+**Release updated:** 2026-11-21
 
 The SPEED-switch common-pad problem identified on Rev1.5.1 was measured, repaired on an existing board and corrected in the Rev1.5.2 schematic, PCB routing and matching Gerber outputs. A **newly manufactured Rev1.5.2 controller was physically tested and all reported functionality passed** (project-owner confirmation, October 2026). The preceding Rev1.5.1 manufacturing review is retained as historical evidence, not the current revision's release verdict.
 
@@ -194,6 +194,14 @@ slide switch.
 # Electrical Protection
 
 Revision 1.5.1 adds several protection stages intended to improve robustness when connected to vintage computer hardware.
+
+## November 2026 FIRE2 mode selector — still Rev1.5.2
+
+The current switch-equipped Rev1.5.2 adds a small underside **U4 `PCM12SMTR`** slide switch and **R32 (2.2 kΩ)** so the independent FIRE2 signal on DE-9 pin 9 can be used in **Amiga active-low** or **C64 SID POTX active-high** mode. The prior R7 (330 Ω) remains series-connected; SW7/SW8 use the isolated `FIRE2_COMMON` net. No external C64 converter adapter is required for the normal C64 joystick ports when software supports POTX.
+
+A finished switch-equipped example is **reported manufactured and working by the project owner**. It is a separate November 2026 functional validation from the earlier October 2026 Rev1.5.2 sample which did not have U4. **The hardware revision number remains Rev1.5.2**. Set the switch while unplugged; the standard Protovision 4-player user-port adapter does not carry POTX FIRE2.
+
+See [the engineering change explanation and wiring](REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md), [assembly tests](../../docs/assembly/ASSEMBLY.md) and [the updated public BOM record](bom/README.md).
 
 ## Overcurrent Protection
 

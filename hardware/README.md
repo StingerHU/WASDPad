@@ -4,7 +4,7 @@
 **Manufactured first article:** **FULL FUNCTIONAL PASS** (project-owner confirmation, October 2026)  
 **Architecture:** Direct retro joystick interface; no MCU, firmware or OS driver.
 
-Rev1.5.2 is the definitive hardware-only version of WASDPad+. It retains MX-compatible hot-swappable keys, dual FIRE1/FIRE2 controls, CMOS 555 autofire, SLOW/FAST selection, ESD and PPTC power protection, dual-colour status indication and independent warm-white backlighting.
+Rev1.5.2 is the definitive hardware-only version of WASDPad+. It retains MX-compatible hot-swappable keys, dual FIRE1/FIRE2 controls, CMOS 555 autofire, SLOW/FAST selection, ESD and PPTC power protection, dual-colour status indication and independent warm-white backlighting. The **latest switch-equipped build** adds **C64/Amiga selectable FIRE2 polarity** on DE-9 pin 9 without changing the **Rev1.5.2** number; the project owner reports a manufactured working example.
 
 ## Released design and physical confirmation
 
@@ -17,6 +17,7 @@ The original Rev1.5.1 hardware had a SPEED selector mapping error: the physical 
 | Document | Role |
 | --- | --- |
 | [Rev1.5.2 hardware overview](rev1.5/README.md) | Final hardware revision and functional baseline |
+| [C64/Amiga FIRE2 selector update](rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md) | Electrical rationale, U4/R32/R7 circuit, operation and test scope |
 | [Rev1.5.2 manufacturing release notes](rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md) | Corrected design, manufactured-sample PASS and revision QA |
 | [Rev1.5.1 → Rev1.5.2 erratum](rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md) | Physical measurements and root cause |
 | [Rev1.5.1 engineering review](rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD) | Historical pre-production assessment, superseded for SPEED |

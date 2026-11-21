@@ -56,6 +56,12 @@ Future Rev2.0 — programmable platform (separate development effort)
 
 FAST closes pads 1–2; SLOW closes 2–3. This mapping was confirmed during fault investigation and included in the final production design. The owner subsequently confirmed the actual Rev1.5.2 manufactured board works correctly.
 
+## November 2026: C64 / Amiga FIRE2 switch (within Rev1.5.2)
+
+The completed **Rev1.5.2** design now also includes a **manually selectable C64/Amiga FIRE2 polarity** on DE-9 pin 9, using **U4 (`PCM12SMTR`)**, **R32 (2.2 kΩ)** and existing **R7 (330 Ω)**. This is a built-in solution instead of an external C64 adapter and does **not** change the hardware revision number. The project owner confirms a finished, manufactured and working switch-equipped example; detailed test log files were not included in the public repository archive. The previous October 2026 no-selector Rev1.5.2 manufactured PASS remains an earlier separate result.
+
+[Electrical implementation and mode-selection instructions](../../hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md).
+
 ## Stable production / maintenance
 
 Rev1.5.2 development is closed for the current hardware architecture. Routine ongoing activities are **production operations**, not missing Rev1.5.2 feature-development milestones:
@@ -92,3 +98,4 @@ Its *Production Release Candidate* and *validation pending* language describes t
 | --- | --- | --- |
 | 2.0 | 2026-08-29 | Historical Rev1.5.1 Production Release Candidate roadmap; subsequent physical validation identified selector defect |
 | **3.0** | **2026-10-19** | **Rev1.5.2 Final Production Release; new manufactured PCB full-function PASS (owner confirmed)**; Rev2.0 separated as future development |
+| **3.1** | **2026-11-21** | **Same Rev1.5.2:** integrated C64/Amiga FIRE2 selector, project-owner-confirmed working manufactured build and usage guidance; no hardware revision increment |

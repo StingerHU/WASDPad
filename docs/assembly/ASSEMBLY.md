@@ -3,7 +3,7 @@
 **Document Version:** 2.0  
 **Hardware Revision:** Rev1.5.2  
 **Status:** Final Production Release — manufactured Rev1.5.2 functionally validated  
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-11-21
 
 ---
 
@@ -30,10 +30,10 @@ The document covers:
 
 The authoritative component and placement records are:
 
-- `hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv`
-- `hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv`
+- `hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_BOM.csv` (historical only)
+- `hardware/rev1.5/bom/WASDPad_Rev1.5.1_FULL_MASTER_CPL.csv` (historical only)
 
-The CSV files currently in this repository are **Rev1.5.1-labelled historical BOM/CPL references**, not independently verified Rev1.5.2 release exports. For Rev1.5.2 manufacturing, the matching final-revision BOM/CPL and Gerber package used for the successful production build take precedence. See the [release record](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
+The CSV files currently in this repository are **Rev1.5.1-labelled historical BOM/CPL references**, not independently verified Rev1.5.2 release exports. The **current Rev1.5.2 switch-equipped build** additionally contains **U4 and R32**; see the [FIRE2 mode selector change record](../../hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md) and updated public BOM/compliance workbook. For Rev1.5.2 manufacturing, the matching final-revision BOM/CPL and Gerber package used for the successful production build take precedence. See the [release record](../../hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md).
 
 ---
 
@@ -109,6 +109,8 @@ These are installed manually.
 Current manual bottom-side SMD parts include:
 
 - `U3` — C&K `PCM12SMTR` backlight switch
+- `U4` — C&K `PCM12SMTR` C64/Amiga FIRE2 polarity selector
+- `R32` — YAGEO `RC1206JR-072K2L`, 2.2 kΩ ±5%, 1206 SMD, C64 FIRE2 series resistor (JLCPCB `C137167`)
 - `SW1–SW8` — Kailh / Kaihua `CPG151101S11` MX hot-swap sockets
 
 These parts require careful alignment because they are mechanically significant to the final enclosure and gameplay-switch geometry.
@@ -403,7 +405,15 @@ Backlight ON  -> BACKLIGHT_5V supplied
 
 ---
 
-## 13.2 Kailh Hot-Swap Sockets
+## 13.2 U4 and R32 — C64 / Amiga FIRE2 selector
+
+The updated **Rev1.5.2** PCB includes the second small **C&K `PCM12SMTR`** slide switch (`U4`) on the **underside**, beside but independent from the backlight selector (`U3`). The C64 branch uses **R32 = YAGEO `RC1206JR-072K2L`, 2.2 kΩ ±5%** (`222` nominal SMD code, 1206 footprint); the existing **R7 = 330 Ω** remains in both FIRE2 signal paths. Use the released matching PCB/BOM/CPL for location and pad orientation.
+
+Before soldering, verify that **U4 pin 2 is the SPDT common**, **pin 1 = GND (AMIGA)** and **pin 3 = protected +5 V via R32 (C64)**. Both FIRE2 buttons' former GND terminals now join **`FIRE2_COMMON`**, not the board GND zone. Ensure the selector body and actuator do not foul the enclosure, hot-swap sockets or PCB supports. Reflow/rework with the same care as U3, without bridging the three adjacent contacts.
+
+Do **not** use the backlight-switched `BACKLIGHT_5V` rail as the FIRE2 selector's +5 V source. Set U4 to the target mode **with the controller disconnected** before a live-host test. The current part identity of the fitted R32 2.2 kΩ resistor is not supplier/MPN-frozen in the public compliance register; its numeric value and `222` marking alone do not prove a manufacturer declaration.
+
+## 13.3 Kailh Hot-Swap Sockets
 
 References:
 
@@ -874,6 +884,7 @@ Every newly assembled production unit shall verify:
 - FIRE1 RIGHT
 - FIRE2 LEFT
 - FIRE2 RIGHT
+- C64/Amiga U4 selector: correct contacts/polarity and both FIRE2 buttons in **both** supported modes
 - autofire OFF
 - autofire SLOW
 - autofire FAST
@@ -906,7 +917,9 @@ Testing should include:
 
 - basic movement
 - FIRE1
-- FIRE2 where supported
+- FIRE2 in **AMIGA / GND** mode on an appropriate Amiga test/game
+- FIRE2 in **C64 / +5 V** mode in a normal C64 joystick port with a POTX (`$D419`) aware test/game
+- verify FIRE2 is released (Hi-Z) when neither FIRE2 button is pressed
 - autofire gameplay
 - repeated autofire mode switching
 - extended gameplay

@@ -11,7 +11,7 @@ The [Rev1.5.2 production release record](hardware/rev1.5/REV1.5.2_MANUFACTURING_
 **Current Hardware:** Rev1.5.2  
 **Status:** Final Production Release — functional validation PASS  
 **Architecture:** Pure hardware — no MCU, firmware or drivers  
-**Last Updated:** 2026-10-19
+**Last Updated:** 2026-11-21
 
 <p align="center">
   <img src="docs/images/wasdpad_controllers.jpg"
@@ -153,7 +153,7 @@ A dedicated hardware switch allows the entire backlight system to be turned on o
 
 # PCB evolution: Rev1.5.1 to final Rev1.5.2
 
-Rev1.5.1 introduced the production-oriented hardware architecture; Rev1.5.2 corrected the SPEED-selector common contact mapping and is the final, functionally validated production revision.
+Rev1.5.1 introduced the production-oriented hardware architecture; Rev1.5.2 corrected the SPEED-selector common contact mapping. The later **C64/Amiga FIRE2 selector** was added to the same **Rev1.5.2** design and is reported physically working by the project owner.
 
 <p align="center">
   <img src="docs/images/wasdpad_rev1.5.1_pcb_front.png"
@@ -243,7 +243,9 @@ Supports:
 
 - independent manual second-fire input
 
-FIRE2 functionality depends on the target computer and software.
+**C64/Amiga hardware mode selector (U4):** the current switch-equipped Rev1.5.2 can switch FIRE2 polarity without an external adapter. **AMIGA** connects pressed FIRE2 to GND through R7 (330 Ω); **C64** connects pressed FIRE2 to protected +5 V through R32 (2.2 kΩ) and R7 (330 Ω). Released buttons leave pin 9 high impedance. The mode must be selected before connecting to a host. C64 programs need explicit SID POTX support; a conventional Protovision 4-player user-port adapter does not carry this FIRE2 input.
+
+[Why this is needed and the full U4/R32/R7 circuit](hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md).
 
 Autofire applies to **FIRE1 only** in Rev1.5.2.
 
@@ -360,7 +362,7 @@ The newly fabricated Rev1.5.2 unit has passed full reported controller functiona
 
 ## WASDPad+ Rev1.5.2 — Final Production Release
 
-**Physical validation: PASS (manufactured Rev1.5.2 hardware, project-owner confirmation, October 2026).**
+**Physical validation: PASS.** The October 2026 pre-selector Rev1.5.2 sample passed reported controller tests. The project owner additionally reports a **manufactured and working C64/Amiga selector-equipped Rev1.5.2** in November 2026. The results concern different builds within the **same hardware revision**; the original electrical logs are not included in this public repository.
 
 - [x] Corrected physical SPEED-switch common-pad assignment in Rev1.5.2 schematic and PCB
 - [x] Updated Gerber fabrication outputs and manufactured a new Rev1.5.2 PCB
@@ -369,6 +371,7 @@ The newly fabricated Rev1.5.2 unit has passed full reported controller functiona
 - [x] Confirmed the FAST/SLOW SPEED-selector correction works on the manufactured revision
 - [x] Retained the pure-hardware architecture, hot-swap switching, dual FIRE inputs, ESD/overcurrent protection and backlighting
 - [x] Closed the Rev1.5.2 functional validation milestone
+- [x] Implemented the **C64 / Amiga FIRE2 mode selector** within Rev1.5.2 (no hardware revision increment); owner reports a manufactured, working selector-equipped example (November 2026)
 
 **Evidence boundary:** The first-article PASS is reported by the project owner; this public documentation ZIP does not include original electrical logs or the exact production Gerber/BOM/CPL dataset. Normal per-unit quality control, release traceability and production-batch acceptance remain applicable to each future lot. This is not a claim that every future board has already been tested.
 
@@ -414,6 +417,7 @@ Start with the [documentation index](docs/README.md). Current release and techni
 - [Rev1.5.2 system architecture](docs/architecture/System_architecture.md)
 - [Rev1.5.2 hardware overview](hardware/rev1.5/README.md)
 - [Rev1.5.2 production and first-article validation record](hardware/rev1.5/REV1.5.2_MANUFACTURING_RELEASE_NOTES.md)
+- [Rev1.5.2 C64/Amiga FIRE2 selector — rationale, circuit and usage](hardware/rev1.5/REV1.5.2_C64_AMIGA_FIRE2_SELECTOR_UPDATE.md)
 - [Rev1.5.1 → Rev1.5.2 engineering erratum](hardware/rev1.5/REV1.5.1_TO_REV1.5.2_SPEED_SELECTOR_ERRATUM.md)
 - [Historical Rev1.5.1 engineering review](hardware/rev1.5/Rev1.5.1-Engineering-Manufacturing-Record.MD)
 - [Rev1.5.1 field rework instructions](docs/assembly/REV1.5.1_SPEED_SELECTOR_REWORK.md)
@@ -473,7 +477,8 @@ Rev1.5.1 — protection, hot-swap, key illumination,
    ├── Existing board reworked and validated on Amiga 1200
    ▼
 Rev1.5.2 — corrected SPDT symbol/pad mapping and PCB routing,
-            matching production Gerbers, new fabricated board
+            matching production Gerbers, new fabricated board;
+            later integrated C64/Amiga FIRE2 selector (same Rev1.5.2)
    │
    ▼
 FULL FUNCTIONAL VALIDATION PASSED — FINAL PRODUCTION RELEASE
@@ -545,7 +550,7 @@ Third-party product names and trademarks remain the property of their respective
 | **Interface** | DE-9 digital joystick |
 | **Primary Platforms** | Commodore 64 / 128 / Amiga architecture; platform-specific compatibility applies |
 | **Gameplay Switches** | 8 × MX-compatible hot-swap |
-| **Fire Inputs** | FIRE1 + FIRE2 |
+| **Fire Inputs** | FIRE1 + FIRE2, C64/Amiga selectable FIRE2 polarity (U4/R32) |
 | **Autofire** | Hardware / FIRE1 / OFF–SLOW–FAST |
 | **Key Backlight** | 8 × warm-white LED |
 | **Protection** | PPTC + signal ESD + +5 V TVS |
