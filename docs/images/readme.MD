@@ -42,7 +42,6 @@ Photographs from PCB fabrication and surface-mount assembly. They document the p
 | <a href="wasdpad_v1.5.2-smd-manuf04.jpg"><img src="wasdpad_v1.5.2-smd-manuf04.jpg" width="390" alt="Two blue assembled WASDPad+ PCBs with installed components and attached cables"></a> |   |
 | **Assembly photograph:** two boards with fitted components and cables. |  |
 
-> **Version-label note:** `wasdpad_v1.5.3-smd-manuf04.jpg` is the original uploaded filename. It is not being used here to announce or document a new Rev1.5.3 hardware release; the repository's current documented release remains **Rev1.5.2**.
 
 ## Historical Rev1.5.1 prototypes and PCB artwork
 
